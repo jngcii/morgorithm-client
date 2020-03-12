@@ -1,0 +1,12 @@
+$bigTitleFontSize: 32px;
+$yellowColor: rgb(230, 214, 77);
+
+@mixin rFlex {
+    display: flex;
+    flex-direction: row;
+}
+
+@mixin cFlex {
+    display: flex;
+    flex-direction: column;
+}
