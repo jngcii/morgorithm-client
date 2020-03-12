@@ -1,16 +1,8 @@
 import React from 'react';
-import classNames from 'classnames/bind';
-import styles from "./styles.module.scss";
-const cx = classNames.bind(styles);
+import AppContainer from "./Components/AppContainer"
 
 function App() {
-  const isit = false;
-
-  return (
-    <div className={cx('test', {red: isit})}>
-      morgorithm
-    </div>
-  );
+  return <AppContainer />
 }
 
 export default App;

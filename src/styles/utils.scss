@@ -1,5 +1,7 @@
-$bigTitleFontSize: 32px;
+$bigTitleFontSize: 54px;
+$smallTitleFontSize: 26px;
 $yellowColor: rgb(230, 214, 77);
+$bgColor: #EFEFEF;
 
 @mixin rFlex {
     display: flex;
