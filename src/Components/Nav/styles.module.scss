@@ -1,0 +1,62 @@
+@import "src/Styles/utils.scss";
+
+nav {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  transition: 0.3s;
+  background-color: $bgColor;
+  position: fixed;
+  top: 0;
+  box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.2);
+  &.out {
+    height: calc(100vh - 80px);
+  }
+  &.in {
+    height: 60px;
+  }
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    transition: 0.3s;
+  }
+
+  .out {
+    @include bigLogo();
+    margin: 0 100px;
+  }
+  .in {
+    @include smallLogo();
+    margin: 0 20px;
+  }
+}
+
+.testContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  transition: 0.3s;
+
+  .testBtn {
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+    background-color: #ca3e84;
+  }
+}
+
+.fakein {
+  flex: 1;
+  transition: 0.3s;
+}
+.fakeout {
+  flex: 0;
+  transition: 0.3s;
+}
