@@ -1,14 +1,25 @@
-$bigTitleFontSize: 54px;
-$smallTitleFontSize: 26px;
+$logoFontFamily: "Bellota", cursive;
 $yellowColor: rgb(230, 214, 77);
-$bgColor: #EFEFEF;
+$blackColor: #333;
+$bgColor: #f5f5f5;
 
-@mixin rFlex {
-    display: flex;
-    flex-direction: row;
+@mixin clickable {
+  user-select: none;
+  cursor: pointer;
 }
 
-@mixin cFlex {
-    display: flex;
-    flex-direction: column;
+@mixin bigLogo {
+  @include clickable();
+  font-family: $logoFontFamily;
+  font-size: 54px;
+  font-weight: 300;
+  color: $blackColor;
+}
+
+@mixin smallLogo {
+  @include clickable();
+  font-family: $logoFontFamily;
+  font-size: 26px;
+  font-weight: 400;
+  color: $blackColor;
 }

@@ -1,8 +1,4 @@
-import React from 'react';
-import AppContainer from "./Components/AppContainer"
+import React from "react";
+import AppContainer from "./Components/AppContainer";
 
-function App() {
-  return <AppContainer />
-}
-
-export default App;
+export default () => <AppContainer />;
