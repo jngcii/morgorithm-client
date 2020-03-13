@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
+import Auth from "../Auth";
 const cx = classNames.bind(styles);
 
 export default ({isLoggedIn, setIsLoggedIn}) => (
@@ -12,10 +13,8 @@ export default ({isLoggedIn, setIsLoggedIn}) => (
     {/* blank division */}
     <div className={cx(isLoggedIn ? "fakein" : "fakeout")} />
 
-    <div className={cx("testContainer")}>
-      <div className={cx("testBtn")} onClick={() => {
-        setIsLoggedIn(!isLoggedIn)
-      }} />
+    <div className={cx("right")}>
+      {!isLoggedIn && <Auth setIsLoggedIn={setIsLoggedIn} />}
     </div>
   </nav>
 );

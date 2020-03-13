@@ -1,3 +1,11 @@
+@import "src/Styles/utils.scss";
+
 .wrapper {
     margin-top: 60px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: $blackColor;
+}
+
+img {
+    user-select: none;
 }
