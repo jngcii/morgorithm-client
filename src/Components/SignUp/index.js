@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
-import EmailAuth from "../EmailAuth";
+import EmailVerification from "../EmailVerification";
 const cx = classNames.bind(styles);
 
 export default ({ setIsLoggedIn, setIsExist }) => {
@@ -15,7 +15,7 @@ export default ({ setIsLoggedIn, setIsExist }) => {
 
       <div className={cx("all", step)}>
         <div className={cx("container")}>
-          <EmailAuth setStep={setStep} />
+          <EmailVerification setStep={setStep} />
         </div>
         <div
           className={cx("container")}
