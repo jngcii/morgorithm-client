@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 const cx = classNames.bind(styles);
 
 export default ({ isLoggedIn }) => (
-  <footer className={cx(isLoggedIn ? "in" : "out")}>
+  <footer className={cx("footerList", isLoggedIn ? "in" : "out")}>
     <ul>
       <li>INTRODUCTION</li>
       <li>INFORMATION</li>
