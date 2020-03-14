@@ -1,0 +1,21 @@
+@import "src/Styles/utils.scss";
+
+input {
+  display: block;
+  margin: 5px auto;
+  @include authInput();
+}
+
+.err {
+  color: $redColor;
+  font-size: 12px;
+}
+
+.btn {
+  @include btn();
+  width: $authInputWidth - 10px;
+  margin: 10px auto;
+  background-color: #fff;
+  font-weight: 700;
+  color: $darkGreyColor;
+}

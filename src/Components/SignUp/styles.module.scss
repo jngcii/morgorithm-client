@@ -1,44 +1,51 @@
 @import "src/Styles/utils.scss";
 
 .wrapper {
+  position: relative;
+  overflow: hidden;
+  width: $authInputWidth;
+  margin: 0 auto;
+
+  h1 {
+    font-size: 25px;
+  }
+
+  .all {
     position: relative;
-    overflow: hidden;
-    width: $authInputWidth;
-    margin: 0 auto;
+    display: flex;
+    width: $authInputWidth * 4;
+    transition: 0.25s;
 
-    h1 {
-      font-size: 25px;
+    .container {
+      display: flex;
+      align-items: center;
+      width: $authInputWidth;
     }
 
-    .all {
-        position: relative;
-        display: flex;
-        width: $authInputWidth*4;
-        transition: .25s;
-
-        .container {
-            width: $authInputWidth;
-            height: 80px;
-        }
-
-        &.email { left: 0; }
-        &.credential { left: -$authInputWidth; }
-        &.moreinfo {left: -$authInputWidth*2; }
+    &.email {
+      left: 0;
     }
+    &.credential {
+      left: -$authInputWidth;
+    }
+    &.moreinfo {
+      left: -$authInputWidth * 2;
+    }
+  }
 }
 
 .except {
-    height: 50px;
-    text-align: center;
-    margin-top: 45px;
-  
-    span {
-      font-size: 12px;
-      font-weight: 600;
-      color: $lightGreyColor;
-    }
-    .btn {
-      color: $darkBlueColor;
-      @include clickable();
-    }
+  height: 50px;
+  text-align: center;
+  margin-top: 15px;
+
+  span {
+    font-size: 12px;
+    font-weight: 600;
+    color: $lightGreyColor;
   }
+  .btn {
+    color: $darkBlueColor;
+    @include clickable();
+  }
+}

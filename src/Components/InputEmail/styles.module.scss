@@ -33,6 +33,8 @@ input {
   background-color: #fff;
   font-weight: 700;
   color: $darkGreyColor;
+  width: $authInputWidth - 10px;
+  margin: 10px auto;
   
   &.code {
       box-sizing: border-box;

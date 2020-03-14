@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
-import EmailVerification from "../EmailVerification";
+import InputEmail from "../InputEmail";
+import InputUser from "../InputUser";
 const cx = classNames.bind(styles);
 
 export default ({ setIsLoggedIn, setIsExist }) => {
@@ -11,22 +12,15 @@ export default ({ setIsLoggedIn, setIsExist }) => {
     <div className={cx("wrapper")}>
       {step === "email" && <h1 className={cx("header")}>Email</h1>}
       {step === "credential" && <h1 className={cx("header")}>회원 정보</h1>}
-      {step === "moreinfo" && <h1 className={cx("header")}>부가 정보</h1>}
+      {/* {step === "moreinfo" && <h1 className={cx("header")}>부가 정보</h1>} */}
 
       <div className={cx("all", step)}>
         <div className={cx("container")}>
-          <EmailVerification setStep={setStep} />
+          <InputEmail setStep={setStep} />
         </div>
-        <div
-          className={cx("container")}
-          onClick={() => setStep("moreinfo")}
-          style={{ backgroundColor: "red" }}
-        />
-        <div
-          className={cx("container")}
-          onClick={() => setStep("email")}
-          style={{ backgroundColor: "purple" }}
-        />
+        <div className={cx("container")}>
+          <InputUser setStep={setStep} setIsLoggedIn={setIsLoggedIn} />
+        </div>
       </div>
 
       <div className={cx("except")}>

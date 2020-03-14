@@ -44,7 +44,7 @@ $authInputWidth: 220px;
   width: $authInputWidth;
   height: 36px;
   border-radius: 5px;
-  background-color: #fff;
+  background-color: #eee;
   border: 1px solid #eaeaea;
   box-shadow: inset 0 0 5px 1px rgba(0, 0, 0, 0.1);
   outline: none;
@@ -53,10 +53,10 @@ $authInputWidth: 220px;
   color: $darkGreyColor;
 
   &:focus {
-    background-color: #eee;
+    background-color: #fff;
   }
   &:not(:placeholder-shown){
-    background-color: #eee;
+    background-color: #fff;
   }
   &::placeholder {
     color: $lightGreyColor;

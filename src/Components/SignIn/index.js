@@ -24,7 +24,7 @@ export default ({ setIsLoggedIn, setIsExist }) => (
     </div>
 
     <ul className={cx("except")}>
-      <li>ID/PW 찾기</li>
+      <li>비밀번호 찾기</li>
       <li onClick={() => setIsExist(false)}>회원가입</li>
     </ul>
   </div>
