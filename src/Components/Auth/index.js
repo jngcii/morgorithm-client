@@ -6,7 +6,7 @@ import SignUp from "../SignUp";
 const cx = classNames.bind(styles);
 
 export default ({ setIsLoggedIn }) => {
-  const [isExist, setIsExist] = useState(true);
+  const [isExist, setIsExist] = useState(false);
 
   return (
     <div className={cx("wrapper")}>
