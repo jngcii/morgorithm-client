@@ -1,0 +1,61 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+    @include section();
+    display: flex;
+    align-items: center;
+    padding-top: 50px;
+
+    .user {
+        img {
+            display: block;
+            width: 80px;
+            margin: 10px;
+        }
+        div {
+            text-align: center;
+        }
+        .username {
+            font-size: 19px;
+            font-weight: 600;
+        }
+        .name {
+            font-size: 16px;
+            font-weight: 500;
+        }
+    }
+
+    .in {
+        font-size: 18px;
+        font-weight: 700;
+        color: $lightGreyColor;
+        margin: 30px;
+    }
+}
+
+.group {
+    height: 100%;
+    flex: 1;
+
+    .title {
+        font-size: 23px;
+        font-weight: 600;
+    }
+    .more {
+        @include clickable();
+        float: right;
+        margin: 7px;
+        font-size: 13px;
+        font-weight: 700;
+        color: $darkBlueColor;
+    }
+
+    .list {
+        .line {
+            width: 100%;
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+            border-bottom-color: $brightGreyColor;
+        }
+    }
+}

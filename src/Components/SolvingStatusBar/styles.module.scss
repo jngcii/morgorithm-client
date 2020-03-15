@@ -1,0 +1,44 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+    width: $sectionWidth - 50px;
+    margin: 10px auto;
+    display: flex;
+    padding: 5px 30px;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.eachStatus {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+    margin: 0 4px;
+}
+.all {
+    background-color: $blackColor;
+}
+.success {
+    background-color: $darkBlueColor;
+}
+.fail {
+    background-color: $redColor;
+}
+
+.txt {
+    font-size: 13px;
+    font-weight: 300;
+    margin: 0 5px;
+}
+.cnt {
+    font-size: 14px;
+    font-weight: 600;
+    color: $darkGreyColor;
+    margin-left: 20px;
+}

@@ -1,0 +1,93 @@
+$logoFontFamily: "Bellota", cursive;
+$yellowColor: #e8d64f;
+$blackColor: #555;
+$darkGreyColor: #777;
+$lightGreyColor: #aaa;
+$brightGreyColor: #ddd;
+$bgColor: #f2f2f2;
+$navColor: #fafafa;
+$pinkColor: #fc97ca;
+$darkBlueColor: #4e80de;
+$redColor: #e62c47;
+
+$authInputWidth: 220px;
+$sectionWidth: 650px;
+
+@mixin section {
+  margin: 0 auto;
+  padding: 25px;
+  width: $sectionWidth;
+}
+
+@mixin clickable {
+  user-select: none;
+  cursor: pointer;
+}
+
+@mixin bigLogo {
+  @include clickable();
+  font-family: $logoFontFamily;
+  font-size: 45px;
+  font-weight: 300;
+  color: $blackColor;
+}
+
+@mixin smallLogo {
+  @include clickable();
+  font-family: $logoFontFamily;
+  font-size: 23px;
+  font-weight: 400;
+  color: $blackColor;
+}
+
+@mixin tagFont {
+  font-size: 14px;
+  font-weight: 300;
+  color: $darkGreyColor;
+}
+
+@mixin authInput {
+  box-sizing: border-box;
+  padding: 10px;
+  width: $authInputWidth;
+  height: 36px;
+  border-radius: 5px;
+  background-color: #eee;
+  border: 1px solid #eaeaea;
+  box-shadow: inset 0 0 5px 1px rgba(0, 0, 0, 0.1);
+  outline: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: $darkGreyColor;
+
+  &:focus {
+    background-color: #fff;
+  }
+  &:not(:placeholder-shown){
+    background-color: #fff;
+  }
+  &::placeholder {
+    color: $lightGreyColor;
+  }
+}
+
+@mixin btn {
+  box-sizing: border-box;
+  height: 32px;
+  border-radius: 5px;
+  line-height: 30px;
+  text-align: center;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+  user-select: none;
+  outline: none;
+
+  &:hover {
+    opacity: .8;
+  }
+}
+
+@mixin centerify {
+  diplay: flex;
+  align-items: center;
+  justify-content: center;
+}

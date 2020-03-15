@@ -1,0 +1,33 @@
+@import "src/Styles/utils.scss";
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: $bgColor;
+  width: 100vw;
+
+  &.out {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 100px;
+    z-index: -1;
+  }
+}
+
+.footerList {
+  width: 100vw;
+  height: 75px;
+  text-align: center;
+
+  li {
+    display: inline-block;
+    margin: 30px 20px;
+    color: $darkBlueColor;
+    font-size: 12px;
+    font-weight: 700;
+    @include clickable();
+  }
+}

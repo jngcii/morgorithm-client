@@ -1,0 +1,45 @@
+@import "src/Styles/utils.scss";
+
+.tag {
+  margin-left: 5px;
+  @include tagFont();
+}
+
+input {
+  display: block;
+  margin: 5px auto;
+  @include authInput();
+
+  &.code {
+      display: inline-block;
+      width: $authInputWidth - 65px;
+  }
+}
+
+.re {
+    @include clickable();
+    margin: 10px;
+    font-size: 13px;
+    color: $darkBlueColor;
+}
+
+.err {
+  color: $redColor;
+  font-size: 12px;
+}
+
+.btn {
+  @include btn();
+  background-color: #fff;
+  font-weight: 700;
+  color: $darkGreyColor;
+  width: $authInputWidth - 10px;
+  margin: 10px auto;
+  
+  &.code {
+      box-sizing: border-box;
+      display: inline-block;
+      width: 50px;
+      margin: 5px;
+  }
+}

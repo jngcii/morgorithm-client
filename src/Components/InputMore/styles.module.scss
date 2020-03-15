@@ -1,0 +1,21 @@
+@import "src/Styles/utils.scss";
+
+.tag {
+  margin-left: 5px;
+  @include tagFont();
+}
+
+input {
+  display: block;
+  margin: 5px auto;
+  @include authInput();
+}
+
+.btn {
+  @include btn();
+  width: $authInputWidth - 10px;
+  margin: 10px auto;
+  background-color: #fff;
+  font-weight: 700;
+  color: $darkGreyColor;
+}
