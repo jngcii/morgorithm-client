@@ -5,7 +5,7 @@ const cx = classNames.bind(styles);
 
 const Profile = () => (
   <div className={cx("navProfile")}>
-    <img src={require("../../assets/no-profile.png")} style={{tintColor:"#aaa"}} />
+    <img src={require("../../assets/no-profile.png")} draggable={false} />
   </div>
 );
 

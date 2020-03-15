@@ -7,7 +7,7 @@ import Footer from "../Footer";
 const cx = classNames.bind(styles);
 
 export default () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
     <div className={cx("wrapper")}>

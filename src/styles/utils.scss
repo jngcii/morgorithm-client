@@ -11,6 +11,12 @@ $redColor: #e62c47;
 
 $authInputWidth: 220px;
 
+@mixin sectionWidth {
+  margin: 0 auto;
+  padding: 25px;
+  width: 650px;
+}
+
 @mixin clickable {
   user-select: none;
   cursor: pointer;
