@@ -55,6 +55,7 @@ input {
   padding: 0;
 
   li {
+    @include clickable();
     display: inline-block;
     margin: 0 10px;
     font-size: 12px;
