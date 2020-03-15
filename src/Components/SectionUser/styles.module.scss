@@ -1,7 +1,7 @@
 @import "src/Styles/utils.scss";
 
 .wrapper {
-    @include sectionWidth();
+    @include section();
     display: flex;
     align-items: center;
     padding-top: 50px;
@@ -29,7 +29,7 @@
         font-size: 18px;
         font-weight: 700;
         color: $lightGreyColor;
-        margin: 20px;
+        margin: 30px;
     }
 }
 
@@ -45,7 +45,7 @@
         @include clickable();
         float: right;
         margin: 7px;
-        font-size: 15px;
+        font-size: 13px;
         font-weight: 700;
         color: $darkBlueColor;
     }

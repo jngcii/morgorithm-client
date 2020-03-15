@@ -11,11 +11,12 @@ $darkBlueColor: #4e80de;
 $redColor: #e62c47;
 
 $authInputWidth: 220px;
+$sectionWidth: 650px;
 
-@mixin sectionWidth {
+@mixin section {
   margin: 0 auto;
   padding: 25px;
-  width: 650px;
+  width: $sectionWidth;
 }
 
 @mixin clickable {
