@@ -1,0 +1,35 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+    margin-bottom: 30px;
+
+    @include section();
+    .header {
+        @include header();
+    }
+    .body {
+        margin-top: 10px;
+    }
+}
+
+.blockWrapper {
+    display: inline-block;
+    box-sizing: border-box;
+    width: $sectionWidth/3;
+    height: 100px;
+    padding: 7px;
+
+    .block {
+        box-sizing: border-box;
+        padding: 10px;
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+        background-color: $pinkColor;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}

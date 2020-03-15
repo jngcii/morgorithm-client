@@ -8,16 +8,16 @@ export default ({ setStep, setIsLoggedIn }) => {
 
   return (
     <div>
-      <input spellCheck={false} placeholder="닉네임을 입력해주세요 *" />
+      <input spellCheck={false} placeholder="유저네임을 입력해주세요" />
       {/* <span className={cx("tag")}>이름을 입력해주세요</span>
       <input spellCheck={false} placeholder="홍길동" /> */}
       <input spellCheck={false} placeholder={"비밀번호를 입력하세요"} />
       <input spellCheck={false} placeholder={"비밀번호를 다시 입력하세요"} />
       {err === "typeErr" && (
-        <span className={cx("err")}>잘못된 닉네임입니다</span>
+        <span className={cx("err")}>잘못된 유저네임입니다</span>
       )}
       {err === "uniqueErr" && (
-        <span className={cx("err")}>이미 존재하는 닉네임입니다</span>
+        <span className={cx("err")}>이미 존재하는 유저네임입니다</span>
       )}
       {err === "pwErr" && (
         <span className={cx("err")}>잘못된 비밀번호입니다</span>

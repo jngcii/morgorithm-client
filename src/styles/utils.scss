@@ -6,12 +6,26 @@ $lightGreyColor: #aaa;
 $brightGreyColor: #ddd;
 $bgColor: #f2f2f2;
 $navColor: #fafafa;
-$pinkColor: #fc97ca;
+$pinkColor: #edcadf;
 $darkBlueColor: #4e80de;
 $redColor: #e62c47;
 
 $authInputWidth: 220px;
 $sectionWidth: 650px;
+
+$titleFontSize: 23px;
+$titleFontWeight: 600;
+
+@mixin titleFont {
+  font-size: $titleFontSize;
+  font-weight: $titleFontWeight;
+}
+
+@mixin header {
+  @include titleFont();
+  display: inline-block;
+  padding-left: 10px;
+}
 
 @mixin section {
   margin: 0 auto;
