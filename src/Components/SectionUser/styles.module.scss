@@ -1,9 +1,10 @@
 @import "src/Styles/utils.scss";
 
 .wrapper {
+    @include sectionWidth();
     display: flex;
     align-items: center;
-    @include sectionWidth();
+    padding-top: 50px;
 
     .user {
         img {

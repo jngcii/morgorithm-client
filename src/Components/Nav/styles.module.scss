@@ -5,12 +5,12 @@ nav {
   justify-content: center;
   width: 100vw;
   transition: 0.3s;
-  background-color: $bgColor;
+  background-color: $navColor;
   position: fixed;
   top: 0;
   box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.2);
   border-bottom-style: solid;
-  border-bottom-color: #EAEAEA;
+  border-bottom-color: #eaeaea;
   border-bottom-width: 1px;
   &.out {
     height: calc(100vh - 80px);
