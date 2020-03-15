@@ -1,2 +1,9 @@
 import React from "react";
-export default () => <h1 style={{height: 1234, backgroundColor: "#FFF", margin: 0}}>main screen</h1>;
+import SectionUser from "../../Components/SectionUser";
+export default () => (
+  <div style={{backgroundColor:"#fff"}}>
+    <SectionUser />
+
+    <div style={{height: 500}} />
+  </div>
+);
