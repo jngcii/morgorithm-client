@@ -41,12 +41,7 @@
         @include titleFont();
     }
     .more {
-        @include clickable();
-        float: right;
-        margin: 7px;
-        font-size: 13px;
-        font-weight: 700;
-        color: $darkBlueColor;
+        @include more();
     }
 
     .list {

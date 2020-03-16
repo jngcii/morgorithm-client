@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
-import GroupLine from "../GroupLine";
+import LineGroup from "../LineGroup";
 const cx = classNames.bind(styles);
 
 export default () => (
@@ -20,13 +20,13 @@ export default () => (
       <div className={cx("list")}>
         
         <div className={cx("line")}>
-          <GroupLine name={"ssafy31"} count={23} />
+          <LineGroup name={"ssafy31"} count={23} />
         </div>
         <div className={cx("line")}>
-          <GroupLine name={"my group"} count={5} />
+          <LineGroup name={"my group"} count={5} />
         </div>
         <div className={cx("line")}>
-          <GroupLine name={"your group"} count={129} />
+          <LineGroup name={"your group"} count={129} />
         </div>
       </div>
     </div>
