@@ -11,10 +11,10 @@ const Block = () => (
 
 export default () => (
   <div className={cx("wrapper")}>
-    <span className={cx("header")}>나의 Solving List</span>
+    <header className={cx("header")}>나의 Solving List</header>
 
-    <div className={cx("body")}>
+    <section className={cx("body")}>
       {[1,2,3,4].map(n => <Block key={n} />)}
-    </div>
+    </section>
   </div>
 );

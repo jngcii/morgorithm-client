@@ -5,6 +5,7 @@
 
     @include section();
     .header {
+        margin-top: 30px;
         @include header();
     }
     .body {
@@ -25,7 +26,7 @@
         width: 100%;
         height: 100%;
         border-radius: 5px;
-        background-color: $pinkColor;
+        background-color: #fff;
         box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
 
         &:hover {
