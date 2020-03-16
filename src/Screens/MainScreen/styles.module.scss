@@ -1,0 +1,7 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+    flex: 1;
+    background-color: $bgColor;
+    transition: .5s;
+}

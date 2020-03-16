@@ -1,0 +1,32 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  box-sizing: border-box;
+  width: 300px;
+  padding-left: 50px;
+  background-color: $bgColor;
+  overflow: hidden;
+  transition: .5s;
+
+  .container {
+    bottom: 50vw;
+    margin-top: 70px;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 250px;
+    border-radius: 15px;
+
+    .each {
+      @include clickable();
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+
+    br {
+      width: 80%;
+      border: 2px solid $yellowColor;
+    }
+  }
+}

@@ -4,6 +4,10 @@
     margin-top: 60px;
     font-family: 'Noto Sans KR', sans-serif;
     color: $blackColor;
+
+    .body {
+        display: flex;
+    }
 }
 
 img {
