@@ -9,10 +9,10 @@ const Profile = () => (
   </div>
 );
 
-export default () => (
+export default ({setScreen}) => (
   <ul className={cx("navlist")}>
     <li>questions</li>
-    <li>problems</li>
+    <li onClick={()=>setScreen("problem")}>problems</li>
     <li>
       <Profile />
     </li>

@@ -2,11 +2,15 @@
 
 .wrapper {
   box-sizing: border-box;
-  width: 300px;
+  width: 0;
   padding-left: 50px;
   background-color: $bgColor;
   overflow: hidden;
-  transition: .5s;
+  transition: .3s;
+
+  &.problem {
+    width: 300px;
+  }
 
   .container {
     bottom: 50vw;

@@ -31,6 +31,8 @@ nav {
 
   .out {
     @include bigLogo();
+    cursor: default;
+    user-select: none;
     margin: 0 50px;
   }
   .in {

@@ -7,6 +7,11 @@
 
     .body {
         display: flex;
+
+        .content {
+            flex: 1;
+            transition: .3s;
+        }
     }
 }
 

@@ -39,7 +39,7 @@ $titleFontWeight: 600;
 }
 
 @mixin bigLogo {
-  @include clickable();
+  cursor: default;
   font-family: $logoFontFamily;
   font-size: 45px;
   font-weight: 300;

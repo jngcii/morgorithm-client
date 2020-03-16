@@ -3,8 +3,8 @@ import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 const cx = classNames.bind(styles);
 
-export default () => (
-  <div className={cx("wrapper")}>
+export default ({screen}) => (
+  <div className={cx("wrapper", screen==="problem" && "problem")}>
     <div className={cx("container")}>
       <div className={cx("each")}>전체 문제 (145/531)</div>
       <hr />

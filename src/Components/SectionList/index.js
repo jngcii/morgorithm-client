@@ -4,10 +4,10 @@ import styles from "./styles.module.scss";
 import LineProblem from "../LineProblem";
 const cx = classNames.bind(styles);
 
-export default () => (
+export default ({ subject }) => (
   <div className={cx("wrapper")}>
     <header className={cx("header")}>
-      Problems
+      {subject}
       <span className={cx("more")}>더보기</span>
     </header>
 
