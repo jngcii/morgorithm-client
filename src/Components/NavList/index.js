@@ -11,7 +11,8 @@ const Profile = () => (
 
 export default () => (
   <ul className={cx("navlist")}>
-    <li>problem solving</li>
+    <li>questions</li>
+    <li>problems</li>
     <li>
       <Profile />
     </li>
