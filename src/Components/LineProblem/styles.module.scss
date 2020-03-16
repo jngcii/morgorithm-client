@@ -1,0 +1,61 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+    width: $sectionWidth;
+    padding: 7px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: $brightGreyColor;
+
+    .container {
+        display: flex;
+        align-items: center;
+
+
+        .site {
+            width: 120px;
+            font-size: 15px;
+            font-weight: 800;
+            color: $lightGreyColor;
+            // text-align: center;
+        }
+
+        .num {
+            width: 60px;
+            font-size: 15px;
+            font-weight: 400;
+            padding: 0 10px;
+        }
+
+        .title {
+            flex: 1;
+            font-size: 15px;
+            font-weight: 600;
+            overflow: hidden;
+        }
+
+        .level {
+            width: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            padding: 3px;
+            background-color: $brightGreyColor;
+            border-radius: 3px;
+            text-align: center;
+        }
+        .noLevel {
+            width: 30px;
+            padding: 5px;
+        }
+
+        .sovled {
+            padding: 0 15px;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            color: green;
+            box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+        }
+    }
+}
