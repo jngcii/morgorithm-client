@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 import Nav from "../Nav";
@@ -10,27 +11,35 @@ const cx = classNames.bind(styles);
 
 export default () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [screen, setScreen] = useState("main");
 
   return (
     <div className={cx("wrapper")}>
-      <Nav
-        isLoggedIn={isLoggedIn}
-        setIsLoggedIn={setIsLoggedIn}
-        setScreen={setScreen}
-      />
+      <Nav isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+
       {isLoggedIn ? (
         <section className={cx("body")}>
-          <SideBar screen={screen} />
+          <SideBar />
 
           <div className={cx("content")}>
-            {screen === "main" && <MainScreen />}
-            {screen === "problem" && <ProblemScreen />}
+            <Switch>
+              <Route exact path="/">
+                <MainScreen />
+              </Route>
+
+              <Route path="/problem">
+                <ProblemScreen />
+              </Route>
+
+              <Route path="/question">{/* <ProblemScreen /> */}</Route>
+
+              <Route path="/user">{null}</Route>
+            </Switch>
           </div>
         </section>
       ) : (
         <div className={cx("fake")} />
       )}
+
       <Footer isLoggedIn={isLoggedIn} />
     </div>
   );

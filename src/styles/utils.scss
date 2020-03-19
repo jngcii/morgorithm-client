@@ -114,3 +114,9 @@ $titleFontWeight: 600;
   font-weight: 700;
   color: $darkBlueColor;
 }
+
+@mixin eachScreenWrapper {
+  width: 100%;
+  padding: 30px 0;
+  background-color: $bgColor;
+}

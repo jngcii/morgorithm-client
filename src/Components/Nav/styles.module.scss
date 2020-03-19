@@ -25,8 +25,10 @@ nav {
   align-items: center;
   justify-content: center;
 
-  span {
+  .link {
+    text-decoration: none;
     transition: 0.3s;
+    color: $blackColor;
   }
 
   .out {

@@ -1,23 +1,27 @@
 @import "src/Styles/utils.scss";
 
 .navlist {
-    padding: 0 10px;
-    
-    li {
-        @include clickable();
-        display: inline-block;
+  padding: 0 10px;
+
+  li {
+    @include clickable();
+    display: inline-block;
+    margin: 0 20px;
+    vertical-align: middle;
+
+    .link {
+        text-decoration: none;
         font-size: 17px;
         font-weight: 800;
-        margin: 0 20px;
-        vertical-align: middle;
         color: $blackColor;
     }
+  }
 }
 
 .navProfile {
-    display: flex;
-    align-items: center;
-    img {
-        width: 33px;
-    }
+  display: flex;
+  align-items: center;
+  img {
+    width: 33px;
+  }
 }
