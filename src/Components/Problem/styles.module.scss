@@ -1,0 +1,32 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  @include section();
+
+  header {
+    display: flex;
+    align-items: center;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: $brightGreyColor;
+
+    .btn {
+      position: absolute;
+      width: 50px;
+      img {
+        display: block;
+        width: 30px;
+        margin: 0 auto;
+      }
+    }
+
+    .title {
+      width: $sectionWidth - 160px;
+      margin: 0 auto;
+    }
+  }
+
+  section {
+    padding: 50px 30px;
+  }
+}
