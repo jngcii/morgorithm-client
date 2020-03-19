@@ -10,6 +10,7 @@
     .container {
         display: flex;
         align-items: center;
+        @include clickable();
 
 
         .site {
