@@ -72,7 +72,8 @@ export default () => {
         <hr className={cx("divLine")} />
         <span className={cx("openBtn")}>
           <img className={cx(isOpen ? "open" : "close")} src={require("../../assets/down-arrow.png")} />
-          {isOpen ? "Close" : "Upload my code"}
+          {/* {isOpen ? "Close" : "Upload / Ask my code"} */}
+          Upload / Ask my code
         </span>
       </div>
     </div>

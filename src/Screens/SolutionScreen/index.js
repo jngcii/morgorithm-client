@@ -13,10 +13,10 @@ export default () => (
 
     <div className={cx("lists")}>
       <div className={cx("list")}>
-        <ListSolution />
+        <ListSolution subject={"solution"} />
       </div>
       <div className={cx("list")}>
-        <ListSolution />
+        <ListSolution subject={"question"} />
       </div>
     </div>
   </div>
