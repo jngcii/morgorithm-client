@@ -3,4 +3,18 @@
 .wrapper {
   @include eachScreenWrapper();
   min-height: calc(100vh - 120px);
+
+  .lists {
+    @include section();
+    padding-top: 0;
+    display: flex;
+
+    .list {
+      flex: 1;
+      height: 350px;
+      box-sizing: border-box;
+      padding: 15px;
+      overflow: hidden;
+    }
+  }
 }

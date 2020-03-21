@@ -1,0 +1,21 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+
+  // 시험용
+  border: 1px dashed black;
+
+  header {
+    padding: 5px;
+    box-sizing: border-box;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: $lightGreyColor;
+
+    h4 {
+      margin: 5px 0;
+    }
+  }
+}

@@ -3,6 +3,7 @@
 .wrapper {
   @include section();
   padding-top: 0;
+  padding-bottom: 0;
 
   .openContainer {
     height: 50px;
