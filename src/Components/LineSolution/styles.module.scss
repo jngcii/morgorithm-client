@@ -1,1 +1,35 @@
 @import "src/Styles/utils.scss";
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  .user {
+    flex: 1;
+  }
+  
+  .txt {
+    font-size: 10px;
+    font-weight: 700;
+    color: $brightGreyColor;
+  }
+
+  .cnt {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+
+    img {
+      width: 20px;
+      margin: 0 4px 0 1px;
+    }
+    .num {
+      line-height: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      color: $darkGreyColor;
+    }
+  }
+}
