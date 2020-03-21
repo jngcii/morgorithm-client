@@ -33,8 +33,12 @@
         width: 10px;
         margin-right: 5px;
 
-        &.open { transform: rotate(180deg); }
-        &.close { transform: rotate(0deg); }
+        &.open {
+          transform: rotate(180deg);
+        }
+        &.close {
+          transform: rotate(0deg);
+        }
       }
     }
   }
@@ -42,33 +46,63 @@
   .userInput {
     width: 100%;
     overflow: hidden;
-    transition: .2s;
+    transition: 0.2s;
 
-    &.open { height: 600px; }
-    &.close { height: 0; }
+    &.open {
+      height: 600px;
+    }
+    &.close {
+      height: 0;
+    }
   }
 
   .question {
-    padding: 15px 5px;
-    .checkbox {
-      @include clickable();
-      display: inline-flex;
-      align-items: center;
+    .btns {
+      padding: 15px 5px;
+      .checkbox {
+        @include clickable();
+        display: inline-flex;
+        align-items: center;
 
-      img {
-        display: inline-block;
-        width: 20px;
-        margin: 5px 5px 3px;
+        img {
+          display: inline-block;
+          width: 20px;
+          margin: 5px 5px 3px;
+        }
+        span {
+          display: inline-block;
+          margin-left: 10px;
+          line-height: 24px;
+          font-size: 15px;
+          font-weight: 700;
+          color: $lightGreyColor;
+
+          &.in {
+            color: $blueColor;
+          }
+        }
       }
-      span {
-        display: inline-block;
-        margin-left: 10px;
-        line-height: 24px;
-        font-size: 15px;
-        font-weight: 700;
-        color: $lightGreyColor;
 
-        &.in { color: $blueColor; }
+      .upload {
+        float: right;
+
+        button {
+          @include clickable();
+          padding: 5px 10px;
+          border-radius: 5px;
+          box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1);
+          font-size: 15px;
+          font-weight: 600;
+          color: #fff;
+          background-color: $yellowColor;
+          outline: none;
+        }
+      }
+
+      &::after {
+        content: "";
+        display: block;
+        clear: both;
       }
     }
 

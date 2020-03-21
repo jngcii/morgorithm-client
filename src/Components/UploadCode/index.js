@@ -24,9 +24,16 @@ export default () => {
     <div className={cx("wrapper")}>
       <div className={cx("userInput", isOpen ? "open" : "close")}>
         <div className={cx("question")}>
-          <div className={cx("checkbox")} onClick={() => setIsQuestion(!isQuestion)}>
-            <img src={require(`../../assets/${isQuestion ? "checked-blue" : "unchecked"}.png`)} />
-            <span className={cx(isQuestion && "in")}>질문으로 올리기</span>
+
+          <div className={cx("btns")}>
+            <div className={cx("checkbox")} onClick={() => setIsQuestion(!isQuestion)}>
+              <img src={require(`../../assets/${isQuestion ? "checked-blue" : "unchecked"}.png`)} />
+              <span className={cx(isQuestion && "in")}>질문으로 올리기</span>
+            </div>
+
+            <div className={cx("upload")}>
+              <button>Upload</button>
+            </div>
           </div>
 
           {isQuestion && (
