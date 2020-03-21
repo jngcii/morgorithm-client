@@ -2,10 +2,98 @@
 
 .wrapper {
   @include section();
-  
-  .editor {
+  padding-top: 0;
+
+  .openContainer {
+    height: 50px;
+    display: flex;
+    align-items: center;
+
+    .divLine {
+      flex: 1;
+      border: 0.5px solid $brightGreyColor;
+      margin: 0 10px;
+    }
+
+    .openBtn {
+      @include clickable();
+      padding: 0 10px;
+      height: 25px;
+      border-radius: 30px;
+      text-align: center;
+      border: 2px solid $darkBlueColor;
+      line-height: 25px;
+      font-size: 14px;
+      font-weight: 700;
+      color: $darkBlueColor;
+      margin: 5px;
+
+      img {
+        width: 10px;
+        margin-right: 5px;
+
+        &.open { transform: rotate(180deg); }
+        &.close { transform: rotate(0deg); }
+      }
+    }
+  }
+
+  .userInput {
     width: 100%;
-    height: 500px;
-    overflow: scroll;
+    overflow: hidden;
+    transition: .2s;
+
+    &.open { height: 600px; }
+    &.close { height: 0; }
+  }
+
+  .question {
+    padding: 15px 5px;
+    .checkbox {
+      @include clickable();
+      display: inline-flex;
+      align-items: center;
+
+      img {
+        display: inline-block;
+        width: 20px;
+        margin: 5px 5px 3px;
+      }
+      span {
+        display: inline-block;
+        margin-left: 10px;
+        line-height: 24px;
+        font-size: 15px;
+        font-weight: 700;
+        color: $lightGreyColor;
+
+        &.in { color: $blueColor; }
+      }
+    }
+
+    .caption {
+      resize: none;
+      box-sizing: border-box;
+      width: 100%;
+      padding: 10px 15px;
+      margin: 10px auto;
+      border-radius: 5px;
+      border: none;
+      background-color: #fafafa;
+      outline: none;
+      font-size: 14px;
+
+      &::placeholder {
+        color: #ccc;
+      }
+
+      &:focus {
+        background-color: #fff;
+        &::placeholder {
+          color: #777;
+          transition: 0.3s;
+        }
+      }
+    }
   }
 }
