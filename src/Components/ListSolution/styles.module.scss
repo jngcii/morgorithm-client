@@ -4,10 +4,8 @@
   width: 100%;
   height: 100%;
 
-  // 시험용
-  border: 1px dashed black;
-
   header {
+    display: flex;
     padding: 5px;
     box-sizing: border-box;
     border-bottom-width: 1px;
@@ -15,7 +13,23 @@
     border-bottom-color: $lightGreyColor;
 
     h4 {
+      flex: 1;
       margin: 5px 0;
+    }
+
+    .more {
+      @include more();
+    }
+  }
+
+  section {
+    padding: 0 3px;
+    .line {
+      @include clickable();
+      padding: 3px 0;
+      border-bottom-width: 0.5px;
+      border-bottom-style: solid;
+      border-bottom-color: $brightGreyColor;
     }
   }
 }
