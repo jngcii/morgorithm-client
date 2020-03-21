@@ -1,0 +1,27 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+
+  img {
+    width: 30px;
+    margin: 10px;
+  }
+
+  .text {
+    overflow: hidden;
+
+    .username {
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 20px;
+    }
+    .name {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 15px;
+    }
+  }
+}
