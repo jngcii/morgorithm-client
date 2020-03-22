@@ -1,13 +1,19 @@
 import React from "react";
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
-import Solution from "../../Components/Solution";
-import Comment from "../../Components/Comment";
+import LineComment from "../LineComment";
 const cx = classNames.bind(styles);
 
 export default () => (
   <div className={cx("wrapper")}>
-    <Solution />
-    <Comment />
+    <header>Comment</header>
+
+    <section>
+      <input />
+
+      {[1, 2, 3, 4, 5].map(i => (
+        <LineComment key={i} />
+      ))}
+    </section>
   </div>
 );

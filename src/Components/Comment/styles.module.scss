@@ -1,0 +1,16 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  @include section();
+  padding: 0 30px;
+
+  header {
+    @include header();
+  }
+
+  section {
+    input {
+      width: 100%;
+    }
+  }
+}
