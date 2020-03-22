@@ -75,9 +75,9 @@ export default () => {
         />
       </div>
 
-      <div className={cx("openContainer")} onClick={()=>setIsOpen(!isOpen)}>
+      <div className={cx("openContainer")}>
         <hr className={cx("divLine")} />
-        <span className={cx("openBtn")}>
+        <span className={cx("openBtn")} onClick={()=>setIsOpen(!isOpen)}>
           <img className={cx(isOpen ? "open" : "close")} src={require("../../assets/down-arrow.png")} />
           {/* {isOpen ? "Close" : "Upload / Ask my code"} */}
           Upload / Ask my code

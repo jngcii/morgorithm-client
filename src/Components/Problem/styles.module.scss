@@ -4,11 +4,7 @@
   @include section();
 
   header {
-    display: flex;
-    align-items: center;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: $brightGreyColor;
+    @include screenHeader();
 
     .btn {
       @include clickable();

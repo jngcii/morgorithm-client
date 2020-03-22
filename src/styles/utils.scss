@@ -122,3 +122,11 @@ $titleFontWeight: 600;
   padding: 30px 0;
   background-color: $bgColor;
 }
+
+@mixin screenHeader {
+  display: flex;
+  align-items: center;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: $brightGreyColor;
+}
