@@ -1,0 +1,7 @@
+@import "src/Styles/utils.scss";
+
+
+.wrapper {
+  @include eachScreenWrapper();
+  min-height: calc(100vh - 120px);
+}

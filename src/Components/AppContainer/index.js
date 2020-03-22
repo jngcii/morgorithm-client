@@ -7,6 +7,7 @@ import SideBar from "../SideBar";
 import MainScreen from "../../Screens/MainScreen";
 import ProblemListScreen from "../../Screens/ProblemListScreen";
 import ProblemScreen from "../../Screens/ProblemScreen";
+import SolutionScreen from "../../Screens/SolutionScreen";
 import Footer from "../Footer";
 const cx = classNames.bind(styles);
 
@@ -31,7 +32,11 @@ export default () => {
                 <ProblemListScreen />
               </Route>
 
-              <Route path="/problem/:idd">
+              <Route path="/problem/:problemId/:solutionId">
+                <SolutionScreen />
+              </Route>
+
+              <Route path="/problem/:problemId">
                 <ProblemScreen />
               </Route>
 

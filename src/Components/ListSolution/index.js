@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 import LineSolution from "../LineSolution";
@@ -14,15 +15,15 @@ export default ({ subject }) => (
     </header>
 
     <section>
-      <div className={cx("line")}>
+      <Link className={cx("line")} to={{pathname:"/problem/1234/1234"}}>
         {subject === "solution" && <LineSolution />}
         {subject === "question" && <LineQuestion />}
-      </div>
+      </Link>
 
-      <div className={cx("line")}>
+      <Link className={cx("line")} to={{pathname:"/problem/1234/1234"}}>
         {subject === "solution" && <LineSolution />}
         {subject === "question" && <LineQuestion />}
-      </div>
+      </Link>
     </section>
   </div>
 );

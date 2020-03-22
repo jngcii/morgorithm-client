@@ -5,12 +5,9 @@
   height: 100%;
 
   header {
-    display: flex;
+    @include screenHeader();
     padding: 5px;
     box-sizing: border-box;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: $lightGreyColor;
 
     h4 {
       flex: 1;
@@ -30,6 +27,8 @@
       border-bottom-width: 0.5px;
       border-bottom-style: solid;
       border-bottom-color: $brightGreyColor;
+      text-decoration: none;
+      color: $blackColor;
     }
   }
 }
