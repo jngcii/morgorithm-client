@@ -2,6 +2,7 @@
 
 .wrapper {
   @include section();
+  margin-top: 50px;
 
   header {
     @include screenHeader();
@@ -19,8 +20,24 @@
       display: flex;
       justify-content: flex-end;
 
-      input {
-        margin: 0;
+      .inputBox {
+        border: 1px solid $brightGreyColor;
+        width: 100px;
+        height: 25px;
+        padding: 3px 10px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        transition: .3s;
+        font-size: 14px;
+        outline: none;
+
+        &:focus {
+          background-color: #fff;
+          width: 170px;
+        }
+        &::placeholder {
+          color: $brightGreyColor;
+        }
       }
     }
   }
@@ -30,7 +47,7 @@
     .list {
       padding: 5px;
       margin: 10px;
-      transition: .2s;
+      transition: .3s;
       overflow: hidden;
     }
     .my {
