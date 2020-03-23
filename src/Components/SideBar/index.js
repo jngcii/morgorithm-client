@@ -6,7 +6,7 @@ const cx = classNames.bind(styles);
 
 export default () => {
   const { pathname } = useLocation();
-  const out = pathname !== "/" && pathname !== "/user";
+  const out = pathname !== "/" && pathname !== "/user" && !~pathname.indexOf("/group") ;
 
   return (
     <div className={cx("wrapper", out && "out")}>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 import LineGroup from "../LineGroup";
@@ -16,7 +17,7 @@ export default () => (
 
     <div className={cx("group")}>
       <span className={cx("title")}>Group</span>
-      <span className={cx("more")}>더보기</span>
+      <Link className={cx("more")} to={"/group"}>더보기</Link>
       <div className={cx("list")}>
         
         <div className={cx("line")}>

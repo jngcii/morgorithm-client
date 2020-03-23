@@ -8,6 +8,7 @@ import MainScreen from "../../Screens/MainScreen";
 import ProblemListScreen from "../../Screens/ProblemListScreen";
 import ProblemScreen from "../../Screens/ProblemScreen";
 import SolutionScreen from "../../Screens/SolutionScreen";
+import GroupScreen from "../../Screens/GroupScreen";
 import Footer from "../Footer";
 const cx = classNames.bind(styles);
 
@@ -42,6 +43,10 @@ export default () => {
 
               <Route path="/question">
                 {/* <ProblemListScreen /> */}
+              </Route>
+
+              <Route path="/group">
+                <GroupScreen />
               </Route>
 
               <Route path="/user">{null}</Route>
