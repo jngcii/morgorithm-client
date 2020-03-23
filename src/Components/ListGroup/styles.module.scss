@@ -8,31 +8,38 @@
 
     thead {
       color: $lightGreyColor;
-      border-bottom-width: 1px;
-      border-bottom-style: solid;
-      border-bottom-color: $lightGreyColor;
       
       .cnt { font-weight: 600 !important; }
+      font-size: 13px;
     }
 
     tr {
       display: flex;
       padding: 5px 0;
+      transition: .3s;
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      border-bottom-color: $brightGreyColor;
+
+      &.non {
+        padding: 5px 50px;
+      }
     }
 
     .name {
-      flex: 1;
+      @include clickable();
+      flex: 2;
       text-align: start;
     }
     .cnt {
-      width: 70px;
+      flex: 1;
+      max-width: 150px;
       font-weight: 400;
     }
-    .access {
-      width: 50px;
-    }
     .btn {
-      width: 100px;
+      @include clickable();
+      width: 70px;
+      color: $redColor;
     }
   }
 }
