@@ -1,0 +1,29 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  @include section();
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 40px;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  img {
+    width: 40px;
+    margin-right: 10px;
+    background-color: #fff;
+    border-radius: 22px;
+    padding: 2px;
+  }
+
+  span {
+    margin: 0 10px;
+    color: #fff;
+  }
+  
+  button {
+    position: absolute;
+    right: 20px;
+  }
+}
