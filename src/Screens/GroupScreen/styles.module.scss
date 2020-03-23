@@ -1,0 +1,5 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  @include eachScreenWrapper();
+}
