@@ -1,0 +1,38 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  width: 100%;
+
+  table {
+    width: 100%;
+
+    thead {
+      color: $lightGreyColor;
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      border-bottom-color: $lightGreyColor;
+      
+      .cnt { font-weight: 600 !important; }
+    }
+
+    tr {
+      display: flex;
+      padding: 5px 0;
+    }
+
+    .name {
+      flex: 1;
+      text-align: start;
+    }
+    .cnt {
+      width: 70px;
+      font-weight: 400;
+    }
+    .access {
+      width: 50px;
+    }
+    .btn {
+      width: 100px;
+    }
+  }
+}
