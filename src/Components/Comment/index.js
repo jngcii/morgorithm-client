@@ -9,7 +9,7 @@ export default () => (
     <header>Comment</header>
 
     <section>
-      <input />
+      <input className={cx("commentInput")} />
 
       {[1, 2, 3, 4, 5].map(i => (
         <LineComment key={i} />

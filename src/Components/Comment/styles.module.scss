@@ -9,7 +9,8 @@
   }
 
   section {
-    input {
+    .commentInput {
+      @include authInput();
       width: 100%;
     }
   }

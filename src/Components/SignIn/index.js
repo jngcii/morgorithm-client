@@ -6,9 +6,9 @@ const cx = classNames.bind(styles);
 export default ({ setIsLoggedIn, setIsExist }) => (
   <div className={cx("wrapper")}>
     <div className={cx("tag")}>email</div>
-    <input spellCheck={false} placeholder={"이메일을 입력하세요"} />
+    <input className={cx("authInput")} spellCheck={false} placeholder={"이메일을 입력하세요"} />
     <div className={cx("tag")}>password</div>
-    <input spellCheck={false} placeholder={"비밀번호를 입력하세요"} />
+    <input className={cx("authInput")} spellCheck={false} placeholder={"비밀번호를 입력하세요"} />
 
     <div className={cx("signin")}>
       <div className={cx("local")} onClick={() => setIsLoggedIn(true)}>

@@ -1,6 +1,6 @@
 @import "src/Styles/utils.scss";
 
-input {
+.authInput {
   display: block;
   margin: 5px auto;
   @include authInput();
