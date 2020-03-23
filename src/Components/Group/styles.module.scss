@@ -1,0 +1,48 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  @include section();
+
+  header {
+    @include screenHeader();
+    padding: 10px;
+
+    .subject {
+      @include header();
+    }
+    button {
+      margin: 0 20px;
+    }
+
+    .search {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+
+      input {
+        margin: 0;
+      }
+    }
+  }
+
+  section {
+    display: flex;
+    .list {
+      padding: 5px;
+      margin: 10px;
+      transition: .2s;
+      overflow: hidden;
+    }
+    .my {
+      flex: 2;
+      height: 400px;
+    }
+    .searching {
+      flex: 3;
+    }
+    .none {
+      flex: 0;
+      opacity: 0;
+    }
+  }
+}
