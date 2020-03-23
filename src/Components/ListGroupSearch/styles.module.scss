@@ -2,25 +2,39 @@
 
 .wrapper {
   width: 100%;
+  background-color: $navColor;
+  height: 400px;
+  overflow: scroll;
+  border-radius: 10px;
 
   table {
     width: 100%;
 
     thead {
       color: $lightGreyColor;
-      border-bottom-width: 1px;
-      border-bottom-style: solid;
-      border-bottom-color: $lightGreyColor;
-      
       .cnt { font-weight: 600 !important; }
+      tr {
+        border-bottom-width: 2px;
+        border-bottom-style: solid;
+        border-bottom-color: $bgColor;
+        border-top: 0;
+        font-size: 13px;
+      }
     }
 
+    .line {
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      border-bottom-color: $bgColor;
+    }
+    
     tr {
       display: flex;
-      padding: 5px 0;
+      padding: 5px 20px;
     }
 
     .name {
+      @include clickable();
       flex: 1;
       text-align: start;
     }
@@ -30,9 +44,43 @@
     }
     .access {
       width: 50px;
+      img {
+        width: 15px;
+      }
     }
     .btn {
-      width: 100px;
+      width: 60px;
     }
+
+    .pwInput {
+      font-style: italic;
+      display: block;
+      margin: 0 30px 0 auto;
+      width: 100px;
+      height: 30px;
+      border: none;
+      background-color: transparent;
+      outline: none;
+      text-align: end;
+      transition: .3s;
+
+      &.non {
+        height: 0px;
+        opacity: 0;
+      }
+    }
+  }
+
+  .box {
+    width: 100%;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: $lightGreyColor;
+
+    img { width: 80px; margin: 10px; }
   }
 }
