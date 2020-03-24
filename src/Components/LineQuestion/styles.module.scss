@@ -1,5 +1,21 @@
 @import "src/Styles/utils.scss";
 
+
+.prob {
+  position: relative;
+  top: 10px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+
+  .span {
+    font-size: 12px;
+    margin: 2px 5px;
+    color: $lightGreyColor
+  }
+}
+
+
 .wrapper {
   width: 100%;
   height: 100%;
