@@ -21,7 +21,7 @@ export default () => (
     </li>
 
     <li>
-      <Link to="/user" className={cx("link")}>
+      <Link to="/group" className={cx("link")}>
         <Profile />
       </Link>
     </li>
