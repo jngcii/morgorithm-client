@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 const cx = classNames.bind(styles);
@@ -16,7 +17,7 @@ export default ({ searching }) => (
 
       <tbody>
         <tr className={cx(!searching && "non")}>
-          <th className={cx("name")}>ssafy31</th>
+          <th className={cx("name")}><Link className={cx("link")} to={"/group/123"}>ssafy31</Link></th>
           <th className={cx("cnt")}>26</th>
           <th className={cx("btn")}>
             <button>leave</button>

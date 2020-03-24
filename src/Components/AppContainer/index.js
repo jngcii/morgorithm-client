@@ -9,11 +9,12 @@ import ProblemListScreen from "../../Screens/ProblemListScreen";
 import ProblemScreen from "../../Screens/ProblemScreen";
 import SolutionScreen from "../../Screens/SolutionScreen";
 import GroupListScreen from "../../Screens/GroupListScreen";
+import GroupScreen from "../../Screens/GroupScreen";
 import Footer from "../Footer";
 const cx = classNames.bind(styles);
 
 export default () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
     <div className={cx("wrapper")}>
@@ -45,8 +46,12 @@ export default () => {
                 {/* <ProblemListScreen /> */}
               </Route>
 
-              <Route path="/group">
+              <Route exact path="/group">
                 <GroupListScreen />
+              </Route>
+
+              <Route path="/group/:id">
+                <GroupScreen />
               </Route>
 
               <Route path="/user">{null}</Route>
