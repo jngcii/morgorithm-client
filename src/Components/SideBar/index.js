@@ -9,7 +9,7 @@ export default () => {
   const out = pathname !== "/" && pathname !== "/user" && !~pathname.indexOf("/group") ;
 
   return (
-    <div className={cx("wrapper", out && "out")}>
+    <div className={cx("wrapper", out ? "out" : "in")}>
       <div className={cx("container")}>
         <div className={cx("each")}>전체 문제 (145/531)</div>
         <hr />
