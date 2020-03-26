@@ -1,0 +1,67 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  width: $createUserModalWidth;
+  height: $createUserModalHeight;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+  
+  .input {
+    width: 100%;
+    margin: 0;
+    height: 36px;
+    box-sizing: border-box;
+    padding: 0 10px;
+    border-radius: 5px;
+    border: none;
+    @include modalInputFont();
+    background-color: transparent;
+  }
+
+  .hr {
+    width: 100%;
+    border: 1px solid $bgColor;
+  }
+
+  .kind {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0;
+    .select {
+      display: flex;
+      width: 100%;
+      padding: 0;
+    }
+    .search {
+      width: 250px;
+      height: 100%;
+      box-sizing: border-box;
+      padding: 0 10px;
+      border-radius: 5px;
+      border: 1px solid $brightGreyColor;
+      @include modalInputFont();
+    }
+  }
+
+  .body {
+    flex: 1;
+    overflow:hidden;
+    overflow-y: scroll;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .btn {
+    &.submit {
+      margin: 0 10px;
+      background-color: $yellowColor;
+      color: #fff;
+    }
+  }
+}

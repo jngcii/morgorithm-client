@@ -1,13 +1,14 @@
 @import "src/Styles/utils.scss";
 
 .navlist {
-  padding: 0 10px;
+  padding: 0 20px;
 
   li {
     @include clickable();
-    display: inline-block;
+    display: inline-flex;
     margin: 0 20px;
     vertical-align: middle;
+    align-items: center;
 
     .link {
         text-decoration: none;

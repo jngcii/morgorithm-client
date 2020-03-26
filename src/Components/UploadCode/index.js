@@ -12,7 +12,15 @@ import "ace-builds/src-noconflict/keybinding-vscode";
 // import "ace-builds/src-noconflict/keybinding-sublime";
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
+import CustomModal from "../CustomModal";
+import BoxUpload from "../BoxUpload";
 const cx = classNames.bind(styles);
+
+
+const UploadBtn = (handleOpen) => (
+  <button className={cx("uploadBtn")} onClick={handleOpen}>Upload</button>
+)
+
 
 export default () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +40,7 @@ export default () => {
             </div>
 
             <div className={cx("upload")}>
-              <button>Upload</button>
+              <CustomModal btnComponent={UploadBtn} contentComponent={BoxUpload} />
             </div>
           </div>
 

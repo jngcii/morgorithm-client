@@ -3,7 +3,15 @@ import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 import ListGroup from "../ListGroup";
 import ListGroupSearch from "../ListGroupSearch";
+import CustomModal from "../CustomModal";
+import BoxCreateUserGroup from "../BoxCreateUserGroup";
 const cx = classNames.bind(styles);
+
+
+const CreateUserGroupBtn = (handleOpen) => (
+  <button onClick={handleOpen}>새 그룹 만들기</button>
+);
+
 
 export default () => {
   const [searching, setSearching] = useState(false);
@@ -15,7 +23,7 @@ export default () => {
     <div className={cx("wrapper")}>
       <header>
         <span className={cx("subject")}>My Group</span>
-        <button>새 그룹 만들기</button>
+        <CustomModal btnComponent={CreateUserGroupBtn} contentComponent={BoxCreateUserGroup} />
         <div className={cx("search")}>
           <input
             className={cx("inputBox")}
