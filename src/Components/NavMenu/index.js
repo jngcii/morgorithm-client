@@ -5,7 +5,6 @@ import Paper from "@material-ui/core/Paper";
 import Popper from "@material-ui/core/Popper";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
-import { makeStyles } from "@material-ui/core/styles";
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 const cx = classNames.bind(styles);
