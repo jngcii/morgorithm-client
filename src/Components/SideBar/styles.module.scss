@@ -44,6 +44,13 @@
       padding: 20px;
       overflow: hidden;
 
+      &.plus {
+        padding: 5px 20px;
+        &:active {
+          opacity: .5;
+        }
+      }
+
       @media screen and (max-width: 1080px) {
         padding: 7px;
       }
