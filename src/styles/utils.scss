@@ -14,9 +14,20 @@ $redColor: #e62c47;
 
 $authInputWidth: 220px;
 $sectionWidth: 720px;
+$confirmModalWidth: 250px;
+$createUserGroupModalWidth: 300px;
+$createUserModalWidth: 700px;
+$createUserModalHeight: 600px;
 
 $titleFontSize: 23px;
 $titleFontWeight: 600;
+$modalInputFontSize: 17px;
+$modalINputFontWeight: 600;
+
+@mixin modalInputFont {
+  font-size: $modalInputFontSize;
+  font-weight: $modalINputFontWeight;
+}
 
 @mixin titleFont {
   font-size: $titleFontSize;
@@ -111,7 +122,6 @@ $titleFontWeight: 600;
 @mixin more {
   @include clickable();
   float: right;
-  margin: 7px;
   font-size: 13px;
   font-weight: 700;
   color: $darkBlueColor;
