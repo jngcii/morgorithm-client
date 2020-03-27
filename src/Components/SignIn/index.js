@@ -21,8 +21,7 @@ export default ({ setIsExist }) => {
   };
 
   const _onKeyDown = e => {
-    if (e.keyCode === 9) e.preventDefault();
-    else if (e.keyCode === 13) _signIn(e);
+    if (e.keyCode === 13) _signIn(e);
   }
 
 
