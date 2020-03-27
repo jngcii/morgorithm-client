@@ -6,7 +6,7 @@ import Auth from "../Auth";
 import NavList from "../NavList";
 const cx = classNames.bind(styles);
 
-export default ({ isLoggedIn, setIsLoggedIn }) => (
+export default ({ isLoggedIn }) => (
   <nav className={cx(isLoggedIn ? "in" : "out")}>
     <div className={cx("logoContainer")}>
       <Link to="/" className={cx("link", isLoggedIn ? "in" : "out")} >morgorithm</Link>
@@ -19,7 +19,7 @@ export default ({ isLoggedIn, setIsLoggedIn }) => (
       {isLoggedIn ? (
         <NavList />
       ) : (
-        <Auth setIsLoggedIn={setIsLoggedIn} />
+        <Auth />
       )}
     </div>
   </nav>

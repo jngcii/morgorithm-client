@@ -1,31 +1,26 @@
-import React from "react";
-import classNames from "classnames/bind";
-import styles from "./styles.module.scss";
-const cx = classNames.bind(styles);
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../../redux/modules/user";
+import useInput from "../../Hooks/useInput";
+import Presenter from "./Presenter";
 
-export default ({ setIsLoggedIn, setIsExist }) => (
-  <div className={cx("wrapper")}>
-    <div className={cx("tag")}>email</div>
-    <input className={cx("authInput")} spellCheck={false} placeholder={"이메일을 입력하세요"} />
-    <div className={cx("tag")}>password</div>
-    <input className={cx("authInput")} spellCheck={false} placeholder={"비밀번호를 입력하세요"} />
+export default ({ setIsExist }) => {
+  const [loading, setLoading] = useState(false);
+  const email = useInput("");
+  const password = useInput("");
+  const dispatch = useDispatch();
 
-    <div className={cx("signin")}>
-      <div className={cx("local")} onClick={() => setIsLoggedIn(true)}>
-        로그인
-      </div>
+  const _signIn = async e => {
+    e.preventDefault();
 
-      <div className={cx("social")}>
-        <img
-          src={require("../../../src/assets/google-logo.png")}
-          draggable={false}
-        />
-      </div>
-    </div>
+    dispatch(userActions.signIn(email.value, password.value)).then(res => {
+      if (!res) {
+        email.onChange("");
+        password.onChange("");
+      }
+      console.log(res)
+    });
+  };
 
-    <ul className={cx("except")}>
-      <li>비밀번호 찾기</li>
-      <li onClick={() => setIsExist(false)}>회원가입</li>
-    </ul>
-  </div>
-);
+  return <Presenter email={email} password={password} signIn={_signIn} setIsExist={setIsExist} />;
+};

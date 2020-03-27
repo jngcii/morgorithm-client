@@ -41,7 +41,7 @@ export default ({ onCancel, onUpload }) => {
 
       <div className={cx("body")}>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17].map(id => (
-          <div style={{width: "100%", paddingHorizontal: 10}} onClick={onCancel}>
+          <div key={id} style={{width: "100%", paddingHorizontal: 10}} onClick={onCancel}>
             <LineProblem key={id} site={"boj"} num={"123"} title={"asghasdlgiasd"} level={"ghlasg"} />
           </div>
         ))}
