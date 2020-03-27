@@ -11,7 +11,6 @@ export default ({ setIsExist }) => {
   const dispatch = useDispatch();
 
   const _signIn = async e => {
-    e.preventDefault();
 
     dispatch(userActions.signIn(email.value, password.value)).then(res => {
       if (!res) {
@@ -21,5 +20,11 @@ export default ({ setIsExist }) => {
     });
   };
 
-  return <Presenter email={email} password={password} signIn={_signIn} setIsExist={setIsExist} />;
+  const _onKeyDown = e => {
+    if (e.keyCode === 9) e.preventDefault();
+    else if (e.keyCode === 13) _signIn(e);
+  }
+
+
+  return <Presenter email={email} password={password} signIn={_signIn} onKeyDown={_onKeyDown} setIsExist={setIsExist} />;
 };

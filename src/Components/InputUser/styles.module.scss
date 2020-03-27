@@ -15,7 +15,7 @@
   @include btn();
   width: $authInputWidth - 10px;
   margin: 10px auto;
-  background-color: #fff;
+  background-color: $yellowColor;
   font-weight: 700;
   color: $darkGreyColor;
 }

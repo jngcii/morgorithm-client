@@ -3,8 +3,8 @@ import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 const cx = classNames.bind(styles);
 
-export default ({ email, password, signIn, setIsExist }) => (
-  <div className={cx("wrapper")}>
+export default ({ email, password, signIn, onKeyDown, setIsExist }) => (
+  <div className={cx("wrapper")} onKeyDown={onKeyDown}>
     <div className={cx("tag")}>email</div>
     <input
       className={cx("authInput")}
@@ -12,6 +12,8 @@ export default ({ email, password, signIn, setIsExist }) => (
       placeholder={"이메일을 입력하세요"}
       value={email.value}
       onChange={e => email.onChange(e.target.value)}
+      autoComplete={"email"}
+      autoFocus
     />
     <div className={cx("tag")}>password</div>
     <input

@@ -22,8 +22,8 @@ function signIn(email, password) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password })
     })
-      .then(response => {
-        if (response.status === 200) return response.json();
+      .then(res => {
+        if (res.status === 200) return res.json();
         else return false;
       })
       .then(json => {
@@ -40,6 +40,68 @@ function signIn(email, password) {
 
 function signOut() {
   return function(dispatch) { dispatch(dropToken());}
+}
+
+function sendConfirmCode(email) {
+  return async function() {
+    const res = await fetch(`${API_URL}/users/send-confirm-code/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email })
+    })
+    .then(res => {
+      if (res.status === 200) return res.json();
+      else return false;
+    })
+    .then(json => {
+      if (json && json.confirm_code) return json.confirm_code;
+      else return null;
+    })
+    .catch(() => null);
+
+    return res;
+  };
+}
+
+function checkUnique(email=null, username=null) {
+  return async function() {
+    const res = await fetch(`${API_URL}/users/check-unique/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: email ? JSON.stringify({ email }) : JSON.stringify({ username })
+    })
+    .then(res => {
+      if (res.status === 200) return true
+      else return false;
+    })
+    .catch(()=>false);
+
+    return res;
+  };
+}
+
+function signUp(email, username, name, password) {
+  return async function(dispatch) {
+    console.log(email, username, name, password);
+    const res = await fetch(`${API_URL}/users/sign-up/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, username, name, password })
+    })
+    .then(res => {
+      if (res.status === 201) return res.json();
+      else return false;
+    })
+    .then(json => {
+      if (json && json.token){
+        dispatch(saveToken(json.token));
+        return true;
+      } else return false;
+    })
+    .catch(() => false);
+
+    return res
+  }
 }
 
 // initial state
@@ -85,6 +147,9 @@ function applyDropToken(state) {
 const actionCreators = {
   signIn,
   signOut,
+  sendConfirmCode,
+  checkUnique,
+  signUp,
 };
 
 export { actionCreators };

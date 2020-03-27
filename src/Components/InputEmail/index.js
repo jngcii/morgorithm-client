@@ -1,34 +1,70 @@
 import React, { useState } from "react";
-import classNames from "classnames/bind";
-import styles from "./styles.module.scss";
-const cx = classNames.bind(styles);
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../../redux/modules/user";
+import useInput from "../../Hooks/useInput";
+import Presenter from "./Presenter";
 
-export default ({setStep}) => {
-  const [isVerifying, setIsVerifying] = useState(false);
+export default ({ setCredentials, setStep }) => {
+  const [loading, setLoading] = useState(false);
   const [err, setErr] = useState(null);
+  const [isVerifying, setIsVerifying] = useState(false);
+  const [originCode, setOriginCode] = useState("");
+  const confirmCode = useInput("");
+  const email = useInput("");
+  const dispatch = useDispatch();
 
-  if (isVerifying) {
+  const _isEmail = () => {
+    const emailRegex = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+    return emailRegex.test(email.value);
+  };
 
-    return (
-      <div className={cx("wrapper")}>
-        <input className={cx("code", "authInput")} spellCheck={false} placeholder={"인증코드를 입력해주세요"} />
-        <span className={cx("btn", "code")} onClick={()=>setStep("credential")}>인증</span>
-        <div className={cx("re")} onClick={()=>setIsVerifying(false)}>이메일 다시 입력하기</div>
-        {err === "typeErr" && <span className={cx("err")}>잘못된 인증코드입니다</span>}
-      </div>
-    );
+  const _onSend = async () => {
+    setLoading(true);
+    if (!_isEmail()) {
+      setErr("typeErr");
+      setLoading(false);
+      return;
+    }
+    const uniq = await dispatch(userActions.checkUnique(email.value, null));
+    if(!uniq) {
+      setErr("uniqueErr");
+      setLoading(false);
+      return
+    }
+    const code = await dispatch(userActions.sendConfirmCode(email.value));
+    if (!!code) {
+      setOriginCode(code);
+      setIsVerifying(true);
+      setLoading(false);
+    } else {
+      setErr("uniqueErr");
+      setLoading(false);
+    }
+  };
 
-  } else {
+  const _onConfirm = () => {
+    if (confirmCode.value === originCode) {
+      setCredentials(email.value);
+      setStep("credential");
+    }
+    confirmCode.onChange("");
+  };
 
-    return (
-      <div className={cx("wrapper")}>
-        <span className={cx("tag")}>이메일를 입력해주세요</span>
-        <input className={cx("authInput")} spellCheck={false} placeholder="morgorithm@gmail.com" />
-        {err === "typeErr" && <span className={cx("err")}>이메일 양식이 맞지 않습니다</span>}
-        {err === "uniqueErr" && <span className={cx("err")}>이미 존재하는 이메일입니다</span>}
-        <div className={cx("btn")} onClick={()=>setIsVerifying(true)}>인증 메일 보내기</div>
-      </div>
-    );
+  const _onKeyDown = e => {
+    if (e.keyCode === 9) e.preventDefault();
+  };
 
-  }
+  return (
+    <Presenter
+      email={email}
+      loading={loading}
+      err={err}
+      confirmCode={confirmCode}
+      isVerifying={isVerifying}
+      setIsVerifying={setIsVerifying}
+      onSend={_onSend}
+      onConfirm={_onConfirm}
+      onKeyDown={_onKeyDown}
+    />
+  );
 };

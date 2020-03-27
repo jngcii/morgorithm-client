@@ -108,8 +108,8 @@ $modalINputFontWeight: 600;
   user-select: none;
   outline: none;
 
-  &:hover {
-    opacity: .8;
+  &:active {
+    opacity: .4;
   }
 }
 

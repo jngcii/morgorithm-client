@@ -5,8 +5,9 @@ import InputEmail from "../InputEmail";
 import InputUser from "../InputUser";
 const cx = classNames.bind(styles);
 
-export default ({ setIsLoggedIn, setIsExist }) => {
+export default ({ setIsExist }) => {
   const [step, setStep] = useState("email");
+  const [credentials, setCredentials] = useState("");
 
   return (
     <div className={cx("wrapper")}>
@@ -16,10 +17,10 @@ export default ({ setIsLoggedIn, setIsExist }) => {
 
       <div className={cx("all", step)}>
         <div className={cx("container")}>
-          <InputEmail setStep={setStep} />
+          <InputEmail setCredentials={setCredentials} setStep={setStep} />
         </div>
         <div className={cx("container")}>
-          <InputUser setStep={setStep} setIsLoggedIn={setIsLoggedIn} />
+          <InputUser credentials={credentials} />
         </div>
       </div>
 
