@@ -1,4 +1,6 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../../redux/modules/user";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
@@ -12,6 +14,7 @@ const cx = classNames.bind(styles);
 export default () => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
+  const dispatch = useDispatch();
 
   const handleToggle = () => {
     setOpen(prevOpen => !prevOpen);
@@ -30,6 +33,10 @@ export default () => {
       event.preventDefault();
       setOpen(false);
     }
+  }
+
+  const _onSignOut = () => {
+    dispatch(userActions.signOut());
   }
 
   // return focus to the button when we transitioned from !open -> open
@@ -78,7 +85,7 @@ export default () => {
                     <MenuItem className={cx("menu")} onClick={handleClose}>Home</MenuItem>
                     <MenuItem className={cx("menu")} onClick={handleClose}>Edit Profile</MenuItem>
                     <MenuItem className={cx("menu")} onClick={handleClose}>My Group</MenuItem>
-                    <MenuItem className={cx("menu")} onClick={handleClose}>Logout</MenuItem>
+                    <MenuItem className={cx("menu")} onClick={_onSignOut}>Logout</MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

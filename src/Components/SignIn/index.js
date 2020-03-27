@@ -18,7 +18,6 @@ export default ({ setIsExist }) => {
         email.onChange("");
         password.onChange("");
       }
-      console.log(res)
     });
   };
 
