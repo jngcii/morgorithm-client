@@ -13,21 +13,27 @@
     - problem_groups
       - id
       - name
+      - problems (id)
       - problems_count
       - solved_problems_count
-    - problems
+    - solutions (질문만)
       - id
-      - origin
-        - id
-        - level
-        - url
-        - number
-        - category
-        - title
-        - remark
-      - is_solved
-      - solved_time
-    - solutions
+      - creator
+      - lang
+      - solved
+      - view
+      - comment_count
+      - like_count
+    - problems_count
+    - solved_problems_count
+    - questions_count
+  - current_user
+    - id
+    - username
+    - email
+    - name
+    - group
+    - solutions (질문만)
       - id
       - creator
       - lang
@@ -39,12 +45,78 @@
     - solved_problems_count
     - questions_count
 - problem
-- 
+  - problems
+    - id
+    - origin
+      - id
+      - level
+      - url
+      - number
+      - category
+      - title
+      - remark
+    - is_solved
+    - solved_time
+  - selected_problem
+    - id
+    - origin
+    - is_solved
+    - solved_time
+  - solutions
+    - id
+    - creator
+      - id
+      - username
+      - name
+    - lang
+    - solved
+    - view
+    - comment_count
+    - like_count
+  - questions
+    - id
+    - creator
+      - id
+      - username
+      - name
+    - lang
+    - solved
+    - view
+    - comment_count
+- solution
+  - solution
+    - id
+    - creator
+      - id
+      - username
+      - name
+    - code
+    - lang
+    - caption
+    - view
+    - solved
+    - likes
+      - id
+      - username
+      - name
+    - like_count
+    - comments
+      - id
+      - creator
+      - message
+      - likes
+      - like_count
+      - sub_comments
+        - id
+        - creator
+        - message
+        - likes
+        - like_count
+    - comment_count
 
 ## 더 필요한 API
 - getGroup (detail) (request data : groupId)
 - getProblemsQuestions (request data : originId(originProb))
-- 
 
 ## AppContainer
 ### getState
