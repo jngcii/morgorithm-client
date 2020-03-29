@@ -9,8 +9,12 @@
     - group
       - id
       - name
-      - member_count
+      - members_count
     - problem_groups
+      - id
+      - name
+      - problems_count
+      - solved_problems_count
     - problems_count
     - solved_problems_count
     - questions_count
@@ -21,15 +25,34 @@
     - name
     - group
       - id
-      - group name
+      - name
       - members_count
     - problems_count
     - solved_problems_count
     - questions_count
   - group
-  - searchedGroup...?(검색)
+    - id
+    - name
+    - members
+    - members_count
+  - searchedGroup
+    - id
+    - name
+    - members_count
 - problem
   - problemList
+    - id
+    - origin
+      - id
+      - level
+      - url
+      - number
+      - category
+      - title
+      - remark
+    - is_solved
+    - solved_time
+  - searchedProblemList
     - id
     - origin
       - id
@@ -94,16 +117,16 @@
     - comment_count
 
 ## 더 필요한 API
-- getUser (userInfo) (request data : userId)
-- getGroup (detail) (request data : groupId)
-- getProblems
+- [x] getUser (userInfo) (request data : userId)
+- [x] getGroup (detail) (request data : groupId)
+- [x] getProblems
   - request data
     - group : all or probGroupId
     - category : array of category
     - level
-    - search
     - solved : [[solved], [unsolved]]
-- getProblemsQuestions (request data : originId(originProb))
+    - keyword
+- [x] getProblemsQuestions (request data : originId(originProb))
 
 ## AppContainer
 ### getState
