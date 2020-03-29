@@ -11,41 +11,25 @@
       - name
       - member_count
     - problem_groups
-      - id
-      - name
-      - problems (id)
-      - problems_count
-      - solved_problems_count
-    - solutions (질문만)
-      - id
-      - creator
-      - lang
-      - solved
-      - view
-      - comment_count
-      - like_count
     - problems_count
     - solved_problems_count
     - questions_count
-  - current_user
+  - currentUser
     - id
     - username
     - email
     - name
     - group
-    - solutions (질문만)
       - id
-      - creator
-      - lang
-      - solved
-      - view
-      - comment_count
-      - like_count
+      - group name
+      - members_count
     - problems_count
     - solved_problems_count
     - questions_count
+  - group
+  - searchedGroup...?(검색)
 - problem
-  - problems
+  - problemList
     - id
     - origin
       - id
@@ -57,12 +41,8 @@
       - remark
     - is_solved
     - solved_time
-  - selected_problem
-    - id
-    - origin
-    - is_solved
-    - solved_time
-  - solutions
+- solution
+  - solutionList
     - id
     - creator
       - id
@@ -73,7 +53,7 @@
     - view
     - comment_count
     - like_count
-  - questions
+  - questionList
     - id
     - creator
       - id
@@ -83,8 +63,7 @@
     - solved
     - view
     - comment_count
-- solution
-  - solution
+  - currentSolution
     - id
     - creator
       - id
@@ -115,7 +94,15 @@
     - comment_count
 
 ## 더 필요한 API
+- getUser (userInfo) (request data : userId)
 - getGroup (detail) (request data : groupId)
+- getProblems
+  - request data
+    - group : all or probGroupId
+    - category : array of category
+    - level
+    - search
+    - solved : [[solved], [unsolved]]
 - getProblemsQuestions (request data : originId(originProb))
 
 ## AppContainer
