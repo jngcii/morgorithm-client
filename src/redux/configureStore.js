@@ -5,10 +5,12 @@ import { routerReducer } from "react-router-redux";
 import thunk from "redux-thunk";
 import user from "./modules/user";
 import problem from "./modules/problem";
+import solution from "./modules/solution";
 
 const reducer = combineReducers({
   user,
   problem,
+  solution,
   routing: routerReducer,
 });
 
