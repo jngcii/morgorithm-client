@@ -5,30 +5,30 @@ import styles from "./styles.module.scss";
 import LineGroup from "../LineGroup";
 const cx = classNames.bind(styles);
 
-export default () => (
+export default ({user}) => (
   <div className={cx("wrapper")}>
     <div className={cx("user")}>
       <img src={require("../../assets/no-profile.png")} draggable={false} />
-      <div className={cx("username")}>jngcii</div>
-      <div className={cx("name")}>정형수</div>
+      <div className={cx("username")}>{ user.username }</div>
+      { user.name && <div className={cx("name")}>{ user.name }</div> }
     </div>
 
     <span className={cx("in")}>in</span>
 
     <div className={cx("group")}>
-      <span className={cx("title")}>Group</span>
-      <Link className={cx("more")} to={"/group"}>더보기</Link>
+      <header className={cx("groupHeader")}>
+        <span className={cx("title")}>Group</span>
+        <Link className={cx("more")} to={"/group"}>더보기</Link>
+      </header>
+
       <div className={cx("list")}>
-        
-        <div className={cx("line")}>
-          <LineGroup name={"ssafy31"} count={23} />
-        </div>
-        <div className={cx("line")}>
-          <LineGroup name={"my group"} count={5} />
-        </div>
-        <div className={cx("line")}>
-          <LineGroup name={"your group"} count={129} />
-        </div>
+
+        {user.group.map(g => (
+          <div className={cx("line")} key={g.id}>
+            <LineGroup group={g} />
+          </div>
+        ))}
+
       </div>
     </div>
   </div>

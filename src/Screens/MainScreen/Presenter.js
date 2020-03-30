@@ -7,12 +7,42 @@ import SectionSolvingList from "../../Components/SectionSolvingList";
 import ListProblem from "../../Components/ListProblem";
 const cx = classNames.bind(styles);
 
-export default () => (
+const LoadingBox = ({ height }) => (
+  <div className={cx("loading")} style={{ height: height }} />
+);
+
+export default ({ userState, statusState, probGroupState }) => (
   <div className={cx("wrapper")}>
-    <SectionUser />
-    <SolvingStatusBar />
-    <SectionSolvingList />
-    <ListProblem subject={"Problems"} />
-    <ListProblem subject={"Questions"} />
+    <div className={cx("section")}>
+      {userState !== null ? (
+        <SectionUser user={userState} />
+      ) : (
+        <LoadingBox height={150} />
+      )}
+    </div>
+
+    <div className={cx("section")}>
+      {statusState !== null ? (
+        <SolvingStatusBar status={statusState} />
+      ) : (
+        <LoadingBox height={40} />
+      )}
+    </div>
+
+    <div className={cx("section")}>
+      {probGroupState !== null ? (
+        <SectionSolvingList probGroup={probGroupState} />
+      ) : (
+        <LoadingBox height={100} />
+      )}
+    </div>
+
+    <div className={cx("section")}>
+      <ListProblem subject={"Problems"} />
+    </div>
+
+    <div className={cx("section")}>
+      <ListProblem subject={"Questions"} />
+    </div>
   </div>
 );

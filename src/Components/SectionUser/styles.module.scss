@@ -37,15 +37,24 @@
     height: 100%;
     flex: 1;
 
-    .title {
-        @include titleFont();
-    }
-    .more {
-        @include more();
-        text-decoration: none;
+    .groupHeader {
+        padding: 0 10px;
+
+        .title {
+            @include titleFont();
+        }
+        .more {
+            @include more();
+            text-decoration: none;
+        }
     }
 
     .list {
+        margin-top: 5px;
+        height: 200px;
+        background-color: #fff;
+        border-radius: 10px;
+
         .line {
             width: 100%;
             border-bottom-style: solid;

@@ -13,7 +13,7 @@ $blueColor: #3495eb;
 $redColor: #e62c47;
 
 $authInputWidth: 220px;
-$sectionWidth: 720px;
+$sectionWidth: 850px;
 $confirmModalWidth: 250px;
 $createUserGroupModalWidth: 300px;
 $createUserModalWidth: 700px;
@@ -42,8 +42,9 @@ $modalINputFontWeight: 600;
 
 @mixin section {
   margin: 0 auto;
+  box-sizing: border-box;
+  width: 100%;
   padding: 25px;
-  width: $sectionWidth;
 }
 
 @mixin clickable {
@@ -152,7 +153,7 @@ $modalINputFontWeight: 600;
     opacity: .7;
   }
   50% {
-    opacity: .2;
+    opacity: .4;
   }
   100% {
     opacity: .7;

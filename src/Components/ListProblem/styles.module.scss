@@ -1,9 +1,9 @@
 @import "src/Styles/utils.scss";
 
 .wrapper {
+    @include section();
     margin-bottom: 30px;
 
-    @include section();
     .header {
         @include header();
         width: 100%;

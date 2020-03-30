@@ -159,14 +159,14 @@ function reducer(state = initialState, action) {
 // reducer functions
 
 function applySetProfile(state, action) {
-  const { profile: { token, id, username, name, email, group, problem_group, problems_count, solved_problems_count, questions_count } } = action;
+  const { profile: { token, id, username, name, email, group, problem_groups, problems_count, solved_problems_count, questions_count } } = action;
 
   localStorage.setItem("token", token);
   return {
     ...state,
     isLoggedIn: true,
     token,
-    profile: { id, username, name, email, group, problem_group, problems_count, solved_problems_count, questions_count }
+    profile: { id, username, name, email, group, problem_groups, problems_count, solved_problems_count, questions_count }
   };
 }
 
