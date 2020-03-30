@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../../redux/modules/user";
+import { actionCreators as probActions } from "../../redux/modules/problem";
 import useInput from "../../Hooks/useInput";
 import Presenter from "./Presenter";
 
@@ -16,6 +17,8 @@ export default ({ setIsExist }) => {
       if (!res) {
         email.onChange("");
         password.onChange("");
+      } else {
+        dispatch(probActions.copyProblems());
       }
     });
   };

@@ -10,25 +10,26 @@ export default () => {
   const [questionState, setQuestionState] = useState(null);
 
   const {
-    user: { profile }
+    user: { currentUser, profile },
+    problem: { problemList }
   } = useSelector(state => state);
 
   useEffect(() => {
-    if (!!profile && profile.id) {
+    if (!!currentUser && currentUser.id) {
       setUserState({
-        id: profile.id,
-        username: profile.username,
-        name: profile.name,
-        email: profile.email,
-        group: profile.group
+        id: currentUser.id,
+        username: currentUser.username,
+        name: currentUser.name,
+        email: currentUser.email,
+        group: currentUser.group
       });
       setStatusState({
-        problemsCount: profile.problems_count,
-        solvedCount: profile.solved_problems_count,
-        questionsCount: profile.questions_count
+        problemsCount: currentUser.problems_count,
+        solvedCount: currentUser.solved_problems_count,
+        questionsCount: currentUser.questions_count
       });
     }
-  }, [profile]);
+  }, [currentUser]);
 
   useEffect(() => {
     if (!!profile && profile.problem_groups !== undefined) {
@@ -38,11 +39,18 @@ export default () => {
     }
   }, [profile]);
 
+  useEffect(() => {
+    if (problemList !== undefined) {
+      setProblemState(problemList);
+    }
+  }, [problemList])
+
   return (
     <Presenter
       userState={userState}
       statusState={statusState}
       probGroupState={probGroupState}
+      problemState={problemState}
     />
   );
 };

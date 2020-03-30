@@ -4,9 +4,11 @@ import storage from 'redux-persist/lib/storage';
 import { routerReducer } from "react-router-redux";
 import thunk from "redux-thunk";
 import user from "./modules/user";
+import problem from "./modules/problem";
 
 const reducer = combineReducers({
   user,
+  problem,
   routing: routerReducer,
 });
 

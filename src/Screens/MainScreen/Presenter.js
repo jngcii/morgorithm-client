@@ -11,7 +11,7 @@ const LoadingBox = ({ height }) => (
   <div className={cx("loading")} style={{ height: height }} />
 );
 
-export default ({ userState, statusState, probGroupState }) => (
+export default ({ userState, statusState, probGroupState, problemState }) => (
   <div className={cx("wrapper")}>
     <div className={cx("section")}>
       {userState !== null ? (
@@ -38,11 +38,15 @@ export default ({ userState, statusState, probGroupState }) => (
     </div>
 
     <div className={cx("section")}>
-      <ListProblem subject={"Problems"} />
+      {problemState !== null ? (
+        <ListProblem problemList={problemState} subject={"Problems"} />
+      ) : (
+        <LoadingBox height={150} />
+      )}
     </div>
 
     <div className={cx("section")}>
-      <ListProblem subject={"Questions"} />
+      {/* <ListProblem subject={"Questions"} /> */}
     </div>
   </div>
 );

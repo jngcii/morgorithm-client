@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../../redux/modules/user";
+import { actionCreators as probActions } from "../../redux/modules/problem";
 import useInput from "../../Hooks/useInput";
 import Presenter from "./Presenter";
 
@@ -56,8 +57,9 @@ export default ({ credentials }) => {
         password1.value
       )
     );
+    setLoading(false);
     if (!!res) {
-      setLoading(false);
+      dispatch(probActions.copyProblems());
     }
   };
 
