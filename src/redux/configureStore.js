@@ -1,4 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import { routerReducer } from "react-router-redux";
 import thunk from "redux-thunk";
 import user from "./modules/user";
@@ -8,8 +10,15 @@ const reducer = combineReducers({
   routing: routerReducer,
 });
 
-let store;
+const persistConfig = {
+  key: 'root',
+  storage,
+};
 
-store = createStore(reducer, applyMiddleware(thunk));
+const persistedReducer = persistReducer(persistConfig, reducer);
 
-export default store;
+export default () => {
+  let store = createStore(persistedReducer, applyMiddleware(thunk));
+  let persistor = persistStore(store);
+  return { store, persistor };
+};

@@ -7,5 +7,7 @@ export default () => {
     user: { profile }
   } = useSelector(state => state);
 
+  console.log(profile);
+
   return <Presenter />;
 };
