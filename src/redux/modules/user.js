@@ -1,16 +1,21 @@
 import { API_URL } from "../../constants";
 
-const SAVE_TOKEN = "SAVE_TOKEN";
+const SAVE_PROFILE = "SAVE_PROFILE";
 const DROP_TOKEN = "DROP_TOKEN";
+const SAVE_CURRENT_USER = 'SAVE_CURRENT_USER';
 
 // action creators
 
-function saveToken(token) {
-  return { type: SAVE_TOKEN, token };
+function saveProfile(profile) {
+  return { type: SAVE_PROFILE, profile };
 }
 
 function dropToken() {
   return { type: DROP_TOKEN };
+}
+
+function saveCurrentUser(profile) {
+  return { type: SAVE_CURRENT_USER, profile };
 }
 
 
@@ -28,7 +33,8 @@ function signIn(email, password) {
       })
       .then(json => {
         if (json && json.token) {
-          dispatch(saveToken(json.token));
+          dispatch(saveProfile(json));
+          dispatch(saveCurrentUser(json));
           return true;
         } else return false;
       })
@@ -38,8 +44,32 @@ function signIn(email, password) {
   };
 }
 
+function signUp(email, username, name, password) {
+  return async function(dispatch) {
+    const res = await fetch(`${API_URL}/users/sign-up/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, username, name, password })
+    })
+    .then(res => {
+      if (res.status === 201) return res.json();
+      else return false;
+    })
+    .then(json => {
+      if (json && json.token){
+        dispatch(saveProfile(json));
+        dispatch(saveCurrentUser(json));
+        return true;
+      } else return false;
+    })
+    .catch(() => false);
+
+    return res;
+  };
+}
+
 function signOut() {
-  return function(dispatch) { dispatch(dropToken());}
+  return function(dispatch) { dispatch(dropToken()); }
 }
 
 function sendConfirmCode(email) {
@@ -80,29 +110,30 @@ function checkUnique(email=null, username=null) {
   };
 }
 
-function signUp(email, username, name, password) {
-  return async function(dispatch) {
-    console.log(email, username, name, password);
-    const res = await fetch(`${API_URL}/users/sign-up/`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, username, name, password })
+function getUser(userId) {
+  return async function(dispatch, getState) {
+    const { user: { token } } = getState();
+    const res = await fetch(`${API_URL}/users/get-user/${userId}`, {
+      headers: { "Authorization": `Token ${token}` }
     })
     .then(res => {
-      if (res.status === 201) return res.json();
+      if (res.status === 401) signOut();
+      else if (res.status === 200) return res.json();
       else return false;
     })
     .then(json => {
-      if (json && json.token){
-        dispatch(saveToken(json.token));
+      if (!!json && json.id) {
+        dispatch(saveCurrentUser(json));
         return true;
       } else return false;
     })
     .catch(() => false);
 
-    return res
-  }
+    return res;
+  };
 }
+
+
 
 // initial state
 
@@ -114,10 +145,12 @@ const initialState = {
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case SAVE_TOKEN:
-      return applySetToken(state, action);
+    case SAVE_PROFILE:
+      return applySetProfile(state, action);
     case DROP_TOKEN:
-      return applyDropToken(state);
+      return applyDropToken();
+    case SAVE_CURRENT_USER:
+      return applySetCurrentUser(state, action);
     default:
       return state;
   }
@@ -125,20 +158,31 @@ function reducer(state = initialState, action) {
 
 // reducer functions
 
-function applySetToken(state, action) {
-  const { token } = action;
+function applySetProfile(state, action) {
+  const { profile: { token, id, username, name, email, group, problem_group, problems_count, solved_problems_count, questions_count } } = action;
+
   localStorage.setItem("token", token);
-  return { ...state, isLoggedIn: true };
-  // 여기서 리턴하면 바로바로 적용된다.
-  // 리턴 안하면 새로고침 해야 적용된다.
-  // 무슨말이나면
-  // 로컬 저장소에 토큰은 저장한다.
-  // 새로고침하면 당연히 이니셜 스테이트로 인해 가져온다.
+  return {
+    ...state,
+    isLoggedIn: true,
+    token,
+    profile: { id, username, name, email, group, problem_group, problems_count, solved_problems_count, questions_count }
+  };
 }
 
-function applyDropToken(state) {
+function applySetCurrentUser(state, action) {
+  const { profile: { token, id, username, name, email, group, problems_count, solved_problems_count, questions_count } } = action;
+
+  localStorage.setItem("token", token);
+  return {
+    ...state,
+    currentUser: { id, username, name, email, group, problems_count, solved_problems_count, questions_count }
+  };
+}
+
+function applyDropToken() {
   localStorage.clear();
-  return { ...state, isLoggedIn: false };
+  return { isLoggedIn: false };
 }
 
 
@@ -150,6 +194,7 @@ const actionCreators = {
   sendConfirmCode,
   checkUnique,
   signUp,
+  getUser,
 };
 
 export { actionCreators };

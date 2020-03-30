@@ -141,3 +141,20 @@ $modalINputFontWeight: 600;
   border-bottom-style: solid;
   border-bottom-color: $brightGreyColor;
 }
+
+@mixin twinkleAnimation {
+  animation: twinkle 1s ease-in-out infinite;
+}
+
+
+@keyframes twinkle {
+  0% {
+    opacity: .7;
+  }
+  50% {
+    opacity: .2;
+  }
+  100% {
+    opacity: .7;
+  }
+}

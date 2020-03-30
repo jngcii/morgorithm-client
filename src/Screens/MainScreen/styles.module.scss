@@ -4,3 +4,15 @@
     width: 100%;
     background-color: $bgColor;
 }
+
+.section {
+    width: $sectionWidth;
+}
+
+.loading {
+    width: 100%;
+    height: 100%;
+    background-color: $lightGreyColor;
+    border-radius: 20px;
+    @include twinkleAnimation();
+}
