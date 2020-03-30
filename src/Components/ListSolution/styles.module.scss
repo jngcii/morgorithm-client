@@ -1,26 +1,22 @@
 @import "src/Styles/utils.scss";
 
 .wrapper {
-  width: 100%;
+  @include section();
+  margin-bottom: 30px;
   height: 100%;
 
-  header {
-    @include screenHeader();
-    padding: 5px;
-    box-sizing: border-box;
+  .header {
+      @include header();
+      width: 100%;
 
-    h4 {
-      flex: 1;
-      margin: 5px 0;
-    }
-
-    .more {
-      @include more();
-    }
+      .more {
+          @include more();
+      }
   }
 
   section {
-    padding: 0 3px;
+    padding: 10px;
+    height: 100%;
     .line {
       @include clickable();
       padding: 3px 0;
@@ -29,6 +25,17 @@
       border-bottom-color: $brightGreyColor;
       text-decoration: none;
       color: $blackColor;
+    }
+
+    .empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      background-color: $brightGreyColor;
+      opacity: .3;
     }
   }
 }

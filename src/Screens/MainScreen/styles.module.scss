@@ -18,3 +18,15 @@
     border-radius: 20px;
     @include twinkleAnimation();
 }
+
+.empty {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 20px;
+    text-align: center;
+    color: $darkGreyColor;
+    font-size: 15px;
+    font-weight: 600;
+}

@@ -1,4 +1,5 @@
 import { API_URL } from "../../constants";
+import { actionCreators as solsActions } from "./solution";
 
 const SAVE_PROFILE = "SAVE_PROFILE";
 const DROP_TOKEN = "DROP_TOKEN";
@@ -35,6 +36,7 @@ function signIn(email, password) {
         if (json && json.token) {
           dispatch(saveProfile(json));
           dispatch(saveCurrentUser(json));
+          dispatch(solsActions.getQuestions(json.id));
           return true;
         } else return false;
       })
@@ -59,6 +61,7 @@ function signUp(email, username, name, password) {
       if (json && json.token){
         dispatch(saveProfile(json));
         dispatch(saveCurrentUser(json));
+        dispatch(solsActions.getQuestions(json.id));
         return true;
       } else return false;
     })

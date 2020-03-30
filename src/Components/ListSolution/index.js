@@ -6,24 +6,34 @@ import LineSolution from "../LineSolution";
 import LineQuestion from "../LineQuestion";
 const cx = classNames.bind(styles);
 
-export default ({ subject }) => (
+export default ({ list, subject }) => (
   <div className={cx("wrapper")}>
-    <header>
-      {subject === "solution" && <h4>다른 사람의 풀이</h4>}
-      {subject === "question" && <h4>질문 목록</h4>}
-      <div class={cx("more")}>더보기</div>
+    <header className={cx("header")}>
+      {subject === "question" ? "Questions" : "Solutions"}
+      <span className={cx("more")}>더보기</span>
     </header>
 
     <section>
-      <Link className={cx("line")} to={{pathname:"/problem/1234/1234"}}>
-        {subject === "solution" && <LineSolution />}
-        {subject === "question" && <LineQuestion />}
-      </Link>
+      {list.length > 0 ?list.map(item => {
+        const {
+          problem: { id: probId },
+          id: solsId
+        } = item;
 
-      <Link className={cx("line")} to={{pathname:"/problem/1234/1234"}}>
-        {subject === "solution" && <LineSolution />}
-        {subject === "question" && <LineQuestion />}
-      </Link>
+        return (
+          <Link key={solsId} className={cx("line")} to={`/problem/${probId}/${solsId}`}>
+            {subject === "question" ? (
+              <LineQuestion question={item} isDetail={true} />
+            ) : (
+              <LineSolution solution={item} />
+            )}
+          </Link>
+        );
+      }) : (
+        <div className={cx("empty")}>
+          <span>목록이 비어있습니다.</span>
+        </div>
+      )}
     </section>
   </div>
 );

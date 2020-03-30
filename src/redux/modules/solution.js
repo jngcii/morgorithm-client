@@ -42,6 +42,7 @@ function getQuestions(userId) {
 
 const initialState = {};
 
+
 // reducer
 
 function reducer(state = initialState, action) {
@@ -56,11 +57,10 @@ function reducer(state = initialState, action) {
 // reducer functions
 
 function applyUpdateQuestions(state, action) {
-  const { problemList } = action;
+  const { questionList } = action;
 
-  return { ...state, problemList };
+  return { ...state, questionList };
 }
-
 
 
 const actionCreators = {

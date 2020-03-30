@@ -11,13 +11,13 @@ export default () => (
     <Problem />
     <UploadCode />
 
-    <div className={cx("lists")}>
+    {/* <div className={cx("lists")}>
       <div className={cx("list")}>
         <ListSolution subject={"solution"} />
       </div>
       <div className={cx("list")}>
         <ListSolution subject={"question"} />
       </div>
-    </div>
+    </div> */}
   </div>
 );

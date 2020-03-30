@@ -11,7 +11,8 @@ export default () => {
 
   const {
     user: { currentUser, profile },
-    problem: { problemList }
+    problem: { problemList },
+    solution: { questionList },
   } = useSelector(state => state);
 
   useEffect(() => {
@@ -45,12 +46,19 @@ export default () => {
     }
   }, [problemList])
 
+  useEffect(() => {
+    if (questionList !== undefined) {
+      setQuestionState(questionList);
+    }
+  }, [questionList])
+
   return (
     <Presenter
       userState={userState}
       statusState={statusState}
       probGroupState={probGroupState}
       problemState={problemState}
+      questionState={questionState}
     />
   );
 };
