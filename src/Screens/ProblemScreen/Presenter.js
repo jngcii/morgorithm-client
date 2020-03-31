@@ -6,9 +6,9 @@ import UploadCode from "../../Components/UploadCode";
 import ListSolution from "../../Components/ListSolution";
 const cx = classNames.bind(styles);
 
-export default ({ solutionList, questionList }) => (
+export default ({ problem, solutionList, questionList }) => (
   <div className={cx("wrapper")}>
-    <Problem />
+    <Problem problem={problem} />
     <UploadCode />
 
     <div className={cx("lists")}>

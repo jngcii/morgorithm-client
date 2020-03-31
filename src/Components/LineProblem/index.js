@@ -10,9 +10,7 @@ export default ({ problem }) => (
       className={cx("link")}
       to={{
         pathname: `/problem/${problem.origin.id}`,
-        state: {
-          problemId: problem.origin.id
-        }
+        state: { problem }
       }}
     >
       <div className={cx("container")}>

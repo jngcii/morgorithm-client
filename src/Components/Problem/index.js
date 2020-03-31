@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 import Title from "../Title";
 const cx = classNames.bind(styles);
 
-export default () => (
+export default ({ problem }) => (
   <div className={cx("wrapper")}>
     <header>
       <div className={cx("btn")}>
@@ -12,13 +12,13 @@ export default () => (
       </div>
 
       <div className={cx("title")}>
-        <Title />
+        <Title problem={problem.origin} />
       </div>
     </header>
 
     <section>
-      <a href="https://www.acmicpc.net/problem/2922" target="_blank">
-        https://www.acmicpc.net/problem/2922
+      <a href={problem.origin.url} target="_blank">
+        {problem.origin.url}
       </a>
     </section>
   </div>

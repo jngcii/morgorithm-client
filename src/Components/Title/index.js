@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 const cx = classNames.bind(styles);
 
 export default ({ problem }) => (
-  <div style={{display:"inlineBlock"}}>
+  <div style={{display:"inlineBlock", width: "100%"}}>
     <div>
       <div className={cx("site")}>{problem.category}</div>
       <div className={cx("num")}>{problem.number}</div>

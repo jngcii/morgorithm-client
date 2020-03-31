@@ -8,7 +8,6 @@
 
     .btn {
       @include clickable();
-      position: absolute;
       width: 50px;
       img {
         display: block;

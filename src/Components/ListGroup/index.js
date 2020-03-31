@@ -4,15 +4,13 @@ import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 import CustomModal from "../CustomModal";
 import BoxLeave from "../BoxLeave";
+import LoadingBox from "../LoadingBox";
+import EmptyBox from "../EmptyBox";
 const cx = classNames.bind(styles);
 
+const LeaveBtn = handleOpen => <button onClick={handleOpen}>leave</button>;
 
-const LeaveBtn = (handleOpen) => (
-  <button onClick={handleOpen}>leave</button>
-)
-
-
-export default ({ searching }) => (
+export default ({ groups, searching }) => (
   <div className={cx("wrapper")}>
     <table>
       <thead>
@@ -24,12 +22,27 @@ export default ({ searching }) => (
       </thead>
 
       <tbody>
-        {[1,2,3].map(i => (
+        {groups === null && <LoadingBox />}
+        {groups !== null && groups.length === 0 && <EmptyBox />}
+        {groups !== null && groups.length > 0 && groups.map(group => (
           <tr className={cx(!searching && "non")}>
-            <th className={cx("name")}><Link className={cx("link")} to={"/group/123"}>ssafy31</Link></th>
-            <th className={cx("cnt")}>26</th>
+            <th className={cx("name")}>
+              <Link
+                className={cx("link")}
+                to={{
+                  pathname: `/group/${group.id}`,
+                  state: { groupId: group.id }
+                }}
+              >
+                {group.name}
+              </Link>
+            </th>
+            <th className={cx("cnt")}>{group.members_count}</th>
             <th className={cx("btn")}>
-              <CustomModal btnComponent={LeaveBtn} contentComponent={BoxLeave} />
+              <CustomModal
+                btnComponent={LeaveBtn}
+                contentComponent={BoxLeave}
+              />
             </th>
           </tr>
         ))}

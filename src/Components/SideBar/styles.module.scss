@@ -13,12 +13,12 @@
   &.out {
     width: 300px;
 
-    @media screen and (max-width: 1080px) {
+    @media screen and (max-width: 1180px) {
       width: 100%;
     }
   }
   &.in {
-    @media screen and (max-width: 1080px) {
+    @media screen and (max-width: 1180px) {
       display: none;
     }
   }
@@ -30,7 +30,7 @@
     width: 250px;
     border-radius: 15px;
 
-    @media screen and (max-width: 1080px) {
+    @media screen and (max-width: 1180px) {
       margin-top: 20px;
       width: 100%;
     }
@@ -51,7 +51,7 @@
         }
       }
 
-      @media screen and (max-width: 1080px) {
+      @media screen and (max-width: 1180px) {
         padding: 7px;
       }
     }

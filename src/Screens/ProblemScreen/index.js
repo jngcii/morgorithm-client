@@ -9,19 +9,19 @@ export default () => {
   const [questionState, setQuestionState] = useState(null);
 
   const {
-    state: { problemId }
+    state: { problem }
   } = useLocation();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(solsActions.getProblemsQuestions(problemId)).then(qres => {
+    dispatch(solsActions.getProblemsQuestions(problem.origin.id)).then(qres => {
       if (qres) setQuestionState(qres);
     });
-    dispatch(solsActions.getProblemsSolutions(problemId)).then(sres => {
+    dispatch(solsActions.getProblemsSolutions(problem.origin.id)).then(sres => {
       if (sres) setSolutionState(sres);
     });
   }, []);
 
-  return <Presenter solutionList={solutionState} questionList={questionState} />;
+  return <Presenter problem={problem} solutionList={solutionState} questionList={questionState} />;
 };
