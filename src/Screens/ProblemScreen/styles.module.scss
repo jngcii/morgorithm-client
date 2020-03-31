@@ -7,14 +7,14 @@
 
   .lists {
     @include section();
-    padding-top: 0;
+    box-sizing: border-box;
+    padding: 0;
     display: flex;
 
     .list {
       flex: 1;
       height: 350px;
       box-sizing: border-box;
-      padding: 15px;
       overflow: hidden;
     }
   }

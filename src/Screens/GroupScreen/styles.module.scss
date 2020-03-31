@@ -2,6 +2,8 @@
 
 .wrapper {
   @include eachScreenWrapper();
+  width: $sectionWidth;
+  margin: 0 auto;
   padding: 10px 0;
   
   .screenHeader {
@@ -46,7 +48,7 @@
 
       .userContainer {
         @include clickable();
-        width: $sectionWidth / 4;
+        width: ($sectionWidth - 50px) / 4;
         height: 60px;
         display: flex;
         align-items: center;
@@ -67,8 +69,9 @@
         padding: 10px 10px 5px;
       }
       .questions {
-        width: $sectionWidth * 3 / 4;
-        height: 600px;;
+        box-sizing: border-box;
+        width: ($sectionWidth - 50px) * 3 / 4;
+        height: 600px;
         transition: .3s;
         background-color: $navColor;
         padding: 10px;

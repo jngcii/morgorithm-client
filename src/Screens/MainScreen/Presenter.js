@@ -8,13 +8,11 @@ import ListProblem from "../../Components/ListProblem";
 import ListSolution from "../../Components/ListSolution";
 const cx = classNames.bind(styles);
 
-const LoadingBox = () => (
-  <div className={cx("loading")} />
-);
+const LoadingBox = () => <div className={cx("loading")} />;
 
 export default ({ userState, statusState, probGroupState, problemState, questionState }) => (
   <div className={cx("wrapper")}>
-    <div className={cx("section")} style={{height:300}}>
+    <div className={cx("section")} style={{height:350}}>
       {userState !== null ? (
         <SectionUser user={userState} />
       ) : (

@@ -22,10 +22,10 @@ export default ({ groups, searching }) => (
       </thead>
 
       <tbody>
-        {groups === null && <LoadingBox />}
-        {groups !== null && groups.length === 0 && <EmptyBox />}
+        {groups === null && <tr style={{border:"none"}}><td style={{width:"100%"}}><LoadingBox /></td></tr>}
+        {groups !== null && groups.length === 0 && <tr style={{border:"none"}}><td style={{width:"100%"}}><EmptyBox /></td></tr>}
         {groups !== null && groups.length > 0 && groups.map(group => (
-          <tr className={cx(!searching && "non")}>
+          <tr key={group.id} className={cx(!searching && "non")}>
             <th className={cx("name")}>
               <Link
                 className={cx("link")}

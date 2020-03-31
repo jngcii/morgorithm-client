@@ -55,7 +55,6 @@ export default () => {
 
         <AceEditor
           width={"auto"}
-          height={700}
           placeholder="코드를 이곳에 작성해주세요."
           // theme="solarized_dark"
           theme="chrome"
@@ -67,7 +66,6 @@ export default () => {
           highlightActiveLine={true}
           value={code}
           keyboardHandler={"vscode"}
-          // readOnly={true}
           setOptions={{
             enableBasicAutocompletion: false,
             enableLiveAutocompletion: false,
@@ -88,7 +86,6 @@ export default () => {
         <hr className={cx("divLine")} />
         <span className={cx("openBtn")} onClick={()=>setIsOpen(!isOpen)}>
           <img className={cx(isOpen ? "open" : "close")} src={require("../../assets/down-arrow.png")} />
-          {/* {isOpen ? "Close" : "Upload / Ask my code"} */}
           Upload / Ask my code
         </span>
       </div>

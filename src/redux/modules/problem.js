@@ -10,7 +10,6 @@ function updateProblems(problems) {
 }
 
 
-
 // API
 
 // json이 있으면 getProblem API ㄱㄱ

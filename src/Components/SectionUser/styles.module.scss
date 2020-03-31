@@ -2,6 +2,7 @@
 
 .wrapper {
     @include section();
+    width: 80%;
     display: flex;
     align-items: center;
     padding-top: 50px;
@@ -50,13 +51,16 @@
     }
 
     .list {
+        box-sizing: border-box;
         margin-top: 5px;
         height: 200px;
         background-color: #fff;
         border-radius: 10px;
+        padding: 5px;
 
         .line {
-            width: 100%;
+            width: 95%;
+            margin: 5px auto;
             border-bottom-style: solid;
             border-bottom-width: 1px;
             border-bottom-color: $brightGreyColor;

@@ -5,10 +5,12 @@
 
   header {
     @include screenHeader();
+    padding: 10px;
 
     .btn {
       @include clickable();
       width: 50px;
+      margin-right: 15px;
       img {
         display: block;
         width: 30px;
@@ -16,10 +18,6 @@
       }
     }
 
-    .title {
-      width: $sectionWidth - 160px;
-      margin: 0 auto;
-    }
   }
 
   section {

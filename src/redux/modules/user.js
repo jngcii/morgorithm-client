@@ -4,6 +4,7 @@ import { actionCreators as solsActions } from "./solution";
 const SAVE_PROFILE = "SAVE_PROFILE";
 const DROP_TOKEN = "DROP_TOKEN";
 const SAVE_CURRENT_USER = 'SAVE_CURRENT_USER';
+const SET_CURRENT_GROUP = 'SET_CURRENT_GROUP';
 
 // action creators
 
@@ -17,6 +18,10 @@ function dropToken() {
 
 function saveCurrentUser(profile) {
   return { type: SAVE_CURRENT_USER, profile };
+}
+
+function setCurrentGroup(currentGroup) {
+  return { type: SET_CURRENT_GROUP, currentGroup };
 }
 
 
@@ -158,6 +163,28 @@ function searchGroup(keyword) {
   };
 }
 
+function getGroup(groupId) {
+  return async function(dispatch, getState) {
+    const { user: { token } } = getState();
+    const res = await fetch(`${API_URL}/users/get-group/${groupId}/`, {
+      headers: { "Authorization": `Token ${token}` }
+    })
+    .then(res => {
+      if (res.status === 400) signOut();
+      else if (res.status === 200) return res.json();
+      else return false;
+    })
+    .then(json => {
+      if (!!json) {
+        return json;
+      } else return false;
+    })
+    .catch(() => false);
+
+    return res;
+  };
+}
+
 
 // initial state
 
@@ -175,6 +202,8 @@ function reducer(state = initialState, action) {
       return applyDropToken();
     case SAVE_CURRENT_USER:
       return applySetCurrentUser(state, action);
+    case SET_CURRENT_GROUP:
+      return applySetCurrentGroup(state, action);
     default:
       return state;
   }
@@ -209,6 +238,11 @@ function applyDropToken() {
   return { isLoggedIn: false };
 }
 
+function applySetCurrentGroup(state, action) {
+  const { currentGroup } = action;
+  return { ...state, currentGroup };
+}
+
 
 // exports
 
@@ -220,6 +254,7 @@ const actionCreators = {
   signUp,
   getUser,
   searchGroup,
+  getGroup,
 };
 
 export { actionCreators };

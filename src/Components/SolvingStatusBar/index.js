@@ -20,7 +20,7 @@ export default ({ status }) => (
     <div className={cx("eachStatus")}>
       <div className={cx("dot", "fail")} />
       <div className={cx("txt")}>questions</div>
-      <div className={cx("cnt")}>{status.solvedCount}</div>
+      <div className={cx("cnt")}>{status.questionsCount}</div>
     </div>
   </div>
 );
