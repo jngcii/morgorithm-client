@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
+import { CircularProgress } from "@material-ui/core";
 const cx = classNames.bind(styles);
 
-export default ({ gname }) => {
+export default ({ keyword, searchedGroups, loading }) => {
   const [choosen, setChoosen] = useState(null);
   const [password, setPassword] = useState("");
 
@@ -19,36 +20,50 @@ export default ({ gname }) => {
           </tr>
         </thead>
 
-        {gname ? (
-          <tbody>
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(i => (
-              <div key={i} className={cx("line")}>
+        <tbody>
+          {keyword.length > 0 ? (
+            loading ? (
+              <tr>
+                <td style={{ width: "100%" }}>
+                  <div className={cx("box")}>
+                    <CircularProgress color={"inherit"} size={40} />
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              searchedGroups.map(group => (
                 <tr>
-                  <th className={cx("name")}>ssafy31</th>
-                  <th className={cx("cnt")}>26</th>
-                  <th className={cx("access")}>
-                    <img src={require("../../assets/lock.png")} />
-                  </th>
-                  <th className={cx("btn")}>
-                    <button onClick={() => setChoosen(i)}>enter</button>
-                  </th>
-                </tr>
+                  <td key={group.id} className={cx("line")}>
+                    <th className={cx("name")}>{group.name}</th>
+                    <th className={cx("cnt")}>{group.members_count}</th>
+                    <th className={cx("access")}>
+                      <img src={require("../../assets/lock.png")} />
+                    </th>
+                    <th className={cx("btn")}>
+                      <button onClick={() => setChoosen(group.id)}>
+                        enter
+                      </button>
+                    </th>
 
-                <input
-                  className={cx("pwInput", choosen !== i && "non")}
-                  placeholder={"비밀번호를 입력하세요"}
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                />
-              </div>
-            ))}
-          </tbody>
-        ) : (
-          <div className={cx("box")}>
-            <img src={require("../../assets/search.png")} />
-            <div>search</div>
-          </div>
-        )}
+                    <input
+                      className={cx("pwInput", choosen !== group.id && "non")}
+                      placeholder={"비밀번호를 입력하세요"}
+                      value={password}
+                      onChange={e => setPassword(e.target.value)}
+                    />
+                  </td>
+                </tr>
+              ))
+            )
+          ) : (
+            <tr>
+              <td className={cx("box")}>
+                <img src={require("../../assets/search.png")} />
+                <div>search</div>
+              </td>
+            </tr>
+          )}
+        </tbody>
       </table>
     </div>
   );

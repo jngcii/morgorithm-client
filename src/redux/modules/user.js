@@ -136,6 +136,27 @@ function getUser(userId) {
   };
 }
 
+function searchGroup(keyword) {
+  return async function(_, getState) {
+    const { user: { token } } = getState();
+    const res = await fetch(`${API_URL}/users/search-group/${keyword}/`, {
+      headers: { "Authorization": `Token ${token}` }
+    })
+    .then(res => {
+      if (res.status === 401) signOut();
+      else if (res.status === 200) return res.json();
+      else return false;
+    })
+    .then(json => {
+      if (!!json) {
+        return json;
+      } else return [];
+    })
+    .catch(() => false);
+
+    return res;
+  };
+}
 
 
 // initial state
@@ -198,6 +219,7 @@ const actionCreators = {
   checkUnique,
   signUp,
   getUser,
+  searchGroup,
 };
 
 export { actionCreators };

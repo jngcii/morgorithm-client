@@ -7,29 +7,28 @@ import CustomModal from "../CustomModal";
 import BoxCreateUserGroup from "../BoxCreateUserGroup";
 const cx = classNames.bind(styles);
 
-
-const CreateUserGroupBtn = (handleOpen) => (
+const CreateUserGroupBtn = handleOpen => (
   <button onClick={handleOpen}>새 그룹 만들기</button>
 );
 
-
-export default ({ groups }) => {
+export default ({ keyword, groups, searchedGroups, loading, onSearch }) => {
   const [searching, setSearching] = useState(false);
-  const [gname, setGname] = useState("");
-
-  const isSearching = searching || gname !== "";
+  const isSearching = searching || keyword.value !== "";
 
   return (
     <div className={cx("wrapper")}>
       <header>
         <span className={cx("subject")}>My Group</span>
-        <CustomModal btnComponent={CreateUserGroupBtn} contentComponent={BoxCreateUserGroup} />
+        <CustomModal
+          btnComponent={CreateUserGroupBtn}
+          contentComponent={BoxCreateUserGroup}
+        />
         <div className={cx("search")}>
           <input
             className={cx("inputBox")}
             placeholder={"search..."}
-            value={gname}
-            onChange={e=>setGname(e.target.value)}
+            value={keyword.value}
+            onChange={onSearch}
             onFocus={() => setSearching(true)}
             onBlur={() => setSearching(false)}
           />
@@ -42,7 +41,11 @@ export default ({ groups }) => {
         </div>
 
         <div className={cx("list", isSearching ? "searching" : "none")}>
-          <ListGroupSearch gname={gname} />
+          <ListGroupSearch
+            keyword={keyword.value}
+            searchedGroups={searchedGroups}
+            loading={loading}
+          />
         </div>
       </section>
     </div>
