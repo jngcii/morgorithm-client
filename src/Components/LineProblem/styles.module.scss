@@ -58,11 +58,15 @@
         .solved {
             padding: 3px;
             border-radius: 3px;
-            background-color: $blueColor;
-            color: #fff;
+            background-color: $bgColor;
+            color: $bgColor;
             font-size: 11px;
             font-weight: 600;
             opacity: .5;
+
+            &.yes {
+                background-color: $blueColor;
+            }
         }
     }
 }

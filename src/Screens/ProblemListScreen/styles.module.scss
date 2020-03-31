@@ -1,5 +1,60 @@
 @import "src/Styles/utils.scss";
 
 .wrapper {
-    @include eachScreenWrapper();
+  @include eachScreenWrapper();
+
+  .header {
+    @include header();
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30px 30px 50px;
+  }
+
+  .sort {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+
+    .category {
+      display: flex;
+      margin: 0 5px;
+      color: $lightGreyColor;
+      font-weight: 600;
+
+      .block {
+        @include clickable();
+        background-color: $lightGreyColor;
+        color: #fff;
+        font-size: 11px;
+        font-weight: 600;
+        margin: 1px;
+        border-radius: 6px;
+        padding: 4px 6px;
+
+        &.on {
+          background-color: $blueColor;
+        }
+      }
+    }
+
+    .search {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+
+      .input {
+        @include authInput();
+        width: 170px;
+      }
+      .btn {
+        @include clickable();
+      }
+    }
+  }
+
+  .body {
+    min-height: calc(100vh - 430px);
+  }
 }

@@ -18,13 +18,13 @@ export default ({ problem }) => (
         <div className={cx("site")}>{problem.origin.category}</div>
         <div className={cx("title")}>
           <span>{problem.origin.title}</span>
-          {problem.origin.level && (
-            <div className={cx(problem.origin.level ? "level" : "noLevel")}>
-              level {problem.origin.level}
-            </div>
-          )}
         </div>
-        {problem.is_solved && <div className={cx("solved")}>solved</div>}
+        {problem.origin.level && (
+          <div className={cx(problem.origin.level ? "level" : "noLevel")}>
+            level {problem.origin.level}
+          </div>
+        )}
+        <div className={cx("solved", problem.is_solved && "yes")}>solved</div>
       </div>
     </Link>
   </div>

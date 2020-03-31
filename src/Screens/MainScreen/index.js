@@ -33,7 +33,7 @@ export default () => {
         });
       }
     });
-    dispatch(probActions.getProblems()).then(pres => {
+    dispatch(probActions.getProblems({})).then(pres => {
       if (pres) setProblemState(pres);
     });
     dispatch(solsActions.getQuestions(profile.id)).then(qres => {

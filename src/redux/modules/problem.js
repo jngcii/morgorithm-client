@@ -42,7 +42,8 @@ function copyProblems() {
   };
 }
 
-function getProblems(group=[], category=[], level=[], solved=[], keyword="") {
+
+function getProblems({group=[], category=[], level=[], solved=[], keyword=""}) {
   return async function(dispatch, getState) {
     const { user: { token } } = getState();
     const res = await fetch(`${API_URL}/probs/get-problems/`, {

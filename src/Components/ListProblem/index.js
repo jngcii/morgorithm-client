@@ -6,10 +6,12 @@ const cx = classNames.bind(styles);
 
 export default ({ problemList, subject }) => (
   <div className={cx("wrapper")}>
-    <header className={cx("header")}>
-      {subject}
-      <span className={cx("more")}>더보기</span>
-    </header>
+    {subject && (
+      <header className={cx("header")}>
+        {subject}
+        <span className={cx("more")}>더보기</span>
+      </header>
+    )}
 
     <section className={cx("body")}>
       {problemList.map(problem => (
