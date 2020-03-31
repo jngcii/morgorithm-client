@@ -20,7 +20,7 @@ export default () => (
     </li>
 
     <li>
-      <Link to="/problem" className={cx("link")}>
+      <Link to={{pathname:"/problem", state:{}}} className={cx("link")}>
         problems
       </Link>
     </li>

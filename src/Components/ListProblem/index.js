@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 import LineProblem from "../LineProblem";
@@ -9,7 +10,7 @@ export default ({ problemList, subject }) => (
     {subject && (
       <header className={cx("header")}>
         {subject}
-        <span className={cx("more")}>더보기</span>
+        <Link className={cx("more", "link")} to={{pathname:'/problem', state:{}}}>더보기</Link>
       </header>
     )}
 

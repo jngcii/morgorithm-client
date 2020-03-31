@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { actionCreators as probActions } from "../../redux/modules/problem";
 import useArray from "../../Hooks/useArray";
@@ -6,6 +7,8 @@ import useInput from "../../Hooks/useInput";
 import Presenter from "./Presenter";
 
 export default () => {
+  const { state: { group: groupProp } } = useLocation();
+
   const [l1, setL1] = useState(false);
   const [l2, setL2] = useState(false);
   const [l3, setL3] = useState(false);
@@ -35,7 +38,7 @@ export default () => {
   
   const [problemState, setProblemState] = useState(null);
 
-  const group = useArray([]);
+  const group = useInput("");
   const category = useArray([]);
   const level = useArray([]);
   const solved = useArray([]);
@@ -79,7 +82,7 @@ export default () => {
   const onDispatch = () => {
     dispatch(
       probActions.getProblems({
-        group: group.array,
+        group: group.value ? [group.value] : [],
         category: category.array,
         level: level.array,
         solved: solved.array,
@@ -92,7 +95,14 @@ export default () => {
 
   useEffect(() => {
     onDispatch();
+    if (groupProp) {
+      group.onChange(groupProp);
+    }
   }, []);
+
+  useEffect(() => {
+    group.onChange(groupProp);
+  }, [groupProp])
 
   return (
     <Presenter
@@ -100,6 +110,7 @@ export default () => {
       cState={cState}
       sState={sState}
       problemList={problemState}
+      group={group}
       keyword={keyword}
       onClickCategory={onClickCategory}
       onClickLevel={onClickLevel}

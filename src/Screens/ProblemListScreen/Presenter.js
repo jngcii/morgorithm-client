@@ -18,7 +18,7 @@ export default ({
   onDispatch
 }) => (
   <div className={cx("wrapper")}>
-    <header className={cx("header")}>{group || "All Problems"}</header>
+    <header className={cx("header")}>{group.value || "All Problems"}</header>
 
     <div className={cx("sort")}>
       <div className={cx("category")}>
