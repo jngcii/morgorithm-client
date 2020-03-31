@@ -3,6 +3,7 @@ import { actionCreators as userActions } from "./user";
 
 const UPDATE_QUESTIONS = "UPDATE_QUESTIONS";
 const UPDATE_SOLUTIONS = "UPDATE_SOLUTIONS";
+const UPDATE_CURRENT_SOLUTION = "UPDATE_CURRENT_SOLUTION";
 
 // action creators
 
@@ -12,6 +13,10 @@ function updateQuestions(questionList) {
 
 function updateSolutions(solutionList) {
   return { type: UPDATE_SOLUTIONS, solutionList };
+}
+
+function updateCurrentSolution(currentSolution) {
+  return { type: UPDATE_CURRENT_SOLUTION, currentSolution };
 }
 
 
@@ -49,7 +54,7 @@ function getProblemsQuestions(originId) {
       headers: { "Authorization": `Token ${token}` },
     })
     .then(res => {
-      if (res.status === 401 ) userActions.signOut();
+      if (res.status === 401) userActions.signOut();
       else if (res.status === 200) return res.json();
       else return false;
     })
@@ -62,7 +67,7 @@ function getProblemsQuestions(originId) {
     .catch(() => false);
 
     return res;
-  }
+  };
 }
 
 function getProblemsSolutions(originId) {
@@ -72,7 +77,7 @@ function getProblemsSolutions(originId) {
       headers: { "Authorization": `Token ${token}` },
     })
     .then(res => {
-      if (res.status === 401 ) userActions.signOut();
+      if (res.status === 401) userActions.signOut();
       else if (res.status === 200) return res.json();
       else return false;
     })
@@ -85,7 +90,30 @@ function getProblemsSolutions(originId) {
     .catch(() => false);
 
     return res;
-  }
+  };
+}
+
+function getCurrentSolution(solutionId) {
+  return async function(dispatch, getState) {
+    const { user: { token } } = getState();
+    const res = await fetch(`${API_URL}/sols/get-solution/${solutionId}/`, {
+      headers: { "Authorization": `Token ${token}` },
+    })
+    .then(res => {
+      if (res.status === 401) userActions.signOut();
+      else if (res.status === 200) return res.json();
+      else return false;
+    })
+    .then(json => {
+      if (!!json) {
+        dispatch(updateCurrentSolution(json));
+        return json;
+      } else return false;
+    })
+    .catch(() => false);
+
+    return res;
+  };
 }
 
 
@@ -102,6 +130,8 @@ function reducer(state = initialState, action) {
       return applyUpdateQuestions(state, action);
     case UPDATE_SOLUTIONS:
       return applyUpdateSolutions(state, action);
+    case UPDATE_CURRENT_SOLUTION:
+      return applyUpdateCurrentSolution(state, action);
     default:
       return state;
   }
@@ -121,11 +151,18 @@ function applyUpdateSolutions(state, action) {
   return { ...state, solutionList };
 }
 
+function applyUpdateCurrentSolution(state, action) {
+  const { currentSolution } = action;
+
+  return { ...state, currentSolution };
+}
+
 
 const actionCreators = {
   getQuestions,
   getProblemsQuestions,
   getProblemsSolutions,
+  getCurrentSolution,
 };
 
 export { actionCreators };

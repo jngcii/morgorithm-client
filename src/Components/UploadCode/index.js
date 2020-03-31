@@ -55,6 +55,7 @@ export default () => {
 
         <AceEditor
           width={"auto"}
+          height={700}
           placeholder="코드를 이곳에 작성해주세요."
           // theme="solarized_dark"
           theme="chrome"

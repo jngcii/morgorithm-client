@@ -1,13 +1,11 @@
 import React from "react";
-import classNames from "classnames/bind";
-import styles from "./styles.module.scss";
-import Solution from "../../Components/Solution";
-import Comment from "../../Components/Comment";
-const cx = classNames.bind(styles);
+import { useLocation } from "react-router-dom";
+import Presenter from "./Presenter";
 
-export default () => (
-  <div className={cx("wrapper")}>
-    <Solution />
-    <Comment />
-  </div>
-);
+export default () => {
+  const { state: { solutionId } } = useLocation();
+
+  return (
+    <Presenter solutionId={solutionId} />
+  );
+};

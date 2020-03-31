@@ -95,9 +95,13 @@
       - name
     - code
     - lang
+    - problem
+      - id
+      - title
+      - ...
     - caption
-    - view
     - solved
+    - view
     - likes
       - id
       - username
@@ -129,6 +133,7 @@
     - keyword
 - [x] getProblemsQuestions (request data : originId(originProb))
 - [ ] 문제를 풀거나 뭐 했을때 숫자 바꾸고 가져오는 API
+- [ ] comment들 가져오기
 
 ## AppContainer
 ### getState

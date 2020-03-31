@@ -6,12 +6,6 @@ import UploadCode from "../../Components/UploadCode";
 import ListSolution from "../../Components/ListSolution";
 const cx = classNames.bind(styles);
 
-
-const LoadingBox = () => (
-  <div className={cx("loading")} />
-);
-
-
 export default ({ solutionList, questionList }) => (
   <div className={cx("wrapper")}>
     <Problem />
@@ -19,16 +13,10 @@ export default ({ solutionList, questionList }) => (
 
     <div className={cx("lists")}>
       <div className={cx("list")}>
-        {solutionList !== null && solutionList.length > 0 && (
-          <ListSolution list={solutionList} subject={"solution"} />
-        )}
-        {solutionList === null && <LoadingBox />}
+        <ListSolution list={solutionList} subject={"solution"} />
       </div>
       <div className={cx("list")}>
-        {questionList !== null && questionList.length > 0 && (
-          <ListSolution list={questionList} subject={"question"} />
-        )}
-        {questionList === null && <LoadingBox />}
+        <ListSolution list={questionList} subject={"question"} />
       </div>
     </div>
   </div>
