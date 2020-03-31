@@ -67,9 +67,34 @@ function getProblems(group=[], category=[], level=[], solved=[], keyword="") {
     .catch(() => false);
 
     return res;
-  }
+  };
 }
 
+function searchProblems({group=[], category=[], level=[], solved=[], keyword=""}) {
+  return async function(_, getState) {
+    const { user: { token } } = getState();
+    const res = await fetch(`${API_URL}/probs/get-problems/`, {
+      method: "POST",
+      headers: {
+        "Authorization": `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ group, category, level, solved, keyword })
+    })
+    .then(res => {
+      if (res.status === 401) userActions.signOut();
+      else if (res.status === 200) return res.json();
+      else return false;
+    })
+    .then(json => {
+      if (!!json) return json;
+      else return false;
+    })
+    .catch(() => false);
+
+    return res;
+  };
+}
 
 // initial state
 
@@ -102,6 +127,7 @@ function applyUpdateProblems(state, action) {
 const actionCreators = {
   copyProblems,
   getProblems,
+  searchProblems,
 };
 
 export { actionCreators };

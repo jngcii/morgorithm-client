@@ -10,14 +10,14 @@ const cx = classNames.bind(styles);
 
 
 const siteOptions = [
-  'SITE',
+  'ALL SITE',
   'Programmers',
   'SWEA',
   'BaekJoon',
 ];
 
 const programmersOptions = [
-  'SELECT LEVEL',
+  'ALL LEVEL',
   'LEVEL 1',
   'LEVEL 2',
   'LEVEL 3',
@@ -27,7 +27,7 @@ const programmersOptions = [
 
 
 const sweaOptions = [
-  'SELECT LEVEL',
+  'ALL LEVEL',
   'D1',
   'D2',
   'D3',
@@ -40,7 +40,7 @@ const sweaOptions = [
 ];
 
 
-export default ({kind, index, setIndex}) => {
+export default ({kind, index, setIndex, onClickBtn}) => {
   let options;
 
   if (kind === "site") options = siteOptions;
@@ -56,6 +56,8 @@ export default ({kind, index, setIndex}) => {
   const handleMenuItemClick = (event, index) => {
     setIndex(index);
     setAnchorEl(null);
+    if (kind === "site") onClickBtn(undefined, index, undefined);
+    else onClickBtn(undefined, undefined, index);
   };
 
   const handleClose = () => {
