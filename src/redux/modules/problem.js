@@ -62,7 +62,7 @@ function getProblems(group=[], category=[], level=[], solved=[], keyword="") {
     .then(json => {
       if (!!json) {
         dispatch(updateProblems(json));
-        return true;
+        return json;
       } else return false;
     })
     .catch(() => false);

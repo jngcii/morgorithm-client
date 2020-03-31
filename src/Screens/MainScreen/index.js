@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../../redux/modules/user";
+import { actionCreators as probActions } from "../../redux/modules/problem";
+import { actionCreators as solsActions } from "../../redux/modules/solution";
 import Presenter from "./Presenter";
 
 export default () => {
@@ -9,28 +12,34 @@ export default () => {
   const [problemState, setProblemState] = useState(null);
   const [questionState, setQuestionState] = useState(null);
 
-  const {
-    user: { currentUser, profile },
-    problem: { problemList },
-    solution: { questionList },
-  } = useSelector(state => state);
+  const { user: { profile } } = useSelector(state => state);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!!currentUser && currentUser.id) {
-      setUserState({
-        id: currentUser.id,
-        username: currentUser.username,
-        name: currentUser.name,
-        email: currentUser.email,
-        group: currentUser.group
-      });
-      setStatusState({
-        problemsCount: currentUser.problems_count,
-        solvedCount: currentUser.solved_problems_count,
-        questionsCount: currentUser.questions_count
-      });
-    }
-  }, [currentUser]);
+    dispatch(userActions.getUser(profile.id)).then(ures => {
+      if (ures) {
+        setUserState({
+          id: ures.id,
+          username: ures.username,
+          name: ures.name,
+          email: ures.email,
+          group: ures.group
+        });
+        setStatusState({
+          problemsCount: ures.problems_count,
+          solvedCount: ures.solved_problems_count,
+          questionsCount: ures.questions_count
+        });
+      }
+    });
+    dispatch(probActions.getProblems()).then(pres => {
+      if (pres) setProblemState(pres);
+    });
+    dispatch(solsActions.getQuestions(profile.id)).then(qres => {
+      if (qres) setQuestionState(qres);
+    });
+  }, []);
 
   useEffect(() => {
     if (!!profile && profile.problem_groups !== undefined) {
@@ -39,18 +48,6 @@ export default () => {
       });
     }
   }, [profile]);
-
-  useEffect(() => {
-    if (problemList !== undefined) {
-      setProblemState(problemList);
-    }
-  }, [problemList])
-
-  useEffect(() => {
-    if (questionList !== undefined) {
-      setQuestionState(questionList);
-    }
-  }, [questionList])
 
   return (
     <Presenter

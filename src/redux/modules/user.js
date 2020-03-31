@@ -116,7 +116,7 @@ function checkUnique(email=null, username=null) {
 function getUser(userId) {
   return async function(dispatch, getState) {
     const { user: { token } } = getState();
-    const res = await fetch(`${API_URL}/users/get-user/${userId}`, {
+    const res = await fetch(`${API_URL}/users/get-user/${userId}/`, {
       headers: { "Authorization": `Token ${token}` }
     })
     .then(res => {
@@ -127,7 +127,7 @@ function getUser(userId) {
     .then(json => {
       if (!!json && json.id) {
         dispatch(saveCurrentUser(json));
-        return true;
+        return json;
       } else return false;
     })
     .catch(() => false);

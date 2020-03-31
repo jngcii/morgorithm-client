@@ -1,5 +1,6 @@
 # Morgorithm API
 - user
+  - token
   - isLoggedIn
   - profile
     - id

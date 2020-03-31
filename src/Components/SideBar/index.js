@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom';
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 import CustomModal from "../CustomModal";
