@@ -10,17 +10,23 @@
     }
     .body {
         margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
     }
 }
 
 .blockWrapper {
     display: inline-block;
     box-sizing: border-box;
-    width: 33%;
+    width: ($sectionWidth) / 3;
     height: 100px;
     padding: 7px;
 
     .block {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         box-sizing: border-box;
         padding: 10px;
         width: 100%;
@@ -28,6 +34,14 @@
         border-radius: 5px;
         background-color: #fff;
         box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+        font-weight: 600;
+
+        &.new {
+            @include clickable();
+            background-color: transparent;
+            box-shadow: none;
+            justify-content: center;
+        }
 
         &:hover {
             opacity: 0.8;

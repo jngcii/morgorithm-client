@@ -1,14 +1,25 @@
+@import "src/Styles/utils.scss";
+
 .wrapper {
     display: flex;
     margin: 5px;
+    align-items: center;
 
     .name {
-        flex: 1;
         font-size: 18px;
+        margin-right: 15px;
+    }
+
+    .hr {
+        flex: 1;
+        border: none;
+        height: 2px;
+        padding: 0;
+        background-color: $bgColor;
     }
 
     .count {
-        width: 50px;
+        width: 40px;
         font-size: 17px;
         text-align: center;
     }

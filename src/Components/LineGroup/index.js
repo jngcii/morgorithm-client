@@ -10,6 +10,7 @@ export default ({ group }) => (
     to={{ pathname: `/group/${group.id}`, state: { groupId: group.id } }}
   >
     <div className={cx("name")}>{group.name}</div>
+    <div className={cx("hr")} />
     <div className={cx("count")}>{group.members_count}</div>
   </Link>
 );

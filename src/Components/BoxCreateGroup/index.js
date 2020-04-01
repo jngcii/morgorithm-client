@@ -15,20 +15,22 @@ export default ({ onCancel, onUpload }) => {
 
   const dispatch = useDispatch();
 
-  const onSearching = (k=undefined, c=undefined, l=undefined) => {
+  const onSearching = (k = undefined, c = undefined, l = undefined) => {
     setLoading(true);
-    let category = [[], ['Programmers'], ['SWEA'], ['BaekJoon']];
+    let category = [[], ["Programmers"], ["SWEA"], ["BaekJoon"]];
     let level = [[], [1], [2], [3], [4], [5], [6], [7], [8], [9]];
     let w;
-    if (site.value === 1) w = pLevel.value
-    else if (site.value === 2) w = sLevel.value
-    else w = 0
-    
-    dispatch(probActions.searchProblems({
-      category: c !== undefined ? category[c] : category[site.value],
-      level: l !== undefined ? level[l] : level[w],
-      keyword: k !== undefined ? k : search.value,
-    })). then(res => {
+    if (site.value === 1) w = pLevel.value;
+    else if (site.value === 2) w = sLevel.value;
+    else w = 0;
+
+    dispatch(
+      probActions.searchProblems({
+        category: c !== undefined ? category[c] : category[site.value],
+        level: l !== undefined ? level[l] : level[w],
+        keyword: k !== undefined ? k : search.value
+      })
+    ).then(res => {
       setProblemState(res);
       setLoading(false);
     });
@@ -41,10 +43,14 @@ export default ({ onCancel, onUpload }) => {
 
   const _onUpload = e => {
     e.preventDefault();
-    dispatch(probActions.createGroup(groupName.value, [])).then(() => {
+    if (groupName.value !== "") {
+      dispatch(probActions.createGroup(groupName.value, [])).then(() => {
+        onUpload();
+      });
+    } else {
       onUpload();
-    })
-  }
+    }
+  };
 
   useEffect(onSearching, []);
 

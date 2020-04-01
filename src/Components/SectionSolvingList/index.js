@@ -1,20 +1,15 @@
-import React from "react";
-import classNames from "classnames/bind";
-import styles from "./styles.module.scss";
-const cx = classNames.bind(styles);
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import Presenter from "./Presenter";
 
-const Block = () => (
-  <div className={cx("blockWrapper")}>
-    <div className={cx("block")} />
-  </div>
-)
+export default () => {
+  const [probGroupState, setProbGroupState] = useState(null);
 
-export default () => (
-  <div className={cx("wrapper")}>
-    <header className={cx("header")}>나의 Solving List</header>
+  const { user: { profile: { problem_groups } } } = useSelector(state => state);
 
-    <section className={cx("body")}>
-      {[1,2,3,4].map(n => <Block key={n} />)}
-    </section>
-  </div>
-);
+  useEffect(() => {
+    setProbGroupState(problem_groups);
+  }, [problem_groups]);
+
+  return <Presenter probGroups={probGroupState} />;
+}

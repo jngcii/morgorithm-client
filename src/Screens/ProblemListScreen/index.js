@@ -82,7 +82,7 @@ export default () => {
   const onDispatch = () => {
     dispatch(
       probActions.getProblems({
-        group: group.value ? [group.value] : [],
+        group: groupProp ? [groupProp.id] : [],
         category: category.array,
         level: level.array,
         solved: solved.array,
@@ -95,14 +95,8 @@ export default () => {
 
   useEffect(() => {
     onDispatch();
-    if (groupProp) {
-      group.onChange(groupProp);
-    }
-  }, []);
-
-  useEffect(() => {
     group.onChange(groupProp);
-  }, [groupProp])
+  }, [groupProp]);
 
   return (
     <Presenter

@@ -19,7 +19,7 @@ export default ({ btnComponent, contentComponent }) => {
 
   return (
     <div>
-      {btnComponent(handleOpen)}
+      {btnComponent({handleOpen})}
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
