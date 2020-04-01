@@ -1,0 +1,34 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+    margin-top: 20px;
+    width: 100%;
+    background-color: $bgColor;
+}
+
+.section {
+    width: $sectionWidth;
+    margin: 0 auto;
+}
+
+.loading {
+    width: 100%;
+    height: 100%;
+    margin: 15px 0;
+    background-color: $navColor;
+    opacity: .1;
+    border-radius: 20px;
+    @include twinkleAnimation();
+}
+
+.empty {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 20px;
+    text-align: center;
+    color: $darkGreyColor;
+    font-size: 15px;
+    font-weight: 600;
+}
