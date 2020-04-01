@@ -84,3 +84,13 @@
     }
   }
 }
+
+.go {
+  padding: 0 10px 10px;
+  font-weight: 600;
+  color: $darkBlueColor;
+  text-align: end;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: $brightGreyColor;
+}

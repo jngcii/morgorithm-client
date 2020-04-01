@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../../redux/modules/user";
 import { actionCreators as solsActions } from "../../redux/modules/solution";
 import Presenter from "./Presenter";
+import MainScreen from "../MainScreen";
 
 export default ({ match: { params: { username } } }) => {
   const [userState, setUserState] = useState(null);
   const [statusState, setStatusState] = useState(null);
   const [questionState, setQuestionState] = useState(null);
   const [solutionState, setSolutionState] = useState(null);
+
+  const { user: { profile } } = useSelector(state => state);
+
+  if (username === profile.username) return <MainScreen />;
 
   const dispatch = useDispatch();
 

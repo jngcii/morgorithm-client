@@ -19,7 +19,7 @@ export default () => {
       setQuestionState(null);
     } else {
       setSelected(member);
-      dispatch(solsActions.getQuestions(member)).then(res => {
+      dispatch(solsActions.getQuestions(member.username)).then(res => {
         setQuestionState(res);
       })
     }

@@ -46,9 +46,9 @@ export default ({ selected, group, questions, onClickUser }) => {
                   key={member.id}
                   className={cx(
                     "userContainer",
-                    selected === member.id && "on"
+                    selected === member && "on"
                   )}
-                  onClick={() => onClickUser(member.username)}
+                  onClick={() => onClickUser(member)}
                 >
                   <User creator={member} />
                 </div>
@@ -56,6 +56,11 @@ export default ({ selected, group, questions, onClickUser }) => {
             </div>
 
             <div className={cx("questions", !selected && "on")}>
+              {selected && (
+                <Link to={`/${selected.username}`} className={cx("link")}>
+                  <div className={cx("go")}>go to profile ></div>
+                </Link>
+              )}
               {questions === null ? (
                 <div style={{ width: "100%", height: "100%" }}>
                   <CircularProgress color={"inherit"} size={40} />
@@ -67,7 +72,6 @@ export default ({ selected, group, questions, onClickUser }) => {
                       className={"link"}
                       to={{
                         pathname: `/problem/${question.problem.id}/${question.id}`,
-                        state: { solutionId: question.id }
                       }}
                     >
                       <LineQuestion question={question} isDetail={true} />
