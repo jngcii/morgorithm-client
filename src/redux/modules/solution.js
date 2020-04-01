@@ -47,6 +47,29 @@ function getQuestions(username) {
   };
 }
 
+function getSolutions(username) {
+  return async function(dispatch, getState) {
+    const { user: { token } } = getState();
+    const res = await fetch(`${API_URL}/sols/get-solutions/${username}/`, {
+      headers: { "Authorization": `Token ${token}` },
+    })
+    .then(res => {
+      if (res.status === 401) userActions.signOut();
+      else if (res.status === 200) return res.json();
+      else return false;
+    })
+    .then(json => {
+      if (!!json) {
+        dispatch(updateSolutions(json));
+        return json;
+      } else return false;
+    })
+    .catch(() => false);
+
+    return res;
+  };
+}
+
 function getProblemsQuestions(originId) {
   return async function(dispatch, getState) {
     const { user: { token } } = getState();
@@ -160,6 +183,7 @@ function applyUpdateCurrentSolution(state, action) {
 
 const actionCreators = {
   getQuestions,
+  getSolutions,
   getProblemsQuestions,
   getProblemsSolutions,
   getCurrentSolution,

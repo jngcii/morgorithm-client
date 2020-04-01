@@ -19,7 +19,7 @@ export default ({ problem, solutionList, questionList }) => (
       <div className={cx("list")}>
         <div className={cx("listHeader")}>
           Solutions
-          <Link className={cx("more", "link")} to={`/`}>더 보기</Link>
+          {problem && <Link className={cx("more", "link")} to={`/problem/${problem.origin.id}/solutions`}>더 보기</Link>}
         </div>
         <ListSolution list={solutionList} subject={"solution"}/>
       </div>

@@ -8,7 +8,8 @@ import MainScreen from "../../Screens/MainScreen";
 import ProblemListScreen from "../../Screens/ProblemListScreen";
 import ProblemScreen from "../../Screens/ProblemScreen";
 import SolutionScreen from "../../Screens/SolutionScreen";
-import QuestionListScreen from "../../Screens/QuestionListScreen"
+import QuestionListScreen from "../../Screens/QuestionListScreen";
+import SolutionListScreen from "../../Screens/SolutionListScreen";
 import GroupListScreen from "../../Screens/GroupListScreen";
 import GroupScreen from "../../Screens/GroupScreen";
 import UserScreen from "../../Screens/UserScreen";
@@ -30,11 +31,13 @@ export default ({isLoggedIn}) => {
               <Route exact path="/" component={MainScreen} />
               <Route exact path="/problem" component={ProblemListScreen} />
               <Route path="/problem/:originId/questions" component={QuestionListScreen} />
+              <Route path="/problem/:originId/solutions" component={SolutionListScreen} />
               <Route path="/problem/:originId/:solutionId" component={SolutionScreen} />
               <Route path="/problem/:originId" component={ProblemScreen} />
               <Route exact path="/group" component={GroupListScreen} />
               <Route path="/group/:id" component={GroupScreen} />
               <Route path="/:username/questions" component={QuestionListScreen} />
+              <Route path="/:username/solutions" component={SolutionListScreen} />
               <Route path="/:username" component={UserScreen} />
             </Switch>
           </div>

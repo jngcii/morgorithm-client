@@ -14,7 +14,7 @@ const Profile = () => (
 export default ({ profile }) => (
   <ul className={cx("navlist")}>
     <li>
-      <Link className={cx("link")} to={`${profile.username}/questions` }>
+      <Link className={cx("link")} to={`/${profile.username}/questions` }>
         questions
       </Link>
     </li>

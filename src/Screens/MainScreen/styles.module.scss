@@ -5,22 +5,26 @@
     width: 100%;
     background-color: $bgColor;
 
-  .header {
-    @include header();
-    @include section();
-    display: block;
-    width: $sectionWidth;
-    padding-bottom: 0;
-    margin-top: 20px;
-    .more {
-        @include more();
+    .header {
+      @include header();
+      @include section();
+      display: flex;
+      width: $sectionWidth - 20px;
+      justify-content: space-between;
+      padding-bottom: 0;
+      margin-top: 40px;
+      .more {
+          @include more();
+      }
     }
-}
 }
 
 .section {
     width: $sectionWidth;
     margin: 0 auto;
+}
+.sol {
+    min-height: 150px;
 }
 
 .loading {

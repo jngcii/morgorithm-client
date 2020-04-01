@@ -48,7 +48,7 @@ export default ({ user, status, probGroups, problems, questions }) => (
         </Link>
       )}
     </header>
-    <div className={cx("section")} style={{height: 300}}>
+    <div className={cx("section", "sol")}>
       {problems !== null ? (
         <ListProblem problemList={problems} subject={"Problems"} />
       ) : (
@@ -65,7 +65,7 @@ export default ({ user, status, probGroups, problems, questions }) => (
         </Link>
       )}
     </header>
-    <div className={cx("section")} style={{height: 300}}>
+    <div className={cx("section", "sol")}>
       {questions !== null ? (
         <ListSolution list={questions} subject={"question"} />
       ) : (

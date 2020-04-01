@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../../redux/modules/user";
 import { actionCreators as solsActions } from "../../redux/modules/solution";
@@ -9,6 +8,7 @@ export default ({ match: { params: { username } } }) => {
   const [userState, setUserState] = useState(null);
   const [statusState, setStatusState] = useState(null);
   const [questionState, setQuestionState] = useState(null);
+  const [solutionState, setSolutionState] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -33,13 +33,18 @@ export default ({ match: { params: { username } } }) => {
     dispatch(solsActions.getQuestions(username)).then(qres => {
       if (qres) setQuestionState(qres);
     });
-  }, []);
+
+    dispatch(solsActions.getSolutions(username)).then(qres => {
+      if (qres) setSolutionState(qres);
+    });
+  }, [username]);
 
   return (
     <Presenter
-      userState={userState}
-      statusState={statusState}
-      questionState={questionState}
+      user={userState}
+      status={statusState}
+      questions={questionState}
+      solutions={solutionState}
     />
   );
 };

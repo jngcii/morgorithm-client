@@ -4,17 +4,17 @@ import { actionCreators as solsActions } from "../../redux/modules/solution";
 import Presenter from "./Presenter";
 
 export default ({ match: { params: { username, originId } } }) => {
-  const [questionState, setQuestionState] = useState(null);
+  const [solutionState, setSolutionState] = useState(null);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (username) {
-      dispatch(solsActions.getQuestions(username)).then(res => setQuestionState(res));
+      dispatch(solsActions.getSolutions(username)).then(res => setSolutionState(res));
     } else if (originId) {
-      dispatch(solsActions.getProblemsQuestions(originId)).then(res => setQuestionState(res));
+      dispatch(solsActions.getProblemsSolutions(originId)).then(res => setSolutionState(res));
     }
   }, [username, originId])
 
-  return <Presenter originId={originId} username={username} questions={questionState} />;
+  return <Presenter originId={originId} username={username} solutions={solutionState} />;
 }
