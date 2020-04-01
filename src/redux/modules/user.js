@@ -123,10 +123,10 @@ function checkUnique(email=null, username=null) {
   };
 }
 
-function getUser(userId) {
+function getUser(username) {
   return async function(dispatch, getState) {
     const { user: { token } } = getState();
-    const res = await fetch(`${API_URL}/users/get-user/${userId}/`, {
+    const res = await fetch(`${API_URL}/users/get-user/${username}/`, {
       headers: { "Authorization": `Token ${token}` }
     })
     .then(res => {

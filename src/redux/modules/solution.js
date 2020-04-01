@@ -24,10 +24,10 @@ function updateCurrentSolution(currentSolution) {
 
 // json이 있으면 getProblem API ㄱㄱ
 
-function getQuestions(userId) {
+function getQuestions(username) {
   return async function(dispatch, getState) {
     const { user: { token } } = getState();
-    const res = await fetch(`${API_URL}/sols/get-questions/${userId}/`, {
+    const res = await fetch(`${API_URL}/sols/get-questions/${username}/`, {
       headers: { "Authorization": `Token ${token}` },
     })
     .then(res => {
