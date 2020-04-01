@@ -5,15 +5,8 @@ import styles from "./styles.module.scss";
 import LineProblem from "../LineProblem";
 const cx = classNames.bind(styles);
 
-export default ({ problemList, subject }) => (
+export default ({ problemList }) => (
   <div className={cx("wrapper")}>
-    {subject && (
-      <header className={cx("header")}>
-        {subject}
-        <Link className={cx("more", "link")} to={{pathname:'/problem', state:{}}}>더보기</Link>
-      </header>
-    )}
-
     <section className={cx("body")}>
       {problemList.map(problem => (
         <LineProblem key={problem.id} problem={problem} />

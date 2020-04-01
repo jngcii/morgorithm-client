@@ -1,72 +1,71 @@
 @import "src/Styles/utils.scss";
 
 .wrapper {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 7px;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: $brightGreyColor;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 7px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: $brightGreyColor;
 
-    .link {
-        text-decoration: none;
-        color: $blackColor;
+  .link {
+    text-decoration: none;
+    color: $blackColor;
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+    @include clickable();
+
+    .site {
+      width: 120px;
+      font-size: 15px;
+      font-weight: 800;
+      color: $lightGreyColor;
+      text-align: center;
+      margin: 0 10px;
     }
 
-    .container {
-        display: flex;
-        align-items: center;
-        @include clickable();
-
-
-        .site {
-            width: 120px;
-            font-size: 15px;
-            font-weight: 800;
-            color: $lightGreyColor;
-            text-align: center;
-            margin: 0 10px;
-        }
-
-        .num {
-            width: 60px;
-            font-size: 15px;
-            font-weight: 400;
-            padding: 0 10px;
-            text-align: center;
-        }
-
-        .title {
-            flex: 1;
-            font-size: 15px;
-            font-weight: 600;
-            overflow: hidden;
-        }
-
-        .level {
-            display: inline-block;
-            margin: 0 20px;
-            font-size: 12px;
-            font-weight: 600;
-            color: #fff;
-            padding: 3px 10px;
-            background-color: $brightGreyColor;
-            border-radius: 3px;
-            text-align: center;
-        }
-
-        .solved {
-            padding: 3px;
-            border-radius: 3px;
-            background-color: $bgColor;
-            color: $bgColor;
-            font-size: 11px;
-            font-weight: 600;
-            opacity: .5;
-
-            &.yes {
-                background-color: $blueColor;
-            }
-        }
+    .num {
+      width: 60px;
+      font-size: 15px;
+      font-weight: 400;
+      padding: 0 10px;
+      text-align: center;
     }
+
+    .title {
+      flex: 1;
+      font-size: 15px;
+      font-weight: 600;
+      overflow: hidden;
+    }
+
+    .level {
+      display: inline-block;
+      margin: 0 20px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff;
+      padding: 3px 10px;
+      background-color: $brightGreyColor;
+      border-radius: 3px;
+      text-align: center;
+    }
+
+    .solved {
+      padding: 3px;
+      border-radius: 3px;
+      background-color: $bgColor;
+      color: $bgColor;
+      font-size: 11px;
+      font-weight: 600;
+      opacity: 0.5;
+
+      &.yes {
+        background-color: $blueColor;
+      }
+    }
+  }
 }

@@ -24,7 +24,7 @@ export default ({ onCancel, onUpload }) => {
 
       <div className={cx("access")}>
         <div>
-          <label className={cx("label")} for="checkbox">
+          <label className={cx("label")} htmlFor="checkbox">
             Private
           </label>
           <input

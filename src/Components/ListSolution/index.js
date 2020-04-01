@@ -4,64 +4,27 @@ import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 import LineSolution from "../LineSolution";
 import LineQuestion from "../LineQuestion";
+import EmptyBox from "../EmptyBox";
 const cx = classNames.bind(styles);
 
-const LoadingBox = () => <div className={cx("loading")} />;
-
-export default ({ list, subject, user, problem }) => (
-  <div className={cx("wrapper")}>
-    {subject && (
-      <header className={cx("header")}>
-        {subject === "question" ? "Questions" : "Solutions"}
+export default ({ list, subject }) => (
+  <section className={cx("wrapper")}>
+    {!!list && list.length > 0 ? (
+      list.map(sol => (
         <Link
-          className={cx("more", "link")}
-          to={{
-            pathname:'/question',
-            state: {
-              user: user || undefined,
-              problem: problem || undefined
-            }
-          }}
+          key={sol.id}
+          className={cx("line")}
+          to={`/problem/${sol.problem.id}/${sol.id}`}
         >
-          더보기
+          {subject !== "question" ? (
+            <LineSolution solution={sol} />
+          ) : (
+            <LineQuestion question={sol} isDetail={true} />
+          )}
         </Link>
-      </header>
+      ))
+    ) : (
+      <EmptyBox />
     )}
-
-    <section>
-      {!!list && list.length > 0 ? (
-        list === null ? (
-          <LoadingBox />
-        ) : (
-          list.map(item => {
-            const {
-              problem: { id: probId },
-              id: solsId
-            } = item;
-
-            return (
-              <Link
-                key={solsId}
-                className={cx("line")}
-                to={{
-                  pathname: `/problem/${probId}/${solsId}`,
-                  state: { solutionId: solsId }
-                }}
-              >
-                {subject && subject !== "question" ? (
-                  <LineSolution solution={item} />
-                  ) : (
-                  <LineQuestion question={item} isDetail={true} />
-                )}
-              </Link>
-            );
-          })
-        )
-      ) : (
-        <div className={cx("empty")}>
-          <span>목록이 비어있습니다.</span>
-        </div>
-      )}
-    </section>
-  </div>
+  </section>
 );

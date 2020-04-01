@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import TextareaAutosize from "react-textarea-autosize";
 import AceEditor from "react-ace";
 // import "ace-builds/src-noconflict/mode-java";
@@ -17,13 +18,9 @@ import Title from "../Title";
 import Cnt from "../Cnt";
 const cx = classNames.bind(styles);
 
-
-
 const LoadingBox = () => <div className={cx("loading")} />;
 
-
-export default ({ problem, creator, solution }) => {
-
+export default ({ origin, creator, solution }) => {
   return (
     <div className={cx("wrapper")}>
       <header>
@@ -31,13 +28,17 @@ export default ({ problem, creator, solution }) => {
           <img src={require("../../assets/go-back.png")} />
         </div>
 
-        <div className={cx("problemOverview")}>
-          {problem === null ? <LoadingBox /> : <Title problem={problem} />}
-        </div>
+        {origin && <Title originId={origin.id} />}
         <div className={cx("txt")}>에 대한</div>
 
         <div className={cx("userOverview")}>
-          {creator === null ? <LoadingBox /> : <User creator={creator} />}
+          {creator === null ? (
+            <LoadingBox />
+          ) : (
+            <Link to={`/${creator.username}`} className={cx("link")}>
+              <User creator={creator} />
+            </Link>
+          )}
         </div>
         <div className={cx("txt")}>
           님의 {solution && !solution.solved ? "질문" : "풀이"}
@@ -45,7 +46,7 @@ export default ({ problem, creator, solution }) => {
       </header>
 
       <div className={cx("cnts")}>
-        <Cnt />
+        {/* <Cnt /> */}
       </div>
 
       <section>
@@ -77,7 +78,9 @@ export default ({ problem, creator, solution }) => {
           }}
         />
 
-        {solution && !solution.solved && <p className={cx("caption")}>{solution.caption}</p>}
+        {solution && !solution.solved && (
+          <p className={cx("caption")}>{solution.caption}</p>
+        )}
       </section>
     </div>
   );

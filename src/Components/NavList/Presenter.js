@@ -14,16 +14,7 @@ const Profile = () => (
 export default ({ profile }) => (
   <ul className={cx("navlist")}>
     <li>
-      <Link
-        className={cx("link")}
-        to={{
-          pathname: "/question",
-          state: {
-            user: profile || undefined,
-            problemId: undefined
-          }
-        }}
-      >
+      <Link className={cx("link")} to={`${profile.username}/questions` }>
         questions
       </Link>
     </li>

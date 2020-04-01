@@ -1,9 +1,7 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
 import Presenter from "./Presenter";
 
-export default () => {
-  const { state: { solutionId } } = useLocation();
+export default ({ match: { params: { solutionId } } }) => {
 
   return (
     <Presenter solutionId={solutionId} />

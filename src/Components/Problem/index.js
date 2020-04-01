@@ -11,7 +11,7 @@ export default ({ problem }) => (
         <img src={require("../../assets/go-back.png")} />
       </div>
 
-      <Title problem={problem.origin} />
+      <Title originId={problem.origin.id} />
     </header>
 
     <section>

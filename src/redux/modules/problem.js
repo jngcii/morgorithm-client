@@ -17,9 +17,7 @@ function copyProblems() {
   return async function(dispatch, getState) {
     const { user: {
       token,
-      profile: {
-        id: userId
-      }
+      profile: { username }
     } } = getState();
     const res = await fetch(`${API_URL}/probs/copy-and-get-probs/`, {
       headers: { "Authorization": `Token ${token}` }
@@ -32,7 +30,7 @@ function copyProblems() {
     .then(json => {
       if (!!json) {
         dispatch(updateProblems(json));
-        dispatch(userActions.getUser(userId));
+        dispatch(userActions.getUser(username));
         return true;
       } else return false;
     })
@@ -71,6 +69,26 @@ function getProblems({group=[], category=[], level=[], solved=[], keyword=""}) {
   };
 }
 
+
+function getProblem(originId) {
+  return async function(_, getState) {
+    const { user: { token } } = getState();
+    const res = await fetch(`${API_URL}/probs/get-problem/${originId}/`, {
+      headers: { "Authorization": `Token ${token}` }
+    })
+    .then(res => {
+      if (res.status === 401) userActions.signOut();
+      else if (res.status === 200) return res.json();
+      else return false;
+    })
+    .then(json => json || false)
+    .catch(() => false);
+
+    return res;
+  }
+}
+
+
 function searchProblems({group=[], category=[], level=[], solved=[], keyword=""}) {
   return async function(_, getState) {
     const { user: { token } } = getState();
@@ -87,10 +105,7 @@ function searchProblems({group=[], category=[], level=[], solved=[], keyword=""}
       else if (res.status === 200) return res.json();
       else return false;
     })
-    .then(json => {
-      if (!!json) return json;
-      else return false;
-    })
+    .then(json =>  json || false)
     .catch(() => false);
 
     return res;
@@ -157,6 +172,7 @@ function applyUpdateProblems(state, action) {
 const actionCreators = {
   copyProblems,
   getProblems,
+  getProblem,
   searchProblems,
   createGroup,
 };

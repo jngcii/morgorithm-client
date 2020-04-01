@@ -1,13 +1,6 @@
 @import "src/Styles/utils.scss";
 
 .wrapper {
-    margin-bottom: 30px;
-
-    @include section();
-    .header {
-        margin-top: 30px;
-        @include header();
-    }
     .body {
         margin-top: 10px;
         display: flex;
@@ -39,7 +32,6 @@
         &.new {
             @include clickable();
             background-color: transparent;
-            box-shadow: none;
             justify-content: center;
         }
 

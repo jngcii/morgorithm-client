@@ -20,7 +20,7 @@ const Block = ({ probGroup, handleOpen }) => (
       ) : (
         <img
           src={require("../../assets/plus-grey.png")}
-          width={45}
+          width={35}
           style={{ margin: 0 }}
         />
       )}
@@ -31,7 +31,6 @@ const Block = ({ probGroup, handleOpen }) => (
 
 export default ({ probGroups }) => (
   <div className={cx("wrapper")}>
-    <header className={cx("header")}>Solving List</header>
 
     <section className={cx("body")}>
       {probGroups !== null &&

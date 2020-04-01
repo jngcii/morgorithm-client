@@ -5,12 +5,12 @@ import User from "../User";
 import Cnt from "../Cnt";
 const cx = classNames.bind(styles);
 
-export default () => (
+export default ({ solution }) => (
   <div className={cx("wrapper")}>
     <div className={cx("user")}>
-      <User />
+      <User creator={solution.creator} />
     </div>
 
-    <Cnt />
+    {/* <Cnt solution={solution} /> */}
   </div>
 );

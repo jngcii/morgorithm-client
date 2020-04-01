@@ -48,7 +48,7 @@ export default ({ selected, group, questions, onClickUser }) => {
                     "userContainer",
                     selected === member.id && "on"
                   )}
-                  onClick={() => onClickUser(member.id)}
+                  onClick={() => onClickUser(member.username)}
                 >
                   <User creator={member} />
                 </div>

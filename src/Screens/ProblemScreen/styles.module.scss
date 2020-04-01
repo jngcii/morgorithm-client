@@ -16,6 +16,18 @@
       height: 350px;
       box-sizing: border-box;
       overflow: hidden;
+
+      .listHeader {
+        @include header();
+        width: 80%;
+        margin: 0 auto;
+        justify-content: space-between;
+        font-size: 20px;
+
+        .more {
+          @include more();
+        }
+      }
     }
   }
 }

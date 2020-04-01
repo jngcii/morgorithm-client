@@ -8,7 +8,7 @@ import LoadingBox from "../LoadingBox";
 import EmptyBox from "../EmptyBox";
 const cx = classNames.bind(styles);
 
-const LeaveBtn = handleOpen => <button onClick={handleOpen}>leave</button>;
+const LeaveBtn = ({handleOpen}) => <button onClick={handleOpen}>leave</button>;
 
 export default ({ groups, searching }) => (
   <div className={cx("wrapper")}>

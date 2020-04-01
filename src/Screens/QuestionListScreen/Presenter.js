@@ -7,28 +7,22 @@ import LoadingBox from "../../Components/LoadingBox";
 import Title from "../../Components/Title";
 const cx = classNames.bind(styles);
 
-export default ({ user, problem, questions }) => (
+export default ({ originId, username, questions }) => (
   <div className={cx("wrapper")}>
-    {user && (
-      <header className={cx("header")}>{user.username}님의 Questions</header>
-    )}
-    {problem && (
+    {username ? (
+      <header className={cx("header")}>{username}님의 Questions</header>
+    ) : (
       <header className={cx("header")}>
-        Questions about{" "}
-        <Link
-          className={cx("title", "link")}
-          to={{
-            pathname: `/problem/${problem.origin.id}`,
-            state: { problem }
-          }}
-        >
-          <Title problem={problem.origin} />
-        </Link>
+        Questions  about <Title originId={originId} />
       </header>
     )}
 
     <section className={cx("body")}>
-      {questions !== null ? <ListSolution list={questions} /> : <LoadingBox />}
+      {questions !== null ? (
+        <ListSolution list={questions} subject={"question"} />
+      ) : (
+        <LoadingBox />
+      )}
     </section>
   </div>
 );

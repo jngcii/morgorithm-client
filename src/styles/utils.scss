@@ -36,7 +36,8 @@ $modalINputFontWeight: 600;
 
 @mixin header {
   @include titleFont();
-  display: inline-block;
+  display: flex;
+  align-items: center;
   padding-left: 10px;
 }
 
@@ -44,7 +45,7 @@ $modalINputFontWeight: 600;
   margin: 0 auto;
   box-sizing: border-box;
   width: 100%;
-  padding: 25px;
+  padding: 5px 25px;
 }
 
 @mixin clickable {
@@ -122,7 +123,6 @@ $modalINputFontWeight: 600;
 
 @mixin more {
   @include clickable();
-  float: right;
   margin: 7px;
   font-size: 13px;
   font-weight: 700;
@@ -144,7 +144,8 @@ $modalINputFontWeight: 600;
 }
 
 @mixin twinkleAnimation {
-  animation: twinkle 1s ease-in-out infinite;
+  animation: twinkle 2s ease-in-out infinite;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, .1);
 }
 
 
@@ -153,7 +154,7 @@ $modalINputFontWeight: 600;
     opacity: .1;
   }
   50% {
-    opacity: .5;
+    opacity: .6;
   }
   100% {
     opacity: .1;

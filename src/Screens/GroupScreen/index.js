@@ -13,13 +13,13 @@ export default () => {
 
   const dispatch = useDispatch();
 
-  const _onClickUser = memberId => {
-    if (memberId === selected) {
+  const _onClickUser = member => {
+    if (member === selected) {
       setSelected(null);
       setQuestionState(null);
     } else {
-      setSelected(memberId);
-      dispatch(solsActions.getQuestions(memberId)).then(res => {
+      setSelected(member);
+      dispatch(solsActions.getQuestions(member)).then(res => {
         setQuestionState(res);
       })
     }

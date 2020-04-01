@@ -6,13 +6,7 @@ const cx = classNames.bind(styles);
 
 export default ({ problem }) => (
   <div className={cx("wrapper")}>
-    <Link
-      className={cx("link")}
-      to={{
-        pathname: `/problem/${problem.origin.id}`,
-        state: { problem }
-      }}
-    >
+    <Link className={cx("link")} to={`/problem/${problem.origin.id}`}>
       <div className={cx("container")}>
         <div className={cx("num")}>{problem.origin.number || "-"}</div>
         <div className={cx("site")}>{problem.origin.category}</div>

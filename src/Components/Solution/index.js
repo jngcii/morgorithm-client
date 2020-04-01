@@ -4,7 +4,7 @@ import { actionCreators as solsActions } from "../../redux/modules/solution";
 import Presenter from "./Presenter";
 
 export default ({ solutionId }) => {
-  const [problemState, setProblemState] = useState(null);
+  const [originState, setOriginState] = useState(null);
   const [creatorState, setCreatorState] = useState(null);
   const [solutionState, setSolutionState] = useState(null);
 
@@ -14,7 +14,7 @@ export default ({ solutionId }) => {
     dispatch(solsActions.getCurrentSolution(solutionId)).then(res => {
       if (res) {
         const { id, problem, creator, lang, code, solved, caption } = res;
-        setProblemState(problem);
+        setOriginState(problem);
         setCreatorState(creator);
         setSolutionState({ id, code, lang, solved, caption });
       }
@@ -23,7 +23,7 @@ export default ({ solutionId }) => {
 
   return (
     <Presenter
-      problem={problemState}
+      origin={originState}
       creator={creatorState}
       solution={solutionState}
     />

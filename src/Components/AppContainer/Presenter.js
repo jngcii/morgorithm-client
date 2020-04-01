@@ -29,11 +29,12 @@ export default ({isLoggedIn}) => {
             <Switch>
               <Route exact path="/" component={MainScreen} />
               <Route exact path="/problem" component={ProblemListScreen} />
-              <Route path="/problem/:problemId/:solutionId" component={SolutionScreen} />
-              <Route path="/problem/:problemId" component={ProblemScreen} />
-              <Route path="/question" component={QuestionListScreen} />
+              <Route path="/problem/:originId/questions" component={QuestionListScreen} />
+              <Route path="/problem/:originId/:solutionId" component={SolutionScreen} />
+              <Route path="/problem/:originId" component={ProblemScreen} />
               <Route exact path="/group" component={GroupListScreen} />
               <Route path="/group/:id" component={GroupScreen} />
+              <Route path="/:username/questions" component={QuestionListScreen} />
               <Route path="/:username" component={UserScreen} />
             </Switch>
           </div>

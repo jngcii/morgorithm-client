@@ -8,8 +8,6 @@ const cx = classNames.bind(styles);
 export default ({ keyword, searchedGroups, loading }) => {
   const [password, setPassword] = useState("");
 
-  console.log(searchedGroups);
-
   return (
     <div className={cx("wrapper")}>
       <table>

@@ -17,7 +17,7 @@ export default () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(userActions.getUser(profile.id)).then(user => {
+    dispatch(userActions.getUser(profile.username)).then(user => {
       if (user) {
         setUserState({
           id: user.id,
@@ -36,7 +36,7 @@ export default () => {
     dispatch(probActions.getProblems({})).then(pres => {
       if (pres) setProblemState(pres);
     });
-    dispatch(solsActions.getQuestions(profile.id)).then(qres => {
+    dispatch(solsActions.getQuestions(profile.username)).then(qres => {
       if (qres) setQuestionState(qres);
     });
   }, []);
@@ -51,11 +51,11 @@ export default () => {
 
   return (
     <Presenter
-      userState={userState}
-      statusState={statusState}
-      probGroupState={probGroupState}
-      problemState={problemState}
-      questionState={questionState}
+      user={userState}
+      status={statusState}
+      probGroups={probGroupState}
+      problems={problemState}
+      questions={questionState}
     />
   );
 };

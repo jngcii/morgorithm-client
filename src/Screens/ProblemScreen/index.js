@@ -1,27 +1,29 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { actionCreators as solsActions } from "../../redux/modules/solution";
+import { actionCreators as probActions } from "../../redux/modules/problem";
 import Presenter from "./Presenter";
 
-export default () => {
+export default ({ match: { params: { originId } } }) => {
+  const [problemState, setProblemState] = useState(null);
   const [solutionState, setSolutionState] = useState(null);
   const [questionState, setQuestionState] = useState(null);
-
-  const {
-    state: { problem }
-  } = useLocation();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(solsActions.getProblemsQuestions(problem.origin.id)).then(qres => {
-      if (qres) setQuestionState(qres);
-    });
-    dispatch(solsActions.getProblemsSolutions(problem.origin.id)).then(sres => {
-      if (sres) setSolutionState(sres);
-    });
-  }, []);
+    if (!!originId) {
+      dispatch(probActions.getProblem(originId)).then(res => {
+        if (res) setProblemState(res);
+      })
+      dispatch(solsActions.getProblemsQuestions(originId)).then(res => {
+        if (res) setQuestionState(res);
+      });
+      dispatch(solsActions.getProblemsSolutions(originId)).then(res => {
+        if (res) setSolutionState(res);
+      });
+    }
+  }, [originId]);
 
-  return <Presenter problem={problem} solutionList={solutionState} questionList={questionState} />;
+  return <Presenter problem={problemState} solutionList={solutionState} questionList={questionState} />;
 };

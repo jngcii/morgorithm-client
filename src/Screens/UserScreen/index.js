@@ -5,11 +5,7 @@ import { actionCreators as userActions } from "../../redux/modules/user";
 import { actionCreators as solsActions } from "../../redux/modules/solution";
 import Presenter from "./Presenter";
 
-export default ({
-  match: {
-    params: { username }
-  }
-}) => {
+export default ({ match: { params: { username } } }) => {
   const [userState, setUserState] = useState(null);
   const [statusState, setStatusState] = useState(null);
   const [questionState, setQuestionState] = useState(null);
