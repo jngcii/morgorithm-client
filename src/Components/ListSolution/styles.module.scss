@@ -7,7 +7,7 @@
   .line {
     @include clickable();
     padding: 3px 0;
-    border-bottom-width: 0.5px;
+    border-bottom-width: 1px;
     border-bottom-style: solid;
     border-bottom-color: $brightGreyColor;
     text-decoration: none;

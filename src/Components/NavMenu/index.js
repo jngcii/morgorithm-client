@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../../redux/modules/user";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
@@ -14,6 +15,7 @@ const cx = classNames.bind(styles);
 export default () => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const handleToggle = () => {
@@ -33,11 +35,21 @@ export default () => {
       event.preventDefault();
       setOpen(false);
     }
-  }
+  };
+
+  const _onClickHome = e => {
+    history.push("/");
+    handleClose(e);
+  };
+
+  const _onClickGroup = e => {
+    history.push("/group");
+    handleClose(e);
+  };
 
   const _onSignOut = () => {
     dispatch(userActions.signOut());
-  }
+  };
 
   // return focus to the button when we transitioned from !open -> open
   const prevOpen = React.useRef(open);
@@ -82,9 +94,9 @@ export default () => {
                     onKeyDown={handleListKeyDown}
                     className={cx("menuList")}
                   >
-                    <MenuItem className={cx("menu")} onClick={handleClose}>Home</MenuItem>
+                    <MenuItem className={cx("menu")} onClick={_onClickHome}>Home</MenuItem>
+                    <MenuItem className={cx("menu")} onClick={_onClickGroup}>My Group</MenuItem>
                     <MenuItem className={cx("menu")} onClick={handleClose}>Edit Profile</MenuItem>
-                    <MenuItem className={cx("menu")} onClick={handleClose}>My Group</MenuItem>
                     <MenuItem className={cx("menu")} onClick={_onSignOut}>Logout</MenuItem>
                   </MenuList>
                 </ClickAwayListener>
