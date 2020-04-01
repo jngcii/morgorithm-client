@@ -11,4 +11,8 @@
   border-radius: 20px;
   background-color: $brightGreyColor;
   opacity: .3;
+
+  &.nav {
+    background-color: $navColor;
+  }
 }

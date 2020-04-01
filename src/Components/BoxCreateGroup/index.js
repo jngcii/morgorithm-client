@@ -39,6 +39,13 @@ export default ({ onCancel, onUpload }) => {
     onSearching(e.target.value, undefined, undefined);
   };
 
+  const _onUpload = e => {
+    e.preventDefault();
+    dispatch(probActions.createGroup(groupName.value, [])).then(() => {
+      onUpload();
+    })
+  }
+
   useEffect(onSearching, []);
 
   return (
@@ -51,7 +58,7 @@ export default ({ onCancel, onUpload }) => {
       loading={loading}
       problems={problemState}
       onCancel={onCancel}
-      onUpload={onUpload}
+      onUpload={_onUpload}
       onSearch={_onInput}
       onClickBtn={onSearching}
     />

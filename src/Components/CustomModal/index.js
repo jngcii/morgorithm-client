@@ -35,10 +35,8 @@ export default ({ btnComponent, contentComponent }) => {
         <Fade in={open}>
           <div className={cx("paper")}>
             {contentComponent &&
-              contentComponent({
-                onCancel: () => handleClose(),
-                onUpload: () => handleClose()
-              })}
+              contentComponent({ onCancel: handleClose, onUpload: handleClose })
+            }
           </div>
         </Fade>
       </Modal>

@@ -97,6 +97,35 @@ function searchProblems({group=[], category=[], level=[], solved=[], keyword=""}
   };
 }
 
+function createGroup(name, probIds) {
+  return async function(dispatch, getState) {
+    const { user: { token } } = getState();
+    const res = await fetch(`${API_URL}/probs/problem-group-api/`, {
+      method: "POST",
+      headers: {
+        "Authorization": `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, probIds })
+    })
+    .then(res => {
+      if (res.status === 401) userActions.signOut();
+      else if (res.status === 201) return res.json();
+      else return false;
+    })
+    .then(json => {
+      if (!!json) {
+        dispatch(userActions.updateProbGroups(json));
+        return true;
+      }
+      else return false;
+    })
+    .catch(() => false);
+
+    return res;
+  }
+}
+
 // initial state
 
 const initialState = {};
@@ -129,6 +158,7 @@ const actionCreators = {
   copyProblems,
   getProblems,
   searchProblems,
+  createGroup,
 };
 
 export { actionCreators };

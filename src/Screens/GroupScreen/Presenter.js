@@ -75,7 +75,7 @@ export default ({ selected, group, questions, onClickUser }) => {
                   </div>
                 ))
               ) : (
-                <EmptyBox />
+                <EmptyBox bgColor={true} />
               )}
             </div>
           </div>

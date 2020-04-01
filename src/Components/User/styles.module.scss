@@ -6,23 +6,24 @@
   box-sizing: border-box;
 
   img {
-    width: 30px;
-    margin: 10px;
+    width: 36px;
+    margin: 12px;
   }
 
   .text {
     overflow: hidden;
-    padding-right: 10px;
+    padding-right: 12px;
 
     .username {
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 600;
-      line-height: 20px;
+      line-height: 18px;
+      margin-bottom: 5px;
     }
     .name {
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 400;
-      line-height: 15px;
+      line-height: 16px;
     }
   }
 }

@@ -50,6 +50,9 @@
       }
       .btn {
         @include clickable();
+        border-radius: 5px;
+        margin-left: 3px;
+        outline: none;
       }
     }
   }

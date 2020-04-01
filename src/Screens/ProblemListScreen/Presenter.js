@@ -58,7 +58,7 @@ export default ({
       </div>
 
       <div className={cx("search")}>
-        <input className={cx("input")} value={keyword.value} onChange={e => keyword.onChange(e.target.value)} />
+        <input className={cx("input")} placeholder={"search..."} value={keyword.value} onChange={e => keyword.onChange(e.target.value)} />
         <button className={cx("btn")} onClick={onDispatch}>
           <img src={require("../../assets/search.png")} width={20} />
         </button>
