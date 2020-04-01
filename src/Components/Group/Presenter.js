@@ -7,7 +7,7 @@ import CustomModal from "../CustomModal";
 import BoxCreateUserGroup from "../BoxCreateUserGroup";
 const cx = classNames.bind(styles);
 
-const CreateUserGroupBtn = handleOpen => (
+const CreateUserGroupBtn = ({handleOpen}) => (
   <button onClick={handleOpen}>새 그룹 만들기</button>
 );
 

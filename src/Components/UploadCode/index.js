@@ -17,7 +17,7 @@ import BoxUpload from "../BoxUpload";
 const cx = classNames.bind(styles);
 
 
-const UploadBtn = (handleOpen) => (
+const UploadBtn = ({handleOpen}) => (
   <button className={cx("uploadBtn")} onClick={handleOpen}>Upload</button>
 )
 

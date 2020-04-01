@@ -46,7 +46,7 @@ export default ({ userState, statusState, probGroupState, problemState, question
 
     <div className={cx("section")} style={{height: 300}}>
       {questionState !== null ? (
-        <ListSolution list={questionState} subject={"question"} />
+        <ListSolution list={questionState} subject={"question"} user={userState} />
       ) : (
         <LoadingBox />
       )}

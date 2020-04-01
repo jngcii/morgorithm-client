@@ -8,6 +8,7 @@ import MainScreen from "../../Screens/MainScreen";
 import ProblemListScreen from "../../Screens/ProblemListScreen";
 import ProblemScreen from "../../Screens/ProblemScreen";
 import SolutionScreen from "../../Screens/SolutionScreen";
+import QuestionListScreen from "../../Screens/QuestionListScreen"
 import GroupListScreen from "../../Screens/GroupListScreen";
 import GroupScreen from "../../Screens/GroupScreen";
 import Footer from "../Footer";
@@ -42,7 +43,7 @@ export default ({isLoggedIn}) => {
               </Route>
 
               <Route path="/question">
-                {/* <ProblemListScreen /> */}
+                <QuestionListScreen />
               </Route>
 
               <Route exact path="/group">

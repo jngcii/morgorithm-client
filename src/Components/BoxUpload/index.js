@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 export default ({onCancel, onUpload}) => (
   <div className={cx("wrapper")}>
     <div className={cx("body")}>
-      코드를 올리실겁니까?
+      코드를 제출하시겠습니까?
     </div>
     <div className={cx("footer")}>
       <Button onClick={onCancel} className={cx("btn")}>Cancel</Button>

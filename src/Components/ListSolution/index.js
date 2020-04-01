@@ -8,12 +8,25 @@ const cx = classNames.bind(styles);
 
 const LoadingBox = () => <div className={cx("loading")} />;
 
-export default ({ list, subject }) => (
+export default ({ list, subject, user, problem }) => (
   <div className={cx("wrapper")}>
-    <header className={cx("header")}>
-      {subject === "question" ? "Questions" : "Solutions"}
-      <span className={cx("more")}>더보기</span>
-    </header>
+    {subject && (
+      <header className={cx("header")}>
+        {subject === "question" ? "Questions" : "Solutions"}
+        <Link
+          className={cx("more", "link")}
+          to={{
+            pathname:'/question',
+            state: {
+              user: user || undefined,
+              problem: problem || undefined
+            }
+          }}
+        >
+          더보기
+        </Link>
+      </header>
+    )}
 
     <section>
       {!!list && list.length > 0 ? (
@@ -35,10 +48,10 @@ export default ({ list, subject }) => (
                   state: { solutionId: solsId }
                 }}
               >
-                {subject === "question" ? (
-                  <LineQuestion question={item} isDetail={true} />
-                ) : (
+                {subject && subject !== "question" ? (
                   <LineSolution solution={item} />
+                  ) : (
+                  <LineQuestion question={item} isDetail={true} />
                 )}
               </Link>
             );

@@ -17,19 +17,19 @@ export default () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(userActions.getUser(profile.id)).then(ures => {
-      if (ures) {
+    dispatch(userActions.getUser(profile.id)).then(user => {
+      if (user) {
         setUserState({
-          id: ures.id,
-          username: ures.username,
-          name: ures.name,
-          email: ures.email,
-          group: ures.group
+          id: user.id,
+          username: user.username,
+          name: user.name,
+          email: user.email,
+          group: user.group
         });
         setStatusState({
-          problemsCount: ures.problems_count,
-          solvedCount: ures.solved_problems_count,
-          questionsCount: ures.questions_count
+          problemsCount: user.problems_count,
+          solvedCount: user.solved_problems_count,
+          questionsCount: user.questions_count
         });
       }
     });

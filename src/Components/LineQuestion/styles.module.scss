@@ -1,5 +1,10 @@
 @import "src/Styles/utils.scss";
 
+.wrapper {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: $brightGreyColor;
+}
 
 .prob {
   position: relative;
