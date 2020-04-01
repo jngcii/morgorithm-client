@@ -11,6 +11,7 @@ import SolutionScreen from "../../Screens/SolutionScreen";
 import QuestionListScreen from "../../Screens/QuestionListScreen"
 import GroupListScreen from "../../Screens/GroupListScreen";
 import GroupScreen from "../../Screens/GroupScreen";
+import UserScreen from "../../Screens/UserScreen";
 import Footer from "../Footer";
 const cx = classNames.bind(styles);
 
@@ -26,35 +27,14 @@ export default ({isLoggedIn}) => {
 
           <div className={cx("content")}>
             <Switch>
-              <Route exact path="/">
-                <MainScreen />
-              </Route>
-
-              <Route exact path="/problem">
-                <ProblemListScreen />
-              </Route>
-
-              <Route path="/problem/:problemId/:solutionId">
-                <SolutionScreen />
-              </Route>
-
-              <Route path="/problem/:problemId">
-                <ProblemScreen />
-              </Route>
-
-              <Route path="/question">
-                <QuestionListScreen />
-              </Route>
-
-              <Route exact path="/group">
-                <GroupListScreen />
-              </Route>
-
-              <Route path="/group/:id">
-                <GroupScreen />
-              </Route>
-
-              <Route path="/user">{null}</Route>
+              <Route exact path="/" component={MainScreen} />
+              <Route exact path="/problem" component={ProblemListScreen} />
+              <Route path="/problem/:problemId/:solutionId" component={SolutionScreen} />
+              <Route path="/problem/:problemId" component={ProblemScreen} />
+              <Route path="/question" component={QuestionListScreen} />
+              <Route exact path="/group" component={GroupListScreen} />
+              <Route path="/group/:id" component={GroupScreen} />
+              <Route path="/:username" component={UserScreen} />
             </Switch>
           </div>
         </section>
