@@ -11,6 +11,6 @@ export default ({ solution }) => (
       <User creator={solution.creator} />
     </div>
 
-    {/* <Cnt solution={solution} /> */}
+    <Cnt solution={solution} />
   </div>
 );

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 import LineGroup from "../LineGroup";
+import EmptyBox from "../EmptyBox";
 const cx = classNames.bind(styles);
 
 export default ({ user, self }) => (
@@ -23,11 +24,11 @@ export default ({ user, self }) => (
 
       <div className={cx("list")}>
 
-        {user.group.map(g => (
+        {user.group ? user.group.map(g => (
           <div className={cx("line")} key={g.id}>
             <LineGroup group={g} />
           </div>
-        ))}
+        )) : <EmptyBox bgColor={true} />}
 
       </div>
     </div>

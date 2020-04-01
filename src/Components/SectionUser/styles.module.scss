@@ -10,7 +10,7 @@
     .user {
         img {
             display: block;
-            width: 80px;
+            width: 100px;
             margin: 10px;
         }
         div {
@@ -39,7 +39,9 @@
     flex: 1;
 
     .groupHeader {
-        padding: 0 10px;
+        width: 95%;
+        @include header();
+        justify-content: space-between;
 
         .title {
             @include titleFont();
@@ -54,9 +56,10 @@
         box-sizing: border-box;
         margin-top: 5px;
         height: 200px;
-        background-color: #fff;
+        background-color: $navColor;
         border-radius: 10px;
         padding: 5px;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, .1);
 
         .line {
             width: 95%;
