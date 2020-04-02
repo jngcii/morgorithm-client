@@ -21,13 +21,37 @@
         align-items: center;
         justify-content: center;
         box-sizing: border-box;
-        padding: 10px;
         width: 100%;
         height: 100%;
         border-radius: 5px;
         background-color: #fff;
         box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
         font-weight: 600;
+        overflow: hidden;
+
+        .blockContainer {
+            position: relative;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+
+            .count {
+                position: absolute;
+                bottom: 5px;
+                right: 5px;
+            }
+
+            .full {
+                position: absolute;
+                background-color: $blueColor;
+                opacity: .7;
+                height: 100%;
+            }
+        }
 
         &.new {
             @include clickable();

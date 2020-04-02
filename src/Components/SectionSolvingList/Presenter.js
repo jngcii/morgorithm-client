@@ -12,11 +12,31 @@ const Block = ({ probGroup, handleOpen }) => (
     onClick={probGroup ? () => {} : handleOpen}
   >
     <Link
-      to={probGroup ? { pathname: "/problem", state: { group: probGroup } } : '/'}
+      to={
+        probGroup ? { pathname: "/problem", state: { group: probGroup } } : "/"
+      }
       className={cx("block", "link", !probGroup && "new")}
     >
       {probGroup ? (
-        probGroup.name
+        <div className={cx("blockContainer")}>
+          <div className={cx("full")} />
+          {probGroup.problems_count > 0 && (
+            <span
+              className={cx("count")}
+              style={{
+                width: probGroup.solved_problems_count === 0 ? "0%" : `${(probGroup.solved_problems_count /
+                  probGroup.problems_count) *
+                  100}%`
+              }}
+            />
+          )}
+          <span className={cx("count")}>
+            {probGroup.solved_problems_count} / {probGroup.problems_count}
+          </span>
+          <span style={{ zIndex: 5, alignSelf: "center" }}>
+            {probGroup.name}
+          </span>
+        </div>
       ) : (
         <img
           src={require("../../assets/plus-grey.png")}
@@ -31,7 +51,6 @@ const Block = ({ probGroup, handleOpen }) => (
 
 export default ({ probGroups }) => (
   <div className={cx("wrapper")}>
-
     <section className={cx("body")}>
       {probGroups !== null &&
         probGroups.map(probGroup => (
