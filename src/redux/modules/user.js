@@ -5,7 +5,8 @@ const SAVE_PROFILE = "SAVE_PROFILE";
 const DROP_TOKEN = "DROP_TOKEN";
 const SAVE_CURRENT_USER = 'SAVE_CURRENT_USER';
 const SET_CURRENT_GROUP = 'SET_CURRENT_GROUP';
-const UPDATE_PROB_GROUPS = 'UPDATE_PROB_GROUPS';
+const ADD_PROB_GROUPS = 'ADD_PROB_GROUPS';
+const DELETE_PROB_GROUPS = 'DELETE_PROB_GROUPS';
 
 // action creators
 
@@ -25,8 +26,11 @@ function setCurrentGroup(currentGroup) {
   return { type: SET_CURRENT_GROUP, currentGroup };
 }
 
-function updateProbGroups(newGroup) {
-  return { type: UPDATE_PROB_GROUPS, newGroup };
+function addProbGroups(newGroup) {
+  return { type: ADD_PROB_GROUPS, newGroup };
+}
+function deleteProbGroup(groupId) {
+  return { type: DELETE_PROB_GROUPS, groupId };
 }
 
 
@@ -209,8 +213,10 @@ function reducer(state = initialState, action) {
       return applySetCurrentUser(state, action);
     case SET_CURRENT_GROUP:
       return applySetCurrentGroup(state, action);
-    case UPDATE_PROB_GROUPS:
-      return applyUpdateProbGroups(state, action);
+    case ADD_PROB_GROUPS:
+      return applyAddProbGroups(state, action);
+    case DELETE_PROB_GROUPS:
+      return applyDeleteProbGroups(state, action);
     default:
       return state;
   }
@@ -250,7 +256,7 @@ function applySetCurrentGroup(state, action) {
   return { ...state, currentGroup };
 }
 
-function applyUpdateProbGroups(state, action) {
+function applyAddProbGroups(state, action) {
   const { newGroup } = action;
   return {
     ...state,
@@ -259,6 +265,15 @@ function applyUpdateProbGroups(state, action) {
       problem_groups: [...state.profile.problem_groups, newGroup]
     }
   }
+}
+
+function applyDeleteProbGroups(state, action) {
+  const { groupId } = action;
+  const { profile: { problem_groups } } = state;
+  const new_problem_groups = problem_groups.filter(g => {
+    if (g.id !== groupId) return g;
+  });
+  return { ...state, profile: { ...state.profile, problem_groups: new_problem_groups } };
 }
 
 
@@ -274,7 +289,8 @@ const actionCreators = {
   searchGroup,
   getGroup,
 
-  updateProbGroups,
+  addProbGroups,
+  deleteProbGroup
 };
 
 export { actionCreators };

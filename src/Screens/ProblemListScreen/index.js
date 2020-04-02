@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { actionCreators as probActions } from "../../redux/modules/problem";
 import useArray from "../../Hooks/useArray";
@@ -7,7 +7,8 @@ import useInput from "../../Hooks/useInput";
 import Presenter from "./Presenter";
 
 export default () => {
-  const { state: { group: groupProp } } = useLocation();
+  const { state } = useLocation();
+  const history = useHistory();
 
   const [l1, setL1] = useState(false);
   const [l2, setL2] = useState(false);
@@ -82,7 +83,7 @@ export default () => {
   const onDispatch = () => {
     dispatch(
       probActions.getProblems({
-        group: groupProp ? [groupProp.id] : [],
+        group: state && state.group ? [state.group.id] : [],
         category: category.array,
         level: level.array,
         solved: solved.array,
@@ -93,10 +94,19 @@ export default () => {
     });
   };
 
+  const _onDelete = () => {
+    dispatch(probActions.deleteGroup(group.value.id)).then(res => {
+      if (res) {
+        group.onChange("");
+        history.push("/problem");
+      }
+    });
+  };
+
   useEffect(() => {
     onDispatch();
-    group.onChange(groupProp);
-  }, [groupProp]);
+    if (state) group.onChange(state.group);
+  }, [state]);
 
   return (
     <Presenter
@@ -110,6 +120,7 @@ export default () => {
       onClickLevel={onClickLevel}
       onClicksolved={onClicksolved}
       onDispatch={onDispatch}
+      onDelete={_onDelete}
     />
   );
 };

@@ -45,6 +45,7 @@ export default ({ onCancel, onUpload }) => {
 
   const _onUpload = e => {
     e.preventDefault();
+    groupName.onChange("");
     if (groupName.value !== "") {
       dispatch(probActions.createGroup(groupName.value, addedList.array)).then(() => {
         onUpload();

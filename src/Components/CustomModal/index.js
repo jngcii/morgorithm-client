@@ -6,7 +6,7 @@ import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 const cx = classNames.bind(styles);
 
-export default ({ btnComponent, contentComponent }) => {
+export default ({ btnComponent, contentComponent, onUp }) => {
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -16,6 +16,11 @@ export default ({ btnComponent, contentComponent }) => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const onUpload = () => {
+    if (onUp) onUp();
+    setOpen(false);
+  }
 
   return (
     <div>
@@ -29,13 +34,13 @@ export default ({ btnComponent, contentComponent }) => {
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
-          timeout: 500
+          timeout: 100
         }}
       >
         <Fade in={open}>
           <div className={cx("paper")}>
             {contentComponent &&
-              contentComponent({ onCancel: handleClose, onUpload: handleClose })
+              contentComponent({ onCancel: handleClose, onUpload })
             }
           </div>
         </Fade>

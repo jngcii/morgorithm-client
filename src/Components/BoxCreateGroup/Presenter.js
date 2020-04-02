@@ -73,7 +73,7 @@ export default ({
         <CircularProgress color={"inherit"} size={20} />
       ) : (
         problems &&
-        problems.map(problem => <AddingToggler problem={problem} addedList={addedList} />)
+        problems.map(problem => <AddingToggler key={problem.id} problem={problem} addedList={addedList} />)
       )}
     </div>
 

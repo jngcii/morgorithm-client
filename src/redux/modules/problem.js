@@ -130,7 +130,32 @@ function createGroup(name, probIds) {
     })
     .then(json => {
       if (!!json) {
-        dispatch(userActions.updateProbGroups(json));
+        dispatch(userActions.addProbGroups(json));
+        return true;
+      }
+      else return false;
+    })
+    .catch(() => false);
+
+    return res;
+  }
+}
+
+function deleteGroup(groupId) {
+  return async function(dispatch, getState) {
+    const { user: { token } } = getState();
+    const res = await fetch(`${API_URL}/probs/problem-group-api/`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: groupId })
+    })
+    .then(res => {
+      if (res.status === 401) userActions.signOut();
+      else if (res.status === 204) {
+        dispatch(userActions.deleteProbGroup(groupId));
         return true;
       }
       else return false;
@@ -175,6 +200,7 @@ const actionCreators = {
   getProblem,
   searchProblems,
   createGroup,
+  deleteGroup,
 };
 
 export { actionCreators };

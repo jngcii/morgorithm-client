@@ -1,9 +1,19 @@
 import React from "react";
+import { ButtonBase } from '@material-ui/core';
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 import ListProblem from "../../Components/ListProblem";
 import LoadingBox from "../../Components/LoadingBox";
+import EmptyBox from "../../Components/EmptyBox";
+import CustomModal from "../../Components/CustomModal";
+import BoxDelete from "../../Components/BoxDelete";
 const cx = classNames.bind(styles);
+
+const DeleteBtn = ({handleOpen}) => (
+  <ButtonBase className={cx("headerBtn")} onClick={handleOpen}>
+    <img src={require("../../assets/delete.png")} width={26} draggable={false} />
+  </ButtonBase>
+);
 
 export default ({
   lState,
@@ -15,10 +25,23 @@ export default ({
   onClickCategory,
   onClickLevel,
   onClicksolved,
-  onDispatch
+  onDispatch,
+  onDelete
 }) => (
   <div className={cx("wrapper")}>
-    <header className={cx("header")}>{group.value ? group.value.name : "All Problems"}</header>
+    <header className={cx("header")}>
+      { group.value ? group.value.name : "All Problems" }
+
+      <div style={{flex:1}} />
+
+      { group.value &&
+        <ButtonBase className={cx("headerBtn")}>
+          <span>edit</span>
+        </ButtonBase>
+      }
+      { group.value && <CustomModal btnComponent={DeleteBtn} contentComponent={BoxDelete} onUp={onDelete} />
+      }  
+    </header>
 
     <div className={cx("sort")}>
       <div className={cx("category")}>
@@ -68,9 +91,9 @@ export default ({
     <section className={cx("body")}>
       {problemList === null ? (
         <LoadingBox />
-      ) : (
-        <ListProblem problemList={problemList} />
-      )}
+      ) : problemList.length ?
+        <ListProblem problemList={problemList} /> : <div style={{padding:20, height:300}}><EmptyBox /></div>
+      }
     </section>
   </div>
 );
