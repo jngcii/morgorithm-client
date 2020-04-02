@@ -24,7 +24,7 @@ export default ({ user, self }) => (
 
       <div className={cx("list")}>
 
-        {user.group ? user.group.map(g => (
+        {user.group ? user.group.slice(0,5).map(g => (
           <div className={cx("line")} key={g.id}>
             <LineGroup group={g} />
           </div>

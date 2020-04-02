@@ -27,7 +27,9 @@ export default ({ keyword, searchedGroups, loading }) => {
   const dispatch = useDispatch();
 
   const _onEnter = groupId => {
-    dispatch(userActions.enterGroup(groupId))
+    dispatch(userActions.enterGroup(groupId)).then(res => {
+      if (!res) alert("너무 많은 그룹에 가입되어있습니다.")
+    })
   };
 
   return (

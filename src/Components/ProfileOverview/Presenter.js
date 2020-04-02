@@ -9,6 +9,6 @@ export default ({profile}) => (
     <span>{profile.email}</span>
     <span>{profile.username}</span>
     <span>{profile.name}</span>
-    <button>수정하기</button>
+    <button className={cx("edit")}>edit</button>
   </div>
 )

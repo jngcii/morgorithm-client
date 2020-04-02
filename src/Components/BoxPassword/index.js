@@ -13,7 +13,7 @@ export default ({ onCancel, onUpload, id }) => {
 
   const _onEnter = () => {
     dispatch(userActions.enterGroup(id, password)).then(res => {
-      if (!!res && res !== 404) onUpload();
+      if (res === true) onUpload();
       else if (res === 404) {
         setErr("잘못된 비밀번호입니다.");
         setTimeout(() => {
