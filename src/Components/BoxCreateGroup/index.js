@@ -13,7 +13,7 @@ export default ({ onCancel, onUpload }) => {
   const sLevel = useInput(0);
   const groupName = useInput("");
   const search = useInput("");
-  const addedList = useArray([1]);
+  const addedList = useArray([]);
 
   const dispatch = useDispatch();
 
@@ -46,7 +46,7 @@ export default ({ onCancel, onUpload }) => {
   const _onUpload = e => {
     e.preventDefault();
     if (groupName.value !== "") {
-      dispatch(probActions.createGroup(groupName.value, [])).then(() => {
+      dispatch(probActions.createGroup(groupName.value, addedList.array)).then(() => {
         onUpload();
       });
     } else {
