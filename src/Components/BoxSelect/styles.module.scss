@@ -1,0 +1,18 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  width: 300px;
+  
+  .group {
+    width: 100%;
+    padding: 5px 20px;
+    display: flex;
+    align-items: center;
+    font-size: 21px;
+    font-weight: 600;
+
+    &:hover {
+      background-color: rgba(150, 150, 150, .1);
+    }
+  }
+}

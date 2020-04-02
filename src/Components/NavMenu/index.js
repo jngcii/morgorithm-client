@@ -12,7 +12,7 @@ import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 const cx = classNames.bind(styles);
 
-export default () => {
+export default ({ component }) => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const history = useHistory();
@@ -64,14 +64,7 @@ export default () => {
   return (
     <div className={cx("wrapper")}>
       <div>
-        <img
-          className={cx("arrow")}
-          src={require("../../assets/menu-toggle.png")}
-          ref={anchorRef}
-          aria-controls={open ? "menu-list-grow" : undefined}
-          aria-haspopup="true"
-          onClick={handleToggle}
-        />
+        {component({anchorRef, handleToggle, open})}
         <Popper
           open={open}
           anchorEl={anchorRef.current}

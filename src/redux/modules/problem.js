@@ -85,9 +85,8 @@ function getProblem(originId) {
     .catch(() => false);
 
     return res;
-  }
+  };
 }
-
 
 function searchProblems({group=[], category=[], level=[], solved=[], keyword=""}) {
   return async function(_, getState) {
@@ -138,7 +137,7 @@ function createGroup(name, probIds) {
     .catch(() => false);
 
     return res;
-  }
+  };
 }
 
 function deleteGroup(groupId) {
@@ -163,7 +162,47 @@ function deleteGroup(groupId) {
     .catch(() => false);
 
     return res;
-  }
+  };
+}
+
+function getExGroup(probId) {
+  return async function(_, getState) {
+    const { user: { token } } = getState();
+    const res = await fetch(`${API_URL}/probs/get-ex-groups/${probId}/`, {
+      headers: {  "Authorization": `Token ${token}` }
+    })
+    .then(res => {
+      if (res.status === 401) userActions.signOut();
+      else if (res.status === 200) return res.json();
+      else return false;
+    })
+    .then(json => json || false)
+    .catch(() => false);
+
+    return res;
+  };
+}
+
+function updateProblemsToGroup(id, adding_problems, removing_problems) {
+  return async function(_, getState) {
+    const { user: { token } } = getState();
+    const res = await fetch(`${API_URL}/probs/update-problems-to-group/`, {
+      method: "POST",
+      headers: {
+        "Authorization": `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id, adding_problems, removing_problems })
+    })
+    .then(res => {
+      if (res.status === 401) userActions.signOut();
+      else if (res.status === 200) return true;
+      else return false;
+    })
+    .catch(() => false);
+
+    return res;
+  };
 }
 
 // initial state
@@ -201,6 +240,8 @@ const actionCreators = {
   searchProblems,
   createGroup,
   deleteGroup,
+  getExGroup,
+  updateProblemsToGroup,
 };
 
 export { actionCreators };

@@ -26,3 +26,21 @@
     width: 33px;
   }
 }
+
+.toggler {
+  position: relative;
+  top: 3px;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    background-color: rgba(150, 150, 150, .1);
+  }
+
+  .arrow {
+    margin: 5px;
+  }
+}

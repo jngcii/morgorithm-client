@@ -31,5 +31,5 @@ export default defaultArray => {
     });
   }
 
-	return { array, append, remove };
+	return { array, append, remove, setArray };
 };

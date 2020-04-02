@@ -1,12 +1,7 @@
 @import "src/Styles/utils.scss";
 
 .wrapper {
-  box-sizing: border-box;
   width: 100%;
-  padding: 10px;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: $brightGreyColor;
 
   .link {
     text-decoration: none;

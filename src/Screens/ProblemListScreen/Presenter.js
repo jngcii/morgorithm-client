@@ -92,7 +92,7 @@ export default ({
       {problemList === null ? (
         <LoadingBox />
       ) : problemList.length ?
-        <ListProblem problemList={problemList} /> : <div style={{padding:20, height:300}}><EmptyBox /></div>
+        <ListProblem problemList={problemList} op={true} groupId={group.value && group.value.id} /> : <div style={{padding:20, height:300}}><EmptyBox /></div>
       }
     </section>
   </div>

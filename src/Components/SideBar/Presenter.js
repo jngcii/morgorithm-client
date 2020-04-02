@@ -26,11 +26,11 @@ export default ({ probGroups }) => {
             to={{ pathname: "/problem", state: {} }}
             className={cx("each", "link")}
           >
-            전체 문제 (145/531)
+            전체 문제
           </Link>
         </div>
 
-        {probGroups && <hr />}
+        {probGroups && probGroups.length>0 && <hr />}
 
         {probGroups &&
           probGroups.map(probGroup => (
