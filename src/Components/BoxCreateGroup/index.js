@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { actionCreators as probActions } from "../../redux/modules/problem";
 import useInput from "../../Hooks/useInput";
+import useArray from "../../Hooks/useArray";
 import Presenter from "./Presenter";
 
 export default ({ onCancel, onUpload }) => {
@@ -12,6 +13,7 @@ export default ({ onCancel, onUpload }) => {
   const sLevel = useInput(0);
   const groupName = useInput("");
   const search = useInput("");
+  const addedList = useArray([1]);
 
   const dispatch = useDispatch();
 
@@ -61,6 +63,7 @@ export default ({ onCancel, onUpload }) => {
       sLevel={sLevel}
       groupName={groupName}
       search={search}
+      addedList={addedList}
       loading={loading}
       problems={problemState}
       onCancel={onCancel}

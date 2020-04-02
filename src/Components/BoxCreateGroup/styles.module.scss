@@ -6,7 +6,10 @@
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  padding: 10px 0;
+  padding-bottom: 10px;
+  .intro {
+    margin: 5px 5px 10px;
+  }
   
   .input {
     width: 100%;
@@ -17,7 +20,7 @@
     border-radius: 5px;
     border: none;
     @include modalInputFont();
-    background-color: transparent;
+    &:focus { background-color: $bgColor; }
   }
 
   .hr {
@@ -43,6 +46,7 @@
       border-radius: 5px;
       border: 1px solid $brightGreyColor;
       @include modalInputFont();
+      &:focus { background-color: $bgColor; }
     }
   }
 
@@ -50,6 +54,23 @@
     flex: 1;
     overflow:hidden;
     overflow-y: scroll;
+
+    .eachLine {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      user-select: none;
+
+      .toggler {
+        @include clickable();
+        width: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img { width: 20px; }
+      }
+    }
   }
 
   .footer {
@@ -58,10 +79,14 @@
   }
 
   .btn {
+    color: $blackColor;
     &.submit {
+      font-weight: 600;
       margin: 0 10px;
       background-color: $yellowColor;
-      color: #fff;
+      &:disabled {
+        opacity: .4;
+      }
     }
   }
 }
