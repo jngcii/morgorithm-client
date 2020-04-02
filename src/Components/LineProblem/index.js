@@ -10,7 +10,8 @@ export default ({ problem, adding }) => adding ? (
       <div className={cx("num")}>{problem.origin.number || "-"}</div>
       <div className={cx("site")}>{problem.origin.category}</div>
       <div className={cx("title")}>
-        <span>{problem.origin.title}</span>
+        <div>{problem.origin.title}</div>
+        {problem.origin.remark && <div className={cx("remark")}>{problem.origin.remark}</div>}
       </div>
       {problem.origin.level && (
         <div className={cx(problem.origin.level ? "level" : "noLevel")}>
@@ -27,7 +28,8 @@ export default ({ problem, adding }) => adding ? (
         <div className={cx("num")}>{problem.origin.number || "-"}</div>
         <div className={cx("site")}>{problem.origin.category}</div>
         <div className={cx("title")}>
-          <span>{problem.origin.title}</span>
+          <div>{problem.origin.title}</div>
+          {problem.origin.remark && <div className={cx("remark")}>{problem.origin.remark}</div>}
         </div>
         {problem.origin.level && (
           <div className={cx(problem.origin.level ? "level" : "noLevel")}>
