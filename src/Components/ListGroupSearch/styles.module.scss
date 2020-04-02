@@ -31,6 +31,7 @@
     tr {
       display: flex;
       padding: 5px 20px;
+      align-items: center;
     }
 
     .name {
@@ -49,7 +50,7 @@
       }
     }
     .btn {
-      width: 60px;
+      width: 100px;
     }
 
     .pwInput {
@@ -83,4 +84,11 @@
 
     img { width: 80px; margin: 10px; }
   }
+}
+
+.enterBtn {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  font-weight: 600 !important;
+  color: $blueColor !important;
 }

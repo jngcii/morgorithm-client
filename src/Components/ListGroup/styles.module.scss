@@ -22,7 +22,8 @@
 
     tr {
       display: flex;
-      padding: 5px 0;
+      align-items: center;
+      padding: 5px 10px;
       transition: .3s;
       border-bottom-width: 1px;
       border-bottom-style: solid;
@@ -49,4 +50,12 @@
       color: $redColor;
     }
   }
+}
+
+
+.leaveBtn {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  font-weight: 600 !important;
+  color: $redColor !important;
 }

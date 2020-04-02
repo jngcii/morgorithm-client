@@ -13,11 +13,10 @@ export default () => {
   const dispatch = useDispatch();
 
   const _onSearch = e => {
-    e.preventDefault();
-    keyword.onChange(e.target.value);
+    keyword.onChange(e);
     setLoading(true);
-    if (e.target.value !== "")
-      dispatch(userActions.searchGroup(e.target.value)).then(res => {
+    if (e !== "")
+      dispatch(userActions.searchGroup(e)).then(res => {
         setLoading(false);
         setSearchedState(res);
       });
@@ -25,6 +24,7 @@ export default () => {
 
   useEffect(() => {
     if (group !== undefined) setGroupState(group);
+    _onSearch(keyword.value);
   }, [group]);
 
   return (

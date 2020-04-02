@@ -1,4 +1,6 @@
 import React from "react";
+import Button from '@material-ui/core/Button';
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import { Link } from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
@@ -8,7 +10,14 @@ import LoadingBox from "../LoadingBox";
 import EmptyBox from "../EmptyBox";
 const cx = classNames.bind(styles);
 
-const LeaveBtn = ({handleOpen}) => <button onClick={handleOpen}>leave</button>;
+const LeaveBtn = ({ handleOpen }) => (
+  <Button 
+    className={cx("leaveBtn")}
+    variant="contained"
+    endIcon={<MeetingRoomIcon color={"inherit"} />}
+    onClick={handleOpen}
+  >OUT</Button>
+);
 
 export default ({ groups, searching }) => (
   <div className={cx("wrapper")}>
@@ -42,6 +51,7 @@ export default ({ groups, searching }) => (
               <CustomModal
                 btnComponent={LeaveBtn}
                 contentComponent={BoxLeave}
+                id={group.id}
               />
             </th>
           </tr>

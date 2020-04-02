@@ -10,4 +10,4 @@ export default () => (
     <ProfileOverview />
     <Group />
   </div>
-)
+);

@@ -1,0 +1,39 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  width: $createUserGroupModalWidth;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+
+  .lock {
+    margin: 20px auto;
+  }
+
+  .input {
+    flex: 1;
+    height: 40px;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid $brightGreyColor;
+    font-size: 13px;
+    color: $lightGreyColor;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+  }
+
+  .btn {
+    &.submit {
+      margin: 0 10px;
+      background-color: $yellowColor;
+      color: #fff;
+    }
+  }
+}

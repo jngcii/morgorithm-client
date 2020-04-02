@@ -5,6 +5,8 @@ const SAVE_PROFILE = "SAVE_PROFILE";
 const DROP_TOKEN = "DROP_TOKEN";
 const SAVE_CURRENT_USER = 'SAVE_CURRENT_USER';
 const SET_CURRENT_GROUP = 'SET_CURRENT_GROUP';
+const ADD_USER_GROUP = 'ADD_USER_GROUP';
+const REMOVE_USER_GROUP = 'REMOVE_USER_GROUP';
 const ADD_PROB_GROUPS = 'ADD_PROB_GROUPS';
 const DELETE_PROB_GROUPS = 'DELETE_PROB_GROUPS';
 
@@ -24,6 +26,14 @@ function saveCurrentUser(profile) {
 
 function setCurrentGroup(currentGroup) {
   return { type: SET_CURRENT_GROUP, currentGroup };
+}
+
+function addUserGroup(newGroup) {
+  return { type: ADD_USER_GROUP, newGroup};
+}
+
+function removeUserGroup(groupId) {
+  return { type: REMOVE_USER_GROUP, groupId };
 }
 
 function addProbGroups(newGroup) {
@@ -173,13 +183,13 @@ function searchGroup(keyword) {
 }
 
 function getGroup(groupId) {
-  return async function(dispatch, getState) {
+  return async function(_, getState) {
     const { user: { token } } = getState();
     const res = await fetch(`${API_URL}/users/get-group/${groupId}/`, {
       headers: { "Authorization": `Token ${token}` }
     })
     .then(res => {
-      if (res.status === 400) signOut();
+      if (res.status === 401) signOut();
       else if (res.status === 200) return res.json();
       else return false;
     })
@@ -189,6 +199,88 @@ function getGroup(groupId) {
       } else return false;
     })
     .catch(() => false);
+
+    return res;
+  };
+}
+
+function createGroup(name, password) {
+  return async function(dispatch, getState) {
+    const { user: { token } } = getState();
+    const res = await fetch(`${API_URL}/users/create-group/`, {
+      method: "POST",
+      headers: {
+        "Authorization": `Token ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: !!password ? JSON.stringify({ name, password }) : JSON.stringify({ name })
+    })
+    .then(res => {
+      if (res.status === 401) signOut();
+      else if (res.status === 201) return res.json();
+      else return false;
+    })
+    .then(json => {
+      if (!!json) {
+        dispatch(addUserGroup(json));
+        return true;
+      } else {
+        return false;
+      }
+    })
+    .catch(()=>false);
+
+    return res;
+  };
+}
+
+function enterGroup(groupId, password) {
+  return async function(dispatch, getState) {
+    const { user: { token } } = getState();
+    const res = await fetch(`${API_URL}/users/enter-group/${groupId}/`, {
+      method: "POST",
+      headers: {
+        "Authorization": `Token ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ password })
+    })
+    .then(res => {
+      if (res.status === 401) signOut();
+      else if (res.status === 404) return res.status;
+      else if (res.status === 200) return res.json();
+      else return false;
+    })
+    .then(json => {
+      if (!!json && json !== 404) {
+        dispatch(addUserGroup(json));
+        return true;
+      } else if (json === 404) {
+        return json;
+      } else {
+        return false;
+      }
+    })
+    .catch(()=>false);
+
+    return res;
+  };
+}
+
+function leaveGroup(groupId) {
+  return async function(dispatch, getState) {
+    const { user: { token } } = getState();
+    const res = await fetch(`${API_URL}/users/leave-group/${groupId}/`, {
+      headers: { "Authorization": `Token ${token}` }
+    })
+    .then(res => {
+      if (res.status === 401) signOut();
+      else if (res.status === 200) {
+        dispatch(removeUserGroup(groupId));
+        return true;
+      } else return false;
+    })
+    .catch(()=>false);
 
     return res;
   };
@@ -213,6 +305,10 @@ function reducer(state = initialState, action) {
       return applySetCurrentUser(state, action);
     case SET_CURRENT_GROUP:
       return applySetCurrentGroup(state, action);
+    case ADD_USER_GROUP:
+      return applyAddUserGroup(state, action);
+    case REMOVE_USER_GROUP:
+      return applyRemoveUserGroup(state, action);
     case ADD_PROB_GROUPS:
       return applyAddProbGroups(state, action);
     case DELETE_PROB_GROUPS:
@@ -256,6 +352,26 @@ function applySetCurrentGroup(state, action) {
   return { ...state, currentGroup };
 }
 
+function applyAddUserGroup(state, action) {
+  const { newGroup } = action;
+  return {
+    ...state,
+    profile: {
+      ...state.profile,
+      group: [...state.profile.group, newGroup]
+    }
+  };
+}
+
+function applyRemoveUserGroup(state, action) {
+  const { groupId } = action;
+  const { profile: { group } } = state;
+  const new_groups = group.filter(g => {
+    if (g.id !== groupId) return g;
+  });
+  return { ...state, profile: { ...state.profile, group: new_groups } };
+}
+
 function applyAddProbGroups(state, action) {
   const { newGroup } = action;
   return {
@@ -264,7 +380,7 @@ function applyAddProbGroups(state, action) {
       ...state.profile,
       problem_groups: [...state.profile.problem_groups, newGroup]
     }
-  }
+  };
 }
 
 function applyDeleteProbGroups(state, action) {
@@ -288,6 +404,9 @@ const actionCreators = {
   getUser,
   searchGroup,
   getGroup,
+  createGroup,
+  enterGroup,
+  leaveGroup,
 
   addProbGroups,
   deleteProbGroup

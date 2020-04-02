@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from '@material-ui/core/Button';
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 import ListGroup from "../ListGroup";
@@ -7,8 +8,8 @@ import CustomModal from "../CustomModal";
 import BoxCreateUserGroup from "../BoxCreateUserGroup";
 const cx = classNames.bind(styles);
 
-const CreateUserGroupBtn = ({handleOpen}) => (
-  <button onClick={handleOpen}>새 그룹 만들기</button>
+const CreateUserGroupBtn = ({ handleOpen }) => (
+  <Button className={cx("newGroup")} onClick={handleOpen}>새 그룹 만들기</Button>
 );
 
 export default ({ keyword, groups, searchedGroups, loading, onSearch }) => {
@@ -17,7 +18,7 @@ export default ({ keyword, groups, searchedGroups, loading, onSearch }) => {
 
   return (
     <div className={cx("wrapper")}>
-      <header>
+      <header className={cx("header")}>
         <span className={cx("subject")}>My Group</span>
         <CustomModal
           btnComponent={CreateUserGroupBtn}
@@ -28,7 +29,7 @@ export default ({ keyword, groups, searchedGroups, loading, onSearch }) => {
             className={cx("inputBox")}
             placeholder={"search..."}
             value={keyword.value}
-            onChange={onSearch}
+            onChange={e => onSearch(e.target.value)}
             onFocus={() => setSearching(true)}
             onBlur={() => setSearching(false)}
           />
