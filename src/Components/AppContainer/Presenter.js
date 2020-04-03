@@ -13,6 +13,7 @@ import SolutionListScreen from "../../Screens/SolutionListScreen";
 import GroupListScreen from "../../Screens/GroupListScreen";
 import GroupScreen from "../../Screens/GroupScreen";
 import UserScreen from "../../Screens/UserScreen";
+import ProfileEdit from "../../Screens/ProfileEditScreen";
 import Footer from "../Footer";
 const cx = classNames.bind(styles);
 
@@ -29,6 +30,7 @@ export default ({isLoggedIn}) => {
           <div className={cx("content")}>
             <Switch>
               <Route exact path="/" component={MainScreen} />
+              <Route exact path="/editprofile" component={ProfileEdit} />
               <Route exact path="/problem" component={ProblemListScreen} />
               <Route path="/problem/:originId/questions" component={QuestionListScreen} />
               <Route path="/problem/:originId/solutions" component={SolutionListScreen} />

@@ -12,8 +12,7 @@ export default () => {
   const [problemState, setProblemState] = useState(null);
   const [questionState, setQuestionState] = useState(null);
 
-  const { user: { profile } } = useSelector(state => state);
-
+  const { user: { profile }, user } = useSelector(state => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,7 +38,7 @@ export default () => {
     dispatch(solsActions.getQuestions(profile.username)).then(qres => {
       if (qres) setQuestionState(qres);
     });
-  }, []);
+  }, [profile]);
 
   useEffect(() => {
     if (!!profile && profile.problem_groups !== undefined) {

@@ -52,7 +52,7 @@ const Block = ({ probGroup, handleOpen }) => (
 export default ({ probGroups }) => (
   <div className={cx("wrapper")}>
     <section className={cx("body")}>
-      {probGroups !== null &&
+      {probGroups &&
         probGroups.map(probGroup => (
           <Block key={probGroup.id} probGroup={probGroup} />
         ))}

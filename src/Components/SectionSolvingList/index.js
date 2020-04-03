@@ -5,11 +5,12 @@ import Presenter from "./Presenter";
 export default () => {
   const [probGroupState, setProbGroupState] = useState(null);
 
-  const { user: { profile: { problem_groups } } } = useSelector(state => state);
+  const { user: { profile } } = useSelector(state => state);
 
   useEffect(() => {
-    setProbGroupState(problem_groups);
-  }, [problem_groups]);
+    if (profile)
+      setProbGroupState(profile.problem_groups);
+  }, [profile]);
 
   return <Presenter probGroups={probGroupState} />;
 }

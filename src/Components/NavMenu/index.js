@@ -47,6 +47,11 @@ export default ({ component }) => {
     handleClose(e);
   };
 
+  const _onClickEdit = e => {
+    history.push("/editprofile");
+    handleClose(e);
+  }
+
   const _onSignOut = () => {
     dispatch(userActions.signOut());
   };
@@ -89,7 +94,7 @@ export default ({ component }) => {
                   >
                     <MenuItem className={cx("menu")} onClick={_onClickHome}>Home</MenuItem>
                     <MenuItem className={cx("menu")} onClick={_onClickGroup}>My Group</MenuItem>
-                    <MenuItem className={cx("menu")} onClick={handleClose}>Edit Profile</MenuItem>
+                    <MenuItem className={cx("menu")} onClick={_onClickEdit}>Edit Profile</MenuItem>
                     <MenuItem className={cx("menu")} onClick={_onSignOut}>Logout</MenuItem>
                   </MenuList>
                 </ClickAwayListener>

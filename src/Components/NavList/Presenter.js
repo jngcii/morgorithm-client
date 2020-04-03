@@ -40,7 +40,7 @@ export default ({ profile }) => (
 
     <li>
       <NavMenu component={MenuToggler} />
-      <Profile />
+      <Link to={`/${profile.username}`}><Profile /></Link>
     </li>
   </ul>
 );

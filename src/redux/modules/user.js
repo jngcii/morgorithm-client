@@ -9,39 +9,44 @@ const ADD_USER_GROUP = 'ADD_USER_GROUP';
 const REMOVE_USER_GROUP = 'REMOVE_USER_GROUP';
 const ADD_PROB_GROUPS = 'ADD_PROB_GROUPS';
 const DELETE_PROB_GROUPS = 'DELETE_PROB_GROUPS';
+const EDIT_PROFILE = 'EDIT_PROFILE';
 
 // action creators
 
 function saveProfile(profile) {
   return { type: SAVE_PROFILE, profile };
-}
+};
 
 function dropToken() {
   return { type: DROP_TOKEN };
-}
+};
 
 function saveCurrentUser(profile) {
   return { type: SAVE_CURRENT_USER, profile };
-}
+};
 
 function setCurrentGroup(currentGroup) {
   return { type: SET_CURRENT_GROUP, currentGroup };
-}
+};
 
 function addUserGroup(newGroup) {
   return { type: ADD_USER_GROUP, newGroup};
-}
+};
 
 function removeUserGroup(groupId) {
   return { type: REMOVE_USER_GROUP, groupId };
-}
+};
 
 function addProbGroups(newGroup) {
   return { type: ADD_PROB_GROUPS, newGroup };
-}
+};
 function deleteProbGroup(groupId) {
   return { type: DELETE_PROB_GROUPS, groupId };
-}
+};
+
+function setEditProfile(username, name) {
+  return { type: EDIT_PROFILE, username, name };
+};
 
 
 // API
@@ -68,7 +73,7 @@ function signIn(email, password) {
 
     return res;
   };
-}
+};
 
 function signUp(email, username, name, password) {
   return async function(dispatch) {
@@ -93,11 +98,11 @@ function signUp(email, username, name, password) {
 
     return res;
   };
-}
+};
 
 function signOut() {
   return function(dispatch) { dispatch(dropToken()); }
-}
+};
 
 function sendConfirmCode(email) {
   return async function() {
@@ -118,7 +123,29 @@ function sendConfirmCode(email) {
 
     return res;
   };
-}
+};
+
+function changePassword(old_password, new_password) {
+  return async function(_, getState) {
+    const { user: { token } } = getState();
+    const res = await fetch(`${API_URL}/users/change-password/`, {
+      method: "POST",
+      headers: {
+        "Authorization": `Token ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ old_password, new_password })
+    })
+    .then(res => {
+      if (res.status === 401) signOut();
+      if (res.status === 200) return true;
+      else return false;
+    })
+    .catch(() => null);
+
+    return res;
+  };
+};
 
 function checkUnique(email=null, username=null) {
   return async function() {
@@ -135,7 +162,32 @@ function checkUnique(email=null, username=null) {
 
     return res;
   };
-}
+};
+
+function editProfile({ username, name }) {
+  return async function(dispatch, getState) {
+    const { user: { token } } = getState();
+    const res = await fetch(`${API_URL}/users/edit-profile/`, {
+      method: "PUT",
+      headers: {
+        "Authorization": `Token ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ username, name })
+    })
+    .then(res => {
+      if (res.status === 401) signOut();
+      else if (res.status === 200) {
+        dispatch(setEditProfile(username, name));
+        return true;
+      }
+      else return false;
+    })
+    .catch(()=>false);
+
+    return res;
+  };
+};
 
 function getUser(username) {
   return async function(dispatch, getState) {
@@ -158,7 +210,7 @@ function getUser(username) {
 
     return res;
   };
-}
+};
 
 function searchGroup(keyword) {
   return async function(_, getState) {
@@ -180,7 +232,7 @@ function searchGroup(keyword) {
 
     return res;
   };
-}
+};
 
 function getGroup(groupId) {
   return async function(_, getState) {
@@ -202,7 +254,7 @@ function getGroup(groupId) {
 
     return res;
   };
-}
+};
 
 function createGroup(name, password) {
   return async function(dispatch, getState) {
@@ -232,7 +284,7 @@ function createGroup(name, password) {
 
     return res;
   };
-}
+};
 
 function enterGroup(groupId, password) {
   return async function(dispatch, getState) {
@@ -265,7 +317,7 @@ function enterGroup(groupId, password) {
 
     return res;
   };
-}
+};
 
 function leaveGroup(groupId) {
   return async function(dispatch, getState) {
@@ -284,7 +336,7 @@ function leaveGroup(groupId) {
 
     return res;
   };
-}
+};
 
 
 // initial state
@@ -313,10 +365,12 @@ function reducer(state = initialState, action) {
       return applyAddProbGroups(state, action);
     case DELETE_PROB_GROUPS:
       return applyDeleteProbGroups(state, action);
+    case EDIT_PROFILE:
+      return applyEditProfile(state, action);
     default:
       return state;
   }
-}
+};
 
 // reducer functions
 
@@ -330,7 +384,7 @@ function applySetProfile(state, action) {
     token,
     profile: { id, username, name, email, group, problem_groups, problems_count, solved_problems_count, questions_count }
   };
-}
+};
 
 function applySetCurrentUser(state, action) {
   const { profile: { token, id, username, name, email, group, problems_count, solved_problems_count, questions_count } } = action;
@@ -340,17 +394,17 @@ function applySetCurrentUser(state, action) {
     ...state,
     currentUser: { id, username, name, email, group, problems_count, solved_problems_count, questions_count }
   };
-}
+};
 
 function applyDropToken() {
   localStorage.clear();
   return { isLoggedIn: false };
-}
+};
 
 function applySetCurrentGroup(state, action) {
   const { currentGroup } = action;
   return { ...state, currentGroup };
-}
+};
 
 function applyAddUserGroup(state, action) {
   const { newGroup } = action;
@@ -361,7 +415,7 @@ function applyAddUserGroup(state, action) {
       group: [...state.profile.group, newGroup]
     }
   };
-}
+};
 
 function applyRemoveUserGroup(state, action) {
   const { groupId } = action;
@@ -370,7 +424,7 @@ function applyRemoveUserGroup(state, action) {
     if (g.id !== groupId) return g;
   });
   return { ...state, profile: { ...state.profile, group: new_groups } };
-}
+};
 
 function applyAddProbGroups(state, action) {
   const { newGroup } = action;
@@ -381,7 +435,7 @@ function applyAddProbGroups(state, action) {
       problem_groups: [...state.profile.problem_groups, newGroup]
     }
   };
-}
+};
 
 function applyDeleteProbGroups(state, action) {
   const { groupId } = action;
@@ -390,7 +444,16 @@ function applyDeleteProbGroups(state, action) {
     if (g.id !== groupId) return g;
   });
   return { ...state, profile: { ...state.profile, problem_groups: new_problem_groups } };
-}
+};
+
+function applyEditProfile(state, action) {
+  const { username, name } = action;
+  const { profile } = state;
+  const newProfile = { ...profile, username, name };
+  return {
+    ...state, profile: newProfile
+  };
+};
 
 
 // exports
@@ -399,7 +462,9 @@ const actionCreators = {
   signIn,
   signOut,
   sendConfirmCode,
+  changePassword,
   checkUnique,
+  editProfile,
   signUp,
   getUser,
   searchGroup,
