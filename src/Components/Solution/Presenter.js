@@ -20,7 +20,7 @@ const cx = classNames.bind(styles);
 
 const LoadingBox = () => <div className={cx("loading")} />;
 
-export default ({ origin, creator, solution }) => {
+export default ({ origin, creator, solution, counts }) => {
   return (
     <div className={cx("wrapper")}>
       <header>
@@ -46,13 +46,13 @@ export default ({ origin, creator, solution }) => {
       </header>
 
       <div className={cx("cnts")}>
-        {/* <Cnt /> */}
+        {counts && <Cnt solution={counts} />}
       </div>
 
       <section>
         <AceEditor
           width={"auto"}
-          height={700}
+          height={'700px'}
           // theme="solarized_dark"
           theme="chrome"
           mode="python"
@@ -64,9 +64,6 @@ export default ({ origin, creator, solution }) => {
           keyboardHandler={"vscode"}
           readOnly={true}
           setOptions={{
-            enableBasicAutocompletion: false,
-            enableLiveAutocompletion: false,
-            enableSnippets: false,
             showLineNumbers: true,
             tabSize: 4,
             fontSize: 16,

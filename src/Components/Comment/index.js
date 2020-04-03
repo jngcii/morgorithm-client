@@ -1,19 +1,20 @@
 import React from "react";
-import classNames from "classnames/bind";
-import styles from "./styles.module.scss";
-import LineComment from "../LineComment";
-const cx = classNames.bind(styles);
+import Presenter from "./Presenter";
 
-export default () => (
-  <div className={cx("wrapper")}>
-    <header>Comment</header>
+export default ({ comments, msg, getComments, onSubmitComment }) => {
+  const _onKeyDown = event => {
+    if (event.keyCode == 13 && event.shiftKey) {
+      onSubmitComment();
+    }
+  };
 
-    <section>
-      <input className={cx("commentInput")} />
-
-      {[1, 2, 3, 4, 5].map(i => (
-        <LineComment key={i} />
-      ))}
-    </section>
-  </div>
-);
+  return (
+    <Presenter
+      comments={comments}
+      msg={msg}
+      getComments={getComments}
+      onSubmitComment={onSubmitComment}
+      onKeyDown={_onKeyDown}
+    />
+  );
+};

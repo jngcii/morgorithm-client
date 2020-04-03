@@ -9,9 +9,44 @@
   }
 
   section {
-    .commentInput {
-      @include authInput();
-      width: 100%;
+    width: $sectionWidth;
+    .input {
+      display: flex;
+      align-items: flex-end;
+
+      .commentInput {
+        flex: 1;
+        line-height: 23px;
+        border-radius: 5px;
+        box-sizing: border-box;
+        padding: 10px;
+        border: 1px solid $brightGreyColor;
+        font-size: 15px;
+        outline: none;
+        resize: none;
+      }
+
+
+      .submit {
+        width: 50px;
+        height: 68px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $yellowColor;
+        margin-left: 5px;
+        border: none;
+        border-radius: 5px;
+        outline: none;
+        border: 1px solid $brightGreyColor;
+        &:hover {
+          opacity: .9;
+        }
+        &:active {
+          opacity: .5;
+        }
+      }
     }
+    
   }
 }

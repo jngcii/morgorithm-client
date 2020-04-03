@@ -16,7 +16,7 @@ const PlusBtn = ({ handleOpen }) => (
 export default ({ probGroups }) => {
   const { pathname } = useLocation();
   const out =
-    pathname && (pathname.includes("/problem") || pathname.includes("/questions")) || pathname.includes("/solutions");
+    pathname && (pathname.includes("/problem")||pathname.includes("/questions"))||pathname.includes("/solutions");
 
   return (
     <div className={cx("wrapper", out ? "out" : "in")}>

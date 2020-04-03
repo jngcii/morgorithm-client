@@ -6,6 +6,7 @@
   header {
     @include screenHeader();
     padding: 10px;
+    width: $sectionWidth;
 
     .btn {
       @include clickable();
@@ -38,10 +39,12 @@
     padding: 5px;
     display: flex;
     justify-content: flex-end;
+    width: $sectionWidth;
   }
 
   section {
     padding: 20px 10px;
+    width: $sectionWidth;
 
     .caption {
       box-sizing: border-box;

@@ -1,13 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { CircularProgress } from "@material-ui/core";
+import { CircularProgress, Button } from "@material-ui/core";
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 import User from "../../Components/User";
 import LineQuestion from "../../Components/LineQuestion";
 import LoadingBox from "../../Components/LoadingBox";
 import EmptyBox from "../../Components/EmptyBox";
+import CustomModal from "../../Components/CustomModal";
+import BoxLeave from "../../Components/BoxLeave";
 const cx = classNames.bind(styles);
+
+const LeaveBtn = ({ handleOpen }) => (
+  <Button 
+    size={"large"}
+    className={cx("leaveBtn")}
+    variant="contained"
+    endIcon={<MeetingRoomIcon color={"inherit"} size={"large"} />}
+    onClick={handleOpen}
+  >OUT</Button>
+);
 
 export default ({ selected, group, questions, onClickUser }) => {
   return (
@@ -22,8 +35,15 @@ export default ({ selected, group, questions, onClickUser }) => {
         ) : (
           <h1 className={cx("name")}>{group.name}</h1>
         )}
-
-        <button className={cx("btn")}>leave</button>
+        {group === null ? (
+          <LoadingBox />
+        ) : (
+          <CustomModal
+            btnComponent={LeaveBtn}
+            contentComponent={BoxLeave}
+            id={group.id}
+          />
+        )}
       </header>
 
       <section className={cx("section")}>
@@ -33,7 +53,6 @@ export default ({ selected, group, questions, onClickUser }) => {
           ) : (
             <span>총 인원 : {group.members_count}</span>
           )}
-          <button disabled={group === null}>질문 올리기</button>
         </div>
 
         {group === null ? (

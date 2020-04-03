@@ -8,6 +8,8 @@
   padding: 5px;
   border-radius: 40px;
   background-color: rgba(0, 0, 0, 0.5);
+  
+  &:hover { opacity: .9; }
 
   img {
     width: 40px;
@@ -23,15 +25,12 @@
   }
   
   .edit {
-    @include clickable();
     position: absolute;
     right: 8px;
     border-radius: 20px;
     width: 40px;
-    height: 40px;
     font-size: 13px;
     font-weight: 600;
-    color: $darkGreyColor;
-    outline: none;
+    color: #fff;
   }
 }

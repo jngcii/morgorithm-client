@@ -2,6 +2,7 @@
 
 .wrapper {
   @include eachScreenWrapper();
+  align-items: center;
   width: $sectionWidth;
   margin: 0 auto;
   padding: 10px 0;
@@ -93,4 +94,12 @@
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: $brightGreyColor;
+}
+
+.leaveBtn {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  color: $redColor !important;
 }

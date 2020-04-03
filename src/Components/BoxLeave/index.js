@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../../redux/modules/user";
 import Button from '@material-ui/core/Button';
@@ -8,9 +9,13 @@ const cx = classNames.bind(styles);
 
 export default ({ onCancel, id }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const _onLeave = () => {
-    dispatch(userActions.leaveGroup(id)).then(()=>onCancel());
+    dispatch(userActions.leaveGroup(id)).then(()=>{
+      onCancel();
+      history.push("/group");
+    });
   }
 
   return(

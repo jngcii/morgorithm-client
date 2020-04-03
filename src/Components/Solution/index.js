@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { actionCreators as solsActions } from "../../redux/modules/solution";
 import Presenter from "./Presenter";
 
-export default ({ solutionId }) => {
+export default ({ solutionId, counts }) => {
   const [originState, setOriginState] = useState(null);
   const [creatorState, setCreatorState] = useState(null);
   const [solutionState, setSolutionState] = useState(null);
@@ -26,6 +26,7 @@ export default ({ solutionId }) => {
       origin={originState}
       creator={creatorState}
       solution={solutionState}
+      counts={counts}
     />
   );
 };
