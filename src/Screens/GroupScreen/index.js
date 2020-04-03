@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../../redux/modules/user";
 import { actionCreators as solsActions } from "../../redux/modules/solution";
 import Presenter from "./Presenter";
 
-export default () => {
+export default ({ match: { params: { groupId } } }) => {
   const [selected, setSelected] = useState(null);
   const [groupState, setGroupState] = useState(null);
   const [questionState, setQuestionState] = useState(null);
-  const { state: { groupId } } = useLocation();
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const _onClickUser = member => {
     if (member === selected) {
@@ -25,11 +25,20 @@ export default () => {
     }
   };
 
-  useEffect(() => {
+  const _getGroup = () => {
     dispatch(userActions.getGroup(groupId)).then(res => {
       setGroupState(res);
     });
-  }, []);
+  };
+
+  const _onEnter = () => {
+    dispatch(userActions.enterGroup(groupId)).then(res => {
+      if (res) history.go(0);
+      else alert("너무 많은 그룹에 가입되어있습니다.")
+    })
+  };
+
+  useEffect(_getGroup, [groupId]);
 
   return (
     <Presenter
@@ -37,6 +46,7 @@ export default () => {
       group={groupState}
       questions={questionState}
       onClickUser={_onClickUser}
+      onEnter={_onEnter}
     />
   );
 };

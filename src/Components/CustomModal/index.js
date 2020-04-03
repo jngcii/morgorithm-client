@@ -6,7 +6,7 @@ import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 const cx = classNames.bind(styles);
 
-export default ({ btnComponent, contentComponent, onUp, id }) => {
+export default ({ btnComponent, contentComponent, onUp, id, inn }) => {
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -40,7 +40,7 @@ export default ({ btnComponent, contentComponent, onUp, id }) => {
         <Fade in={open}>
           <div className={cx("paper")}>
             {contentComponent &&
-              contentComponent({ onCancel: handleClose, onUpload, id })
+              contentComponent({ onCancel: handleClose, onUpload, id, inn })
             }
           </div>
         </Fade>

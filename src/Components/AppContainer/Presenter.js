@@ -35,7 +35,7 @@ export default ({isLoggedIn}) => {
               <Route path="/problem/:originId/:solutionId" component={SolutionScreen} />
               <Route path="/problem/:originId" component={ProblemScreen} />
               <Route exact path="/group" component={GroupListScreen} />
-              <Route path="/group/:id" component={GroupScreen} />
+              <Route path="/group/:groupId" component={GroupScreen} />
               <Route path="/:username/questions" component={QuestionListScreen} />
               <Route path="/:username/solutions" component={SolutionListScreen} />
               <Route path="/:username" component={UserScreen} />

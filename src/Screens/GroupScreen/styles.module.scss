@@ -6,6 +6,7 @@
   width: $sectionWidth;
   margin: 0 auto;
   padding: 10px 0;
+  min-height: calc(100vh - 200px);
   
   .screenHeader {
     @include section();
@@ -102,4 +103,11 @@
   font-size: 20px !important;
   font-weight: 600 !important;
   color: $redColor !important;
+}
+
+.enterBtn {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  font-weight: 600 !important;
+  color: $blueColor !important;
 }

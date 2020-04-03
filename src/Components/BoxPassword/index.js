@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../../redux/modules/user";
 import Button from "@material-ui/core/Button";
@@ -6,14 +7,18 @@ import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 const cx = classNames.bind(styles);
 
-export default ({ onCancel, onUpload, id }) => {
+export default ({ onCancel, onUpload, id, inn }) => {
   const [password, setPassword] = useState("");
   const [err, setErr] = useState(null);
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const _onEnter = () => {
     dispatch(userActions.enterGroup(id, password)).then(res => {
-      if (res === true) onUpload();
+      if (res === true) {
+        onUpload();
+        if (inn) history.go(0);
+      }
       else if (res === 404) {
         setErr("잘못된 비밀번호입니다.");
         setTimeout(() => {

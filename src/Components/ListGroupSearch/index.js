@@ -58,13 +58,7 @@ export default ({ keyword, searchedGroups, loading }) => {
               searchedGroups.map(group => (
                 <tr key={group.id} className={cx("line")}>
                   <th className={cx("name")}>
-                    <Link
-                      className={cx("link")}
-                      to={{
-                        pathname: `/group/${group.id}`,
-                        state: { groupId: group.id }
-                      }}
-                    >
+                    <Link className={cx("link")} to={`/group/${group.id}`}>
                       {group.name}
                     </Link>
                   </th>

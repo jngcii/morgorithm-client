@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { CircularProgress, Button } from "@material-ui/core";
-import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
+import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 import User from "../../Components/User";
@@ -10,19 +11,34 @@ import LoadingBox from "../../Components/LoadingBox";
 import EmptyBox from "../../Components/EmptyBox";
 import CustomModal from "../../Components/CustomModal";
 import BoxLeave from "../../Components/BoxLeave";
+import BoxPassword from "../../Components/BoxPassword";
+import SecretBox from "../../Components/SecretBox";
 const cx = classNames.bind(styles);
 
 const LeaveBtn = ({ handleOpen }) => (
-  <Button 
+  <Button
     size={"large"}
     className={cx("leaveBtn")}
     variant="contained"
     endIcon={<MeetingRoomIcon color={"inherit"} size={"large"} />}
     onClick={handleOpen}
-  >OUT</Button>
+  >
+    OUT
+  </Button>
 );
 
-export default ({ selected, group, questions, onClickUser }) => {
+const EnterBtn = ({ handleOpen }) => (
+  <Button
+    className={cx("enterBtn")}
+    variant="contained"
+    endIcon={<ExitToAppIcon color={"inherit"} />}
+    onClick={handleOpen}
+  >
+    ENTER
+  </Button>
+);
+
+export default ({ selected, group, questions, onClickUser, onEnter }) => {
   return (
     <div className={cx("wrapper")}>
       <header className={cx("screenHeader")}>
@@ -37,15 +53,25 @@ export default ({ selected, group, questions, onClickUser }) => {
         )}
         {group === null ? (
           <LoadingBox />
+        ) : !group.is_private ? (
+          group.is_joined ? (
+            <CustomModal
+              btnComponent={LeaveBtn}
+              contentComponent={BoxLeave}
+              id={group.id}
+            />
+          ) : <EnterBtn handleOpen={onEnter} />
         ) : (
           <CustomModal
-            btnComponent={LeaveBtn}
-            contentComponent={BoxLeave}
+            btnComponent={group.is_joined ? LeaveBtn : EnterBtn}
+            contentComponent={group.is_joined ? BoxLeave : BoxPassword}
             id={group.id}
+            inn={true}
           />
         )}
       </header>
 
+      {group && !group.is_joined && group.is_private ? <SecretBox /> : 
       <section className={cx("section")}>
         <div className={cx("extra")}>
           {group === null ? (
@@ -63,11 +89,8 @@ export default ({ selected, group, questions, onClickUser }) => {
               {group.members.map(member => (
                 <div
                   key={member.id}
-                  className={cx(
-                    "userContainer",
-                    selected === member && "on"
-                  )}
-                  onClick={() => onClickUser(member)}
+                  className={cx("userContainer", selected === member && "on")}
+                  onClick={() => group&&group.is_private ? onClickUser(member) : alert("코드 공유를 위해 가입해주세요")}
                 >
                   <User creator={member} />
                 </div>
@@ -90,7 +113,7 @@ export default ({ selected, group, questions, onClickUser }) => {
                     <Link
                       className={"link"}
                       to={{
-                        pathname: `/problem/${question.problem.id}/${question.id}`,
+                        pathname: `/problem/${question.problem.id}/${question.id}`
                       }}
                     >
                       <LineQuestion question={question} isDetail={true} />
@@ -104,6 +127,7 @@ export default ({ selected, group, questions, onClickUser }) => {
           </div>
         )}
       </section>
+      }
     </div>
   );
 };

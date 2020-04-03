@@ -5,10 +5,7 @@ import styles from "./styles.module.scss";
 const cx = classNames.bind(styles);
 
 export default ({ group }) => (
-  <Link
-    className={cx("wrapper", "link")}
-    to={{ pathname: `/group/${group.id}`, state: { groupId: group.id } }}
-  >
+  <Link className={cx("wrapper", "link")} to={`/group/${group.id}`}>
     <div className={cx("name")}>{group.name}</div>
     <div className={cx("hr")} />
     <div className={cx("count")}>{group.members_count}</div>
