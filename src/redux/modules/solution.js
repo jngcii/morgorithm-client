@@ -140,7 +140,7 @@ function getCurrentSolution(solutionId) {
 }
 
 function getSolutionCounts(solutionId) {
-  return async function(dispatch, getState) {
+  return async function(_, getState) {
     const { user: { token } } = getState();
     const res = await fetch(`${API_URL}/sols/get-solution-counts/${solutionId}/`, {
       headers: { "Authorization": `Token ${token}` },
@@ -150,10 +150,39 @@ function getSolutionCounts(solutionId) {
       else if (res.status === 200) return res.json();
       else return false;
     })
-    .then(json => {
-      if (!!json) {
-        return json;
-      } else return false;
+    .catch(() => false);
+
+    return res;
+  };
+}
+
+function likeSolution(solutionId) {
+  return async function(_, getState) {
+    const { user: { token } } = getState();
+    const res = await fetch(`${API_URL}/sols/like-solution/${solutionId}/`, {
+      headers: { "Authorization": `Token ${token}` },
+    })
+    .then(res => {
+      if (res.status === 401) userActions.signOut();
+      else if (res.status === 200) return true;
+      else return false;
+    })
+    .catch(() => false);
+
+    return res;
+  };
+}
+
+function viewSolution(solutionId) {
+  return async function(_, getState) {
+    const { user: { token } } = getState();
+    const res = await fetch(`${API_URL}/sols/view-solution/${solutionId}/`, {
+      headers: { "Authorization": `Token ${token}` },
+    })
+    .then(res => {
+      if (res.status === 401) userActions.signOut();
+      else if (res.status === 200) return true;
+      else return false;
     })
     .catch(() => false);
 
@@ -416,6 +445,8 @@ const actionCreators = {
   deleteSubComment,
   getCommentLikes,
   likeComment,
+  likeSolution,
+  viewSolution,
 };
 
 export { actionCreators };

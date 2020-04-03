@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { actionCreators as solsActions } from "../../redux/modules/solution";
 import Presenter from "./Presenter";
 
-export default ({ solutionId, counts }) => {
+export default ({ solutionId, counts, setLikable }) => {
   const [originState, setOriginState] = useState(null);
   const [creatorState, setCreatorState] = useState(null);
   const [solutionState, setSolutionState] = useState(null);
@@ -17,6 +17,7 @@ export default ({ solutionId, counts }) => {
         setOriginState(problem);
         setCreatorState(creator);
         setSolutionState({ id, code, lang, solved, caption });
+        if (solved) setLikable(true);
       }
     });
   }, []);

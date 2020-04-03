@@ -9,6 +9,7 @@ export default ({
     params: { solutionId }
   }
 }) => {
+  const likable= useInput(false);
   const [cmtState, setCmtState] = useState(null);
   const msg = useInput("");
   const [countState, setCountState] = useState(null);
@@ -19,6 +20,12 @@ export default ({
     dispatch(solsActions.getSolutionCounts(solutionId)).then(res => {
       if (res) setCountState(res);
     });
+  };
+
+  const _viewCount =() => {
+    dispatch(solsActions.viewSolution(solutionId)).then(res => {
+      if (res) _getSolutionCounts();
+    })
   };
 
   const _getComments = () => {
@@ -37,18 +44,27 @@ export default ({
     });
   };
 
-  useEffect(_getSolutionCounts, []);
+  const _onLikeSolution = () => {
+    dispatch(solsActions.likeSolution(solutionId)).then(res => {
+      if (res) _getSolutionCounts();
+    })
+  };
 
-  useEffect(_getComments, [solutionId]);
+  useEffect(() => {
+    _getComments();
+    _viewCount();
+  }, [solutionId]);
 
   return (
     <Presenter
+      likable={likable}
       solutionId={solutionId}
       counts={countState}
       comments={cmtState}
       msg={msg}
       getComments={_getComments}
       onSubmitComment={_onSubmitComment}
+      onLikeSolution={_onLikeSolution}
     />
   );
 };
