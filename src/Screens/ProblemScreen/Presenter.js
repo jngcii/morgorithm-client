@@ -13,7 +13,7 @@ export default ({ problem, solutionList, questionList }) => (
 
     {problem ? <Problem problem={problem} /> : <LoadingBox />}
 
-    <UploadCode />
+    <UploadCode problem={problem} />
 
     <div className={cx("lists")}>
       <div className={cx("list")}>

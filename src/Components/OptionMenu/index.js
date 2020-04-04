@@ -2,6 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { actionCreators as probActions } from "../../redux/modules/problem";
+import { actionCreators as solsActions } from "../../redux/modules/solution";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
@@ -23,12 +24,20 @@ const RemoveMenu = ({handleOpen}) => (
   <MenuItem className={cx("menu")} onClick={handleOpen}>remove from here</MenuItem>
 );
 
+const EditMenu = ({handleOpen}) => (
+  <MenuItem className={cx("menu")} onClick={handleOpen}>edit</MenuItem>
+);
+
+const DeleteMenu = ({handleOpen}) => (
+  <MenuItem className={cx("menu")} onClick={handleOpen}>delete</MenuItem>
+);
+
 const ShareMenu = ({handleOpen}) => (
   <MenuItem className={cx("menu")} onClick={handleOpen}>share</MenuItem>
 );
 
 
-export default ({ btnComponent, probId, groupId }) => {
+export default ({ btnComponent, probId, groupId, solsId, editing }) => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const history = useHistory();
@@ -47,6 +56,17 @@ export default ({ btnComponent, probId, groupId }) => {
 
   const _onRemove = () => {
     dispatch(probActions.updateProblemsToGroup(groupId, [], [probId])).then(() => history.go());
+  }
+
+  const _onDelete = () => {
+    dispatch(solsActions.deleteSolution(solsId)).then(res => {
+      if (res) history.push(`/`);
+    });
+  }
+
+  const _onEdit = () => {
+    editing.onChange(true);
+    setOpen(false);
   }
 
   // return focus to the button when we transitioned from !open -> open
@@ -84,9 +104,17 @@ export default ({ btnComponent, probId, groupId }) => {
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList id="menu-list-grow" className={cx("menuList")}>
 
+                  {probId && 
                   <CustomModal btnComponent={AddMenu} contentComponent={BoxSelect} id={probId} />
+                  }
                   {groupId && 
                   <CustomModal btnComponent={RemoveMenu} contentComponent={BoxDelete} onUp={_onRemove} />
+                  }
+                  {solsId &&
+                  <EditMenu handleOpen={_onEdit} />
+                  }
+                  {solsId &&
+                  <CustomModal btnComponent={DeleteMenu} contentComponent={BoxDelete} onUp={_onDelete} />
                   }
                   <CustomModal btnComponent={ShareMenu} contentComponent={BoxDelete} />
 

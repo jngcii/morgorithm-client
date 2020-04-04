@@ -4,9 +4,10 @@ import styles from "./styles.module.scss";
 const cx = classNames.bind(styles);
 
 export default ({ email, password, signIn, onKeyDown, setIsExist }) => (
-  <div className={cx("wrapper")} onKeyDown={onKeyDown}>
-    <div className={cx("tag")}>email</div>
+  <form className={cx("wrapper")} onKeyDown={onKeyDown} onSubmit={signIn}>
+    <label for={"email"} className={cx("tag")}>email</label>
     <input
+      id={"email"}
       className={cx("authInput")}
       spellCheck={false}
       placeholder={"이메일을 입력하세요"}
@@ -15,8 +16,10 @@ export default ({ email, password, signIn, onKeyDown, setIsExist }) => (
       autoComplete={"email"}
       autoFocus
     />
-    <div className={cx("tag")}>password</div>
+    <label fro={"password"} className={cx("tag")}>password</label>
     <input
+      id={"password"}
+      type={"password"}
       className={cx("authInput")}
       spellCheck={false}
       placeholder={"비밀번호를 입력하세요"}
@@ -25,9 +28,9 @@ export default ({ email, password, signIn, onKeyDown, setIsExist }) => (
     />
 
     <div className={cx("signin")}>
-      <div className={cx("local")} onClick={signIn}>
+      <button className={cx("local")} onClick={signIn}>
         로그인
-      </div>
+      </button>
 
       <div className={cx("social")}>
         <img
@@ -41,5 +44,5 @@ export default ({ email, password, signIn, onKeyDown, setIsExist }) => (
       <li>비밀번호 찾기</li>
       <li onClick={() => setIsExist(false)}>회원가입</li>
     </ul>
-  </div>
+  </form>
 );

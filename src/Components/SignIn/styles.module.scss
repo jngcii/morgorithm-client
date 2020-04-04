@@ -18,6 +18,7 @@
 .authInput {
   display: block;
   @include authInput();
+  -ms-ime-mode: inactive;
 }
 
 .signin {

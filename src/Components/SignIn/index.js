@@ -12,6 +12,7 @@ export default ({ setIsExist }) => {
   const dispatch = useDispatch();
 
   const _signIn = async e => {
+    e.preventDefault();
 
     dispatch(userActions.signIn(email.value, password.value)).then(res => {
       if (!res) {

@@ -4,7 +4,6 @@ import classNames from "classnames/bind";
 const cx = classNames.bind(styles);
 
 export default ({ counts, onLike }) => {
-  console.log(counts);
   return(
   <div className={cx("wrapper")}>
     <header>

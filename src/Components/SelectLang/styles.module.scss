@@ -1,0 +1,20 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+
+  .list {
+    padding: 2px 5px;
+    border: 1px solid $brightGreyColor;
+    border-radius: 5px;
+    background-color: $navColor;
+    .listItem {
+      padding: 0;
+      text-align: center;
+      .listItemText {
+        font-weight: 800  !important;
+        color: $darkGreyColor !important;
+      }
+    }
+  }
+  
+}

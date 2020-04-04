@@ -387,6 +387,72 @@ function likeComment(commentId) {
     return res;
   };
 }
+
+function addSolution(originId, code, lang, solved, caption) {
+  return async function(_, getState) {
+    const { user: { token } } = getState();
+    const res = await fetch(`${API_URL}/sols/solution-api/`, {
+      method: "POST",
+      headers: {
+        "Authorization": `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ problem: originId, code, lang, solved, caption: solved ? null : caption })
+    })
+    .then(res => {
+      if (res.status === 401) userActions.signOut();
+      else if (res.status === 201) return res.json();
+      else return false;
+    })
+    .catch(() => false);
+
+    return res;
+  };
+}
+
+function modifySolution(solutionId, code, solved, caption) {
+  return async function(_, getState) {
+    const { user: { token } } = getState();
+    const res = await fetch(`${API_URL}/sols/solution-api/`, {
+      method: "PUT",
+      headers: {
+        "Authorization": `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: solutionId, code, solved, caption: solved ? "" : caption })
+    })
+    .then(res => {
+      if (res.status === 401) userActions.signOut();
+      else if (res.status === 200) return res.json();
+      else return false;
+    })
+    .catch(() => false);
+
+    return res;
+  };
+}
+
+function deleteSolution(solutionId) {
+  return async function(_, getState) {
+    const { user: { token } } = getState();
+    const res = await fetch(`${API_URL}/sols/solution-api/`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: solutionId })
+    })
+    .then(res => {
+      if (res.status === 401) userActions.signOut();
+      else if (res.status === 204) return true;
+      else return false;
+    })
+    .catch(() => false);
+
+    return res;
+  };
+}
 // initial state
 
 const initialState = {};
@@ -447,6 +513,9 @@ const actionCreators = {
   likeComment,
   likeSolution,
   viewSolution,
+  addSolution,
+  modifySolution,
+  deleteSolution,
 };
 
 export { actionCreators };

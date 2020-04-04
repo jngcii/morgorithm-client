@@ -59,9 +59,13 @@
   .question {
     .btns {
       padding: 15px 5px;
+      display: flex;
+      align-items: center;
+
       .checkbox {
         @include clickable();
-        display: inline-flex;
+        flex: 1;
+        display: flex;
         align-items: center;
 
         img {
@@ -83,8 +87,15 @@
         }
       }
 
+      .lang {
+        width: 120px;
+        height: 40px;
+        margin: 0 30px;
+        text-align: center;
+      }
+
       .upload {
-        float: right;
+        width: 70px;
 
         .uploadBtn {
           @include clickable();
