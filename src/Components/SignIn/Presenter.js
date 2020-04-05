@@ -1,11 +1,14 @@
 import React from "react";
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
+import { CircularProgress } from '@material-ui/core';
+import GoogleLogin from 'react-google-login';
+import { GOOGLE_CLIENT_ID } from "../../constants";
 const cx = classNames.bind(styles);
 
-export default ({ email, password, signIn, onKeyDown, setIsExist }) => (
+export default ({ loading, err, setErr, email, password, signIn, onKeyDown, onGoogle, setIsExist }) => (
   <form className={cx("wrapper")} onKeyDown={onKeyDown} onSubmit={signIn}>
-    <label for={"email"} className={cx("tag")}>email</label>
+    <label htmlFor={"email"} className={cx("tag")}>email</label>
     <input
       id={"email"}
       className={cx("authInput")}
@@ -16,7 +19,7 @@ export default ({ email, password, signIn, onKeyDown, setIsExist }) => (
       autoComplete={"email"}
       autoFocus
     />
-    <label fro={"password"} className={cx("tag")}>password</label>
+    <label htmlFor={"password"} className={cx("tag")}>password</label>
     <input
       id={"password"}
       type={"password"}
@@ -27,17 +30,28 @@ export default ({ email, password, signIn, onKeyDown, setIsExist }) => (
       onChange={e => password.onChange(e.target.value)}
     />
 
+    {err && <span className={cx("err")}>{err}</span>}
+
     <div className={cx("signin")}>
       <button className={cx("local")} onClick={signIn}>
-        로그인
+        {loading ? <CircularProgress color={"inherit"} size={20} /> : "로그인"}
       </button>
-
-      <div className={cx("social")}>
-        <img
-          src={require("../../../src/assets/google-logo.png")}
-          draggable={false}
-        />
-      </div>
+      <GoogleLogin
+        clientId={GOOGLE_CLIENT_ID}
+        redirectUri={'http%3A%2F%2Flocalhost%3A8000%2Fapi%2Fusers%2Fgoogle-auth%2F'}
+        ux_mode='redirect'
+        render={renderProps => (
+          <div className={cx("social")} onClick={renderProps.onClick} disabled={renderProps.disabled}>
+            <img
+              src={require("../../../src/assets/google-logo.png")}
+              draggable={false}
+            />
+          </div>
+        )}
+        onSuccess={onGoogle}
+        onFailure={() => setErr("구글 로그인 중 오류가 발생했습니다.")}
+        cookiePolicy={'single_host_origin'}
+      />
     </div>
 
     <ul className={cx("except")}>

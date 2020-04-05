@@ -103,7 +103,7 @@ export default ({
         <div className={cx("subContent")}>
           <div className={cx("subUser")}>
             <div className={cx("subProfile")}>
-              <img src={cmt.creator.avatar ? `${MEDIA_URL}${cmt.creator.avatar}` : require("../../assets/no-profile.png")} />
+              <img src={comment.creator.avatar ? `${MEDIA_URL}${comment.creator.avatar}` : require("../../assets/no-profile.png")} />
             </div>
             {cmt.creator.username}
           </div>

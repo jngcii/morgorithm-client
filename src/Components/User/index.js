@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 export default ({ creator }) => (
   <div className={cx("wrapper")}>
     <div className={cx("imgWrapper")}>
-      <img src={creator.avatar ? `${MEDIA_URL}${creator.avatar}` : require("../../assets/no-profile.png")} />
+      <img src={creator.avatar ? (`${MEDIA_URL}${creator.avatar}` ): require("../../assets/no-profile.png")} />
     </div>
     
     <div className={cx("text")}>

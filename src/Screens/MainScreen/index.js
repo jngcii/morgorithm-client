@@ -24,6 +24,7 @@ export default () => {
           name: user.name,
           email: user.email,
           avatar: user.avatar,
+          is_social: user.is_social,
           group: user.group
         });
         setStatusState({

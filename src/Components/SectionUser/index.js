@@ -11,7 +11,7 @@ export default ({ user, self }) => (
   <div className={cx("wrapper")}>
     <div className={cx("user")}>
       <div className={cx("imgWrapper")}>
-        <img src={user.avatar ? `${MEDIA_URL}${user.avatar}` : require("../../assets/no-profile.png")}draggable={false} />
+        <img src={user.avatar ? (`${MEDIA_URL}${user.avatar}` ): require("../../assets/no-profile.png")} draggable={false} />
       </div>
       <div className={cx("username")}>{ user.username }</div>
       { user.name && <div className={cx("name")}>{ user.name }</div> }
@@ -28,7 +28,7 @@ export default ({ user, self }) => (
 
       <div className={cx("list")}>
 
-        {user.group ? user.group.slice(0,5).map(g => (
+        {user.group && user.group.length > 0 ? user.group.slice(0,5).map(g => (
           <div className={cx("line")} key={g.id}>
             <LineGroup group={g} />
           </div>

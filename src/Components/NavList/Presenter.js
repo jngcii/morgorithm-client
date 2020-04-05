@@ -21,7 +21,7 @@ const MenuToggler = ({ anchorRef, handleToggle, open }) => (
 
 const Profile = ({ profile }) => (
   <div className={cx("navProfile")}>
-    <img src={profile.avatar ? `${MEDIA_URL}${profile.avatar}` : require("../../assets/no-profile.png")} draggable={false} />
+    <img src={profile.avatar ?`${MEDIA_URL}${profile.avatar}` : require("../../assets/no-profile.png")} draggable={false} />
   </div>
 );
 

@@ -50,6 +50,32 @@ function setEditProfile(username, name) {
 
 
 // API
+
+function authGoogle(credential) {
+  return async function(dispatch) {
+    const res = await fetch(`${API_URL}/users/google-auth/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ credential })
+    })
+    .then(res => {
+      if (res.status === 200) return res.json();
+      else return false;
+    })
+    .then(json => {
+      if (json && json.token) {
+        dispatch(saveProfile(json));
+        dispatch(saveCurrentUser(json));
+        dispatch(solsActions.getQuestions(json.username));
+        return true;
+      } else return false;
+    })
+    .catch(() => false);
+
+  return res;
+  };
+}
+
 function signIn(email, password) {
   return async function(dispatch) {
     const res = await fetch(`${API_URL}/users/sign-in/`, {
@@ -375,24 +401,24 @@ function reducer(state = initialState, action) {
 // reducer functions
 
 function applySetProfile(state, action) {
-  const { profile: { token, id, username, avatar, name, email, group, problem_groups, problems_count, solved_problems_count, questions_count } } = action;
+  const { profile: { token, id, username, avatar, name, is_social, email, group, problem_groups, problems_count, solved_problems_count, questions_count } } = action;
 
   localStorage.setItem("token", token);
   return {
     ...state,
     isLoggedIn: true,
     token,
-    profile: { id, username, name, email, avatar, group, problem_groups, problems_count, solved_problems_count, questions_count }
+    profile: { id, username, name, email, avatar, group, is_social, problem_groups, problems_count, solved_problems_count, questions_count }
   };
 };
 
 function applySetCurrentUser(state, action) {
-  const { profile: { token, id, username, name, avatar, email, group, problems_count, solved_problems_count, questions_count } } = action;
+  const { profile: { token, id, username, name, avatar, is_social, email, group, problems_count, solved_problems_count, questions_count } } = action;
 
   localStorage.setItem("token", token);
   return {
     ...state,
-    currentUser: { id, username, name, email, avatar, group, problems_count, solved_problems_count, questions_count }
+    currentUser: { id, username, name, email, avatar, is_social, group, problems_count, solved_problems_count, questions_count }
   };
 };
 
@@ -459,6 +485,7 @@ function applyEditProfile(state, action) {
 // exports
 
 const actionCreators = {
+  authGoogle,
   signIn,
   signOut,
   sendConfirmCode,
