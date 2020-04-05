@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom"
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 import { MEDIA_URL } from "../../constants";
 const cx = classNames.bind(styles);
 
 export default ({ profile }) => (
-  <div className={cx("wrapper")}>
+  <Link className={cx("wrapper", "link")} to={"/editprofile"}>
     <div className={cx("imgWrapper")}>
       <img src={profile.avatar ? (`${MEDIA_URL}${profile.avatar}` ): require("../../assets/no-profile.png")} />
     </div>
@@ -13,5 +14,5 @@ export default ({ profile }) => (
     <span>{profile.username}</span>
     <span>{profile.name}</span>
     <span className={cx("edit")}>edit</span>
-  </div>
+  </Link>
 )
