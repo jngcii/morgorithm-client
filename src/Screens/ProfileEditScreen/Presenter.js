@@ -3,6 +3,8 @@ import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 import BoxPWChange from "../../Components/BoxPWChange";
 import CustomModal from "../../Components/CustomModal";
+import BoxProfileImage from "../../Components/BoxProfileImage";
+import { MEDIA_URL } from "../../constants";
 const cx = classNames.bind(styles);
 
 const CP = ({ handleOpen }) => (
@@ -14,10 +16,10 @@ export default ({ profile, username, name, err, noChange, onSubmit }) => (
     <div className={cx("imgContainer")}>
       <div className={cx("imgs")}>
         <img
-          src={require("../../assets/no-profile-big.png")}
+          src={profile && profile.avatar ? `${MEDIA_URL}${profile.avatar}` : require("../../assets/no-profile-big.png")}
           className={cx("img")}
         />
-        <div className={cx("imgWrapper")}>edit profile image</div>
+        <CustomModal contentComponent={BoxProfileImage} btnComponent={({ handleOpen }) => <div onClick={handleOpen} className={cx("imgWrapper")}>edit profile image</div>} />
       </div>
     </div>
 

@@ -12,28 +12,44 @@ export default () => {
   const [problemState, setProblemState] = useState(null);
   const [questionState, setQuestionState] = useState(null);
 
-  const { user: { profile }, user } = useSelector(state => state);
+  const { user: { profile } } = useSelector(state => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(userActions.getUser(profile.username)).then(user => {
-      if (user) {
-        setUserState({
-          id: user.id,
-          username: user.username,
-          name: user.name,
-          email: user.email,
-          avatar: user.avatar,
-          is_social: user.is_social,
-          group: user.group
-        });
-        setStatusState({
-          problemsCount: user.problems_count,
-          solvedCount: user.solved_problems_count,
-          questionsCount: user.questions_count
-        });
-      }
+    // dispatch(userActions.getUser(profile.username)).then(user => {
+    //   if (user) {
+    //     setUserState({
+    //       id: user.id,
+    //       username: user.username,
+    //       name: user.name,
+    //       email: user.email,
+    //       avatar: user.avatar,
+    //       is_social: user.is_social,
+    //       group: user.group
+    //     });
+    //     setStatusState({
+    //       problemsCount: user.problems_count,
+    //       solvedCount: user.solved_problems_count,
+    //       questionsCount: user.questions_count
+    //     });
+    //   }
+    // });
+    // if (user) {
+    setUserState({
+      id: profile.id,
+      username: profile.username,
+      name: profile.name,
+      email: profile.email,
+      avatar: profile.avatar,
+      is_social: profile.is_social,
+      group: profile.group
     });
+    setStatusState({
+      problemsCount: profile.problems_count,
+      solvedCount: profile.solved_problems_count,
+      questionsCount: profile.questions_count
+    });
+    // }
     dispatch(probActions.getProblems({})).then(pres => {
       if (pres) setProblemState(pres);
     });

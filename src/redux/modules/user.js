@@ -10,6 +10,7 @@ const REMOVE_USER_GROUP = 'REMOVE_USER_GROUP';
 const ADD_PROB_GROUPS = 'ADD_PROB_GROUPS';
 const DELETE_PROB_GROUPS = 'DELETE_PROB_GROUPS';
 const EDIT_PROFILE = 'EDIT_PROFILE';
+const EDIT_AVATAR = 'EDIT_AVATAR';
 
 // action creators
 
@@ -47,6 +48,10 @@ function deleteProbGroup(groupId) {
 function setEditProfile(username, name) {
   return { type: EDIT_PROFILE, username, name };
 };
+
+function setAvatar(avatar) {
+  return { type: EDIT_AVATAR, avatar };
+}
 
 
 // API
@@ -364,6 +369,31 @@ function leaveGroup(groupId) {
   };
 };
 
+function uploadAvatar(data) {
+  return async function(dispatch, getState) {
+    const { user: { token } } = getState();
+    const res = await fetch(`${API_URL}/users/upload-avatar/`, {
+      method: "PUT",
+      headers: {
+        "Authorization": `Token ${token}`,
+      },
+      body: data
+    })
+    .then(res => {
+      if (res.status === 401) signOut();
+      else if (res.status === 201) return res.json();
+      else return false;
+    })
+    .then(json => {
+      if (!!json) {dispatch(setAvatar(json)); return true;}
+      else return false;
+    })
+    .catch(() => false);
+
+    return res;
+  };
+}
+
 
 // initial state
 
@@ -393,6 +423,8 @@ function reducer(state = initialState, action) {
       return applyDeleteProbGroups(state, action);
     case EDIT_PROFILE:
       return applyEditProfile(state, action);
+    case EDIT_AVATAR:
+      return applyAvatar(state, action);
     default:
       return state;
   }
@@ -481,6 +513,16 @@ function applyEditProfile(state, action) {
   };
 };
 
+function applyAvatar(state, action) {
+  const { avatar: { avatar } } = action;
+  const { profile, currentUser } = state;
+  const newProfile = { ...profile, avatar };
+  const newUser = { ...currentUser, avatar };
+  return {
+    ...state, profile: newProfile, currentUser: newUser
+  };
+}
+
 
 // exports
 
@@ -499,6 +541,7 @@ const actionCreators = {
   createGroup,
   enterGroup,
   leaveGroup,
+  uploadAvatar,
 
   addProbGroups,
   deleteProbGroup
