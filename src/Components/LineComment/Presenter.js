@@ -5,6 +5,7 @@ import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import SubdirectoryArrowRightIcon from '@material-ui/icons/SubdirectoryArrowRight';
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
+import { MEDIA_URL } from "../../constants";
 const cx = classNames.bind(styles);
 
 const ModifyComment = ({ editMsg, onKeyDown }) => (
@@ -57,7 +58,9 @@ export default ({
 
   <div className={cx("commentContainer")}>
     <div className={cx("user")}>
-      <img src={require("../../assets/no-profile.png")} />
+      <div className={cx("imgWrapper")}>
+        <img src={comment.creator.avatar ? `${MEDIA_URL}${comment.creator.avatar}` : require("../../assets/no-profile.png")} />
+      </div>
       <div className={cx("username")}>{comment.creator.username}</div>
       <div className={cx("name")}>{comment.creator.name}</div>
     </div>
@@ -99,7 +102,9 @@ export default ({
         <SubdirectoryArrowRightIcon className={cx("subImg")} />
         <div className={cx("subContent")}>
           <div className={cx("subUser")}>
-            <img className={cx("subProfile")} src={require("../../assets/no-profile.png")} />
+            <div className={cx("subProfile")}>
+              <img src={cmt.creator.avatar ? `${MEDIA_URL}${cmt.creator.avatar}` : require("../../assets/no-profile.png")} />
+            </div>
             {cmt.creator.username}
           </div>
           {subCommentEditing === cmt.id ? (

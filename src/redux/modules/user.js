@@ -375,24 +375,24 @@ function reducer(state = initialState, action) {
 // reducer functions
 
 function applySetProfile(state, action) {
-  const { profile: { token, id, username, name, email, group, problem_groups, problems_count, solved_problems_count, questions_count } } = action;
+  const { profile: { token, id, username, avatar, name, email, group, problem_groups, problems_count, solved_problems_count, questions_count } } = action;
 
   localStorage.setItem("token", token);
   return {
     ...state,
     isLoggedIn: true,
     token,
-    profile: { id, username, name, email, group, problem_groups, problems_count, solved_problems_count, questions_count }
+    profile: { id, username, name, email, avatar, group, problem_groups, problems_count, solved_problems_count, questions_count }
   };
 };
 
 function applySetCurrentUser(state, action) {
-  const { profile: { token, id, username, name, email, group, problems_count, solved_problems_count, questions_count } } = action;
+  const { profile: { token, id, username, name, avatar, email, group, problems_count, solved_problems_count, questions_count } } = action;
 
   localStorage.setItem("token", token);
   return {
     ...state,
-    currentUser: { id, username, name, email, group, problems_count, solved_problems_count, questions_count }
+    currentUser: { id, username, name, email, avatar, group, problems_count, solved_problems_count, questions_count }
   };
 };
 

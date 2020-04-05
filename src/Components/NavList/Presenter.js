@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 import NavMenu from "../NavMenu";
+import { MEDIA_URL } from "../../constants";
 const cx = classNames.bind(styles);
 
 
@@ -18,9 +19,9 @@ const MenuToggler = ({ anchorRef, handleToggle, open }) => (
   </div>
 );
 
-const Profile = () => (
+const Profile = ({ profile }) => (
   <div className={cx("navProfile")}>
-    <img src={require("../../assets/no-profile.png")} draggable={false} />
+    <img src={profile.avatar ? `${MEDIA_URL}${profile.avatar}` : require("../../assets/no-profile.png")} draggable={false} />
   </div>
 );
 
@@ -40,7 +41,7 @@ export default ({ profile }) => (
 
     <li>
       <NavMenu component={MenuToggler} />
-      <Link to={`/${profile.username}`}><Profile /></Link>
+      <Link to={`/${profile.username}`}><Profile profile={profile} /></Link>
     </li>
   </ul>
 );

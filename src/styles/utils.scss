@@ -160,3 +160,9 @@ $modalINputFontWeight: 600;
     opacity: .1;
   }
 }
+
+@mixin imgWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -23,6 +23,7 @@ export default () => {
           username: user.username,
           name: user.name,
           email: user.email,
+          avatar: user.avatar,
           group: user.group
         });
         setStatusState({

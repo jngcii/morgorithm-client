@@ -11,12 +11,19 @@
   
   &:hover { opacity: .9; }
 
-  img {
+  .imgWrapper {
+    @include imgWrapper();
     width: 40px;
+    height: 40px;
+    border-radius: 20px;
     margin-right: 10px;
     background-color: #fff;
-    border-radius: 22px;
     padding: 2px;
+    overflow: hidden;
+
+    img {
+      width: 40px;
+    }
   }
 
   span {

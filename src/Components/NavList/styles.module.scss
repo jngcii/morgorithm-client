@@ -22,8 +22,12 @@
 .navProfile {
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 17px;
   img {
-    width: 33px;
+    width: 34px;
   }
 }
 

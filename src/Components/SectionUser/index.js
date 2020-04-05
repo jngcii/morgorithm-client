@@ -4,14 +4,18 @@ import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 import LineGroup from "../LineGroup";
 import EmptyBox from "../EmptyBox";
+import { MEDIA_URL } from "../../constants";
 const cx = classNames.bind(styles);
 
 export default ({ user, self }) => (
   <div className={cx("wrapper")}>
     <div className={cx("user")}>
-      <img src={require("../../assets/no-profile.png")} draggable={false} />
+      <div className={cx("imgWrapper")}>
+        <img src={user.avatar ? `${MEDIA_URL}${user.avatar}` : require("../../assets/no-profile.png")}draggable={false} />
+      </div>
       <div className={cx("username")}>{ user.username }</div>
       { user.name && <div className={cx("name")}>{ user.name }</div> }
+      <Link className={cx("link")} to={"/editprofile"}><button className={cx("edit")}>edit</button></Link>
     </div>
 
     <span className={cx("in")}>in</span>
