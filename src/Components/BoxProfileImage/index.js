@@ -5,8 +5,6 @@ import { actionCreators as userActions } from "../../redux/modules/user";
 import Button from '@material-ui/core/Button';
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
-import ProfilePicture from "profile-picture"
-import "profile-picture/build/ProfilePicture.css"
 import ImageUploader from "react-images-upload";
 const cx = classNames.bind(styles);
 
