@@ -5,15 +5,15 @@ import SignIn from "../SignIn";
 import SignUp from "../SignUp";
 const cx = classNames.bind(styles);
 
-export default ({ setIsLoggedIn }) => {
+export default () => {
   const [isExist, setIsExist] = useState(true);
 
   return (
     <div className={cx("wrapper")}>
       {isExist ? (
-        <SignIn setIsLoggedIn={setIsLoggedIn} setIsExist={setIsExist} />
+        <SignIn setIsExist={setIsExist} />
       ) : (
-        <SignUp setIsLoggedIn={setIsLoggedIn} setIsExist={setIsExist} />
+        <SignUp setIsExist={setIsExist} />
       )}
     </div>
   );

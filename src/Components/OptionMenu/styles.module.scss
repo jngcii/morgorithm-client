@@ -1,0 +1,25 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  display: flex;
+}
+
+.arrow {
+  margin: 10px;
+  position: relative;
+  top: 5px;
+}
+.paper {
+  position: relative;
+  right: 30%;
+}
+.menuList {
+  display: flex;
+  flex-direction: column;
+}
+.menu {
+  margin: 0 !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: $darkGreyColor!important;
+}

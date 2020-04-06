@@ -1,0 +1,7 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  @include eachScreenWrapper();
+  width: $sectionWidth + 100px;
+  margin: 0 auto;
+}

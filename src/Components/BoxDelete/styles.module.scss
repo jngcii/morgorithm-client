@@ -1,0 +1,25 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  width: $confirmModalWidth;
+
+  .body {
+    margin: 30px auto;
+    font-size: 17px;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .btn {
+    &.submit {
+      margin: 0 10px;
+      background-color: $yellowColor;
+      color: #fff;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px !important;
+  margin: 0 10px;
+  border: 1px solid $lightGreyColor;
+  &:hover {
+      background-color: rgba(150, 150, 150, .1);
+  }
+}

@@ -1,0 +1,61 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  width: 100%;
+
+  table {
+    width: 100%;
+
+    thead {
+      color: $lightGreyColor;
+      
+      .cnt { font-weight: 600 !important; }
+      font-size: 13px;
+    }
+
+    td {
+      width: 100%;
+    }
+    th {
+      width: 100%;
+    }
+
+    tr {
+      display: flex;
+      align-items: center;
+      padding: 5px 10px;
+      transition: .3s;
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      border-bottom-color: $brightGreyColor;
+
+      &.non {
+        padding: 5px 50px;
+      }
+    }
+
+    .name {
+      @include clickable();
+      flex: 2;
+      text-align: start;
+    }
+    .cnt {
+      flex: 1;
+      max-width: 150px;
+      font-weight: 400;
+    }
+    .btn {
+      @include clickable();
+      width: 70px;
+      color: $redColor;
+    }
+  }
+}
+
+
+.leaveBtn {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  font-weight: 600 !important;
+  color: $redColor !important;
+}

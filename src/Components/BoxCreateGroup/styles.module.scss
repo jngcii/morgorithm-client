@@ -1,0 +1,93 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  width: $createUserModalWidth;
+  height: $createUserModalHeight;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  .intro {
+    margin: 5px 5px 10px;
+  }
+  
+  .input {
+    width: 100%;
+    margin: 0;
+    height: 36px;
+    box-sizing: border-box;
+    padding: 0 10px;
+    border-radius: 5px;
+    border: none;
+    @include modalInputFont();
+    &:focus { background-color: $bgColor; }
+  }
+
+  .hr {
+    width: 100%;
+    border: 1px solid $bgColor;
+  }
+
+  .kind {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 5px;
+    .select {
+      display: flex;
+      width: 100%;
+      padding: 0;
+    }
+    .search {
+      width: 250px;
+      height: 100%;
+      box-sizing: border-box;
+      padding: 0 10px;
+      border-radius: 5px;
+      border: 1px solid $brightGreyColor;
+      @include modalInputFont();
+      &:focus { background-color: $bgColor; }
+    }
+  }
+
+  .body {
+    flex: 1;
+    overflow:hidden;
+    overflow-y: scroll;
+
+    .eachLine {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      user-select: none;
+
+      .toggler {
+        @include clickable();
+        width: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img { width: 20px; }
+      }
+    }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .btn {
+    color: $blackColor;
+    &.submit {
+      font-weight: 600;
+      margin: 0 10px;
+      background-color: $yellowColor;
+      &:disabled {
+        opacity: .4;
+      }
+    }
+  }
+}

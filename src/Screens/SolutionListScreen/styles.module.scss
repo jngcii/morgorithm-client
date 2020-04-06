@@ -1,0 +1,26 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  @include eachScreenWrapper();
+
+  .header {
+    @include header();
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+
+    .title {
+      padding: 3px 10px;
+      border-radius: 5px;
+      background-color: $navColor;
+      margin-left: 15px;
+      box-shadow: 0 0 5px 0 rgba(0, 0, 0, .1);
+    }
+  }
+
+  .body {
+    min-height: calc(100vh - 370px);
+  }
+}

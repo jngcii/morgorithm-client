@@ -1,0 +1,60 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  box-sizing: border-box;
+  width: 0;
+  background-color: $bgColor;
+  overflow: hidden;
+  transition: .3s;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  &.out {
+    width: 300px;
+
+    @media screen and (max-width: 1180px) {
+      width: 100%;
+    }
+  }
+  &.in {
+    @media screen and (max-width: 1180px) {
+      display: none;
+    }
+  }
+
+  .container {
+    bottom: 50vw;
+    margin-top: 70px;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 250px;
+    border-radius: 15px;
+
+    @media screen and (max-width: 1180px) {
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .each {
+      @include clickable();
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      overflow: hidden;
+
+      &.plus {
+        padding: 5px 20px;
+        &:active {
+          opacity: .5;
+        }
+      }
+
+      @media screen and (max-width: 1180px) {
+        padding: 7px;
+      }
+    }
+
+  }
+}

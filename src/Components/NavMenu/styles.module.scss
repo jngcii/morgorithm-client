@@ -1,0 +1,20 @@
+.wrapper {
+  display: flex;
+}
+
+.arrow {
+  margin: 10px;
+  position: relative;
+  top: 5px;
+}
+.paper {
+  position: relative;
+  top: 15px;
+}
+.menuList {
+  display: flex;
+  flex-direction: column;
+}
+.menu {
+  margin: 0 !important;
+}

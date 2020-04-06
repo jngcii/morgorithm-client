@@ -1,0 +1,33 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  @include eachScreenWrapper();
+  width: $sectionWidth;
+  min-height: calc(100vh - 120px);
+
+  .lists {
+    @include section();
+    box-sizing: border-box;
+    padding: 0;
+    display: flex;
+
+    .list {
+      flex: 1;
+      height: 350px;
+      box-sizing: border-box;
+      overflow: hidden;
+
+      .listHeader {
+        @include header();
+        width: 80%;
+        margin: 0 auto;
+        justify-content: space-between;
+        font-size: 20px;
+
+        .more {
+          @include more();
+        }
+      }
+    }
+  }
+}

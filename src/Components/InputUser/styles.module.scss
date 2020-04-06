@@ -1,6 +1,6 @@
 @import "src/Styles/utils.scss";
 
-input {
+.authInput {
   display: block;
   margin: 5px auto;
   @include authInput();
@@ -15,7 +15,7 @@ input {
   @include btn();
   width: $authInputWidth - 10px;
   margin: 10px auto;
-  background-color: #fff;
+  background-color: $yellowColor;
   font-weight: 700;
   color: $darkGreyColor;
 }

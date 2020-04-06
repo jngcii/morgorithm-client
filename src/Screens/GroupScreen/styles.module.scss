@@ -1,0 +1,113 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  @include eachScreenWrapper();
+  align-items: center;
+  width: $sectionWidth;
+  margin: 0 auto;
+  padding: 10px 0;
+  min-height: calc(100vh - 200px);
+  
+  .screenHeader {
+    @include section();
+    @include screenHeader();
+    padding: 5px 20px;
+
+    .goBack {
+      width: 70px;
+      img {
+        @include clickable();
+        width: 30px;
+        margin: 5px auto 0;
+      }
+    }
+    .name {
+      flex: 1;
+    }
+  }
+
+  .section{
+    @include section();
+    min-height: calc(100vh - 350px);
+
+    .extra {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+    }
+
+    .content {
+      display: flex;
+
+      .users {
+        flex: 1;
+        overflow: scroll;
+        max-height: 600px;
+      }
+
+      .userContainer {
+        @include clickable();
+        width: ($sectionWidth - 50px) / 4;
+        height: 60px;
+        display: inline-flex;
+        align-items: center;
+        box-sizing: border-box;
+        padding: 5px;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+
+        &.on {
+          box-shadow: 0 0 5px 0 rgba(0, 0, 0, .1);
+          background-color: $navColor;
+        }
+      }
+      .questionContainer {
+        padding: 10px 10px 5px;
+      }
+      .questions {
+        box-sizing: border-box;
+        width: ($sectionWidth - 50px) * 3 / 4;
+        height: 600px;
+        transition: .3s;
+        background-color: $navColor;
+        padding: 10px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+
+
+        &.on {
+          width: 0;
+          height: 0;
+          padding: 0;
+        }
+      }
+    }
+  }
+}
+
+.go {
+  padding: 0 10px 10px;
+  font-weight: 600;
+  color: $darkBlueColor;
+  text-align: end;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: $brightGreyColor;
+}
+
+.leaveBtn {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  color: $redColor !important;
+}
+
+.enterBtn {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  font-weight: 600 !important;
+  color: $blueColor !important;
+}

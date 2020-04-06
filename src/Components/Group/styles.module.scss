@@ -1,0 +1,74 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  @include section();
+  margin-top: 50px;
+
+  header {
+    @include screenHeader();
+    padding: 10px;
+    align-items: flex-end;
+
+    .subject {
+      @include header();
+    }
+    button {
+      margin: 0 20px;
+    }
+
+    .search {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+
+      .inputBox {
+        border: 1px solid $brightGreyColor;
+        width: 100px;
+        height: 25px;
+        padding: 3px 10px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        transition: .3s;
+        font-size: 14px;
+        outline: none;
+
+        &:focus {
+          background-color: #fff;
+          width: 170px;
+        }
+        &::placeholder {
+          color: $brightGreyColor;
+        }
+      }
+    }
+  }
+
+  section {
+    display: flex;
+    .list {
+      padding: 5px;
+      margin: 10px;
+      transition: .3s;
+      overflow: hidden;
+    }
+    .my {
+      flex: 2;
+      min-height: 400px;
+    }
+    .searching {
+      flex: 3;
+    }
+    .none {
+      flex: 0;
+      opacity: 0;
+    }
+  }
+}
+
+.newGroup {
+  padding: 3px !important;
+  margin: 0 20px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: $blueColor !important;
+}

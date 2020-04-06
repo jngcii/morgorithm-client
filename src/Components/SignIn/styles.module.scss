@@ -15,9 +15,10 @@
   @include tagFont();
 }
 
-input {
+.authInput {
   display: block;
   @include authInput();
+  -ms-ime-mode: inactive;
 }
 
 .signin {
@@ -30,6 +31,7 @@ input {
     flex: 1;
     background-color: $yellowColor;
     margin-right: 10px;
+    font-size: 15px;
     font-weight: 700;
     color: $darkGreyColor;
   }
@@ -48,6 +50,11 @@ input {
       top: 2px;
     }
   }
+}
+
+.err {
+  color: $redColor;
+  font-size: 12px;
 }
 
 .except {

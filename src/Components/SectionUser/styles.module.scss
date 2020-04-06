@@ -2,15 +2,26 @@
 
 .wrapper {
     @include section();
+    width: 90%;
     display: flex;
     align-items: center;
     padding-top: 50px;
 
     .user {
-        img {
-            display: block;
-            width: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .imgWrapper {
+            @include imgWrapper();
+            width: 100px;
+            height: 100px;
+            border-radius: 50px;
             margin: 10px;
+            overflow: hidden;
+
+            img {
+                width: 100px;
+            }
         }
         div {
             text-align: center;
@@ -22,6 +33,15 @@
         .name {
             font-size: 16px;
             font-weight: 500;
+        }
+        .edit {
+            cursor: pointer;
+            &:active {
+                background-color: inherit;
+                filter: brightness("50%");
+                outline: none;
+                
+            }
         }
     }
 
@@ -37,24 +57,32 @@
     height: 100%;
     flex: 1;
 
-    .title {
-        @include titleFont();
-    }
-    .more {
-        @include clickable();
-        float: right;
-        margin: 7px;
-        font-size: 13px;
-        font-weight: 700;
-        color: $darkBlueColor;
+    .groupHeader {
+        width: 95%;
+        @include header();
+        justify-content: space-between;
+
+        .title {
+            @include titleFont();
+        }
+        .more {
+            @include more();
+            text-decoration: none;
+        }
     }
 
     .list {
+        box-sizing: border-box;
+        margin-top: 5px;
+        height: 200px;
+        background-color: $navColor;
+        border-radius: 10px;
+        padding: 5px;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, .1);
+
         .line {
-            width: 100%;
-            border-bottom-style: solid;
-            border-bottom-width: 1px;
-            border-bottom-color: $brightGreyColor;
+            width: 95%;
+            margin: 8px auto;
         }
     }
 }

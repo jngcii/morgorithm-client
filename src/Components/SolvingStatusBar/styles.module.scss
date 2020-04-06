@@ -1,7 +1,8 @@
 @import "src/Styles/utils.scss";
 
 .wrapper {
-    width: $sectionWidth - 50px;
+    box-sizing: border-box;
+    width: 90%;
     margin: 10px auto;
     display: flex;
     padding: 5px 30px;

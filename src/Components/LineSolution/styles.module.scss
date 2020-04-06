@@ -1,0 +1,23 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 3px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: $brightGreyColor;
+
+  .user {
+    flex: 1;
+  }
+  
+  .txt {
+    font-size: 10px;
+    font-weight: 700;
+    color: $brightGreyColor;
+  }
+}

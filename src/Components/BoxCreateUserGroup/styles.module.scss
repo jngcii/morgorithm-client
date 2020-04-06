@@ -1,0 +1,54 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  width: $createUserGroupModalWidth;
+  box-sizing: border-box;
+  padding: 10px;
+
+  .input {
+    width: 100%;
+    margin: 0;
+    height: 36px;
+    box-sizing: border-box;
+    padding: 0 10px;
+    border-radius: 5px;
+    border: 1px solid $brightGreyColor;
+    @include modalInputFont();
+  }
+
+  .access {
+    margin: 10px 0;
+    height: 25px;
+    display: flex;
+    justify-content: space-between;
+
+    .label {
+      color: $darkGreyColor;
+      font-size: 13px;
+      margin-right: 5px;
+    }
+
+    .password {
+      border-radius: 5px;
+      background-color: $bgColor;
+      border: 1px solid $brightGreyColor;
+      padding: 0 10px;
+      font-style: italic;
+      color: $lightGreyColor;
+      font-weight: 600;
+    }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .btn {
+    &.submit {
+      margin: 0 10px;
+      background-color: $yellowColor;
+      color: #fff;
+    }
+  }
+}

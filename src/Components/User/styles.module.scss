@@ -1,0 +1,39 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+
+  .imgWrapper {
+    margin: 12px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    img {
+      width: 36px;
+      border-radius: 18px;
+    }
+  }
+
+  .text {
+    overflow: hidden;
+    padding-right: 12px;
+
+    .username {
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 18px;
+      margin-bottom: 5px;
+    }
+    .name {
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 16px;
+    }
+  }
+}

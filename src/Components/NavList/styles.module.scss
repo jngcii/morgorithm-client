@@ -1,23 +1,51 @@
 @import "src/Styles/utils.scss";
 
 .navlist {
-    padding: 0 10px;
-    
-    li {
-        @include clickable();
-        display: inline-block;
+  padding: 0 20px;
+
+  li {
+    @include clickable();
+    display: inline-flex;
+    margin: 0 20px;
+    vertical-align: middle;
+    align-items: center;
+
+    .link {
+        text-decoration: none;
         font-size: 17px;
         font-weight: 800;
-        margin: 0 20px;
-        vertical-align: middle;
         color: $blackColor;
     }
+  }
 }
 
 .navProfile {
-    display: flex;
-    align-items: center;
-    img {
-        width: 33px;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 17px;
+  overflow: hidden;
+  img {
+    width: 34px;
+  }
+}
+
+.toggler {
+  position: relative;
+  top: 3px;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    background-color: rgba(150, 150, 150, .1);
+  }
+
+  .arrow {
+    margin: 5px;
+  }
 }

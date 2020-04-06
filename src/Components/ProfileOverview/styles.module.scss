@@ -1,0 +1,43 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  @include section();
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 40px;
+  background-color: rgba(0, 0, 0, 0.5);
+  
+  &:hover { opacity: .9; }
+
+  .imgWrapper {
+    @include imgWrapper();
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin-right: 10px;
+    background-color: #fff;
+    padding: 2px;
+    overflow: hidden;
+
+    img {
+      width: 40px;
+    }
+  }
+
+  span {
+    margin: 0 10px;
+    color: #fff;
+  }
+  
+  .edit {
+    position: absolute;
+    right: 8px;
+    border-radius: 20px;
+    width: 40px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+  }
+}

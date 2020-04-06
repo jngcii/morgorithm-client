@@ -1,0 +1,203 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  width: $sectionWidth;
+  box-sizing: border-box;
+  padding: 10px;
+  background-color: $navColor;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: $brightGreyColor;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.commentContainer {
+  display: flex;
+
+  .user {
+    padding: 5px 0;
+    width: 100px;
+    height: 100px;
+
+    .imgWrapper {
+      @include imgWrapper();
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      margin: 10px auto;
+      overflow: hidden;
+      img {
+        width: 40px;
+      }
+    }
+    .username {
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 15px;
+      text-align: center;
+    }
+    .name {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 15px;
+      text-align: center;
+    }
+  }
+
+  article {
+    position: relative;
+    flex: 1;
+    padding: 10px;
+    padding-bottom: 20px;
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-left-color: $brightGreyColor;
+
+    .content {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 0 15px;
+      margin: 0;
+      font-size: 14px;
+      white-space: pre-line;
+    }
+
+    .footer {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      background-color: $navColor;
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      border-bottom-color: $bgColor;
+
+      .likeBtn {
+        color: $redColor;
+      }
+
+      .num {
+        font-size: 13px;
+        margin: 5px;
+        font-weight: 800;
+        color: $darkGreyColor;
+      }
+      .date {
+        font-size: 13px;
+        font-weight: 600;
+        margin: 0 10px;
+        color: $lightGreyColor;
+      }
+    }
+  }
+}
+
+
+.sub {
+  background-color: #f1f1f1;
+  padding-left: 100px;
+  display: flex;
+  overflow: hidden;
+
+  .subImg { margin: 10px 10px; width: 20px; }
+  .subContent {
+    margin: 10px 0;
+    display: flex;
+    overflow: hidden;
+    .subUser {
+      height: 30px;
+      padding-right: 15px;
+      border-radius: 5px;
+      box-shadow: 0 0 2px 0 rgba(0, 0, 0, .1);
+      border: 1px solid $brightGreyColor;
+      background-color: #fff;
+      display: inline-flex;
+      align-items: center;
+      .subProfile {
+        @include imgWrapper();
+        margin: 0 10px;
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        overflow: hidden;
+        img {
+          width: 20px;
+        }
+      }
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .subMsg {
+      margin: 0;
+      font-size: 13px;
+      padding: 7px 10px;
+      white-space: pre-line;
+    }
+  }
+}
+
+.subInput {
+  display: flex;
+  padding-left: 100px;
+  .subImg { margin: 10px 10px; width: 20px; }
+  .commentInput {
+    margin: 5px 0;
+    flex: 1;
+    background-color: transparent;
+    line-height: 18px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 10px;
+    border: none;
+    font-size: 13px;
+    outline: none;
+    resize: none;
+  }
+}
+
+.modifyInput {
+  width: 100%;
+  line-height: 21px;
+  box-sizing: border-box;
+  padding: 0 15px;
+  margin: 0;
+  font-size: 15px;
+  color: $blackColor;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  font-weight: 600;
+}
+
+.modifySubInput {
+  width: 100%;
+  line-height: 21px;
+  box-sizing: border-box;
+  padding: 0 15px;
+  margin: 0;
+  font-size: 15px;
+  color: $blackColor;
+  background-color: $brightGreyColor;
+  border: none;
+  outline: none;
+  font-weight: 600;
+}
+
+.op {
+  @include clickable();
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  .blue {
+    color: $blueColor;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0 5px;
+  }
+}

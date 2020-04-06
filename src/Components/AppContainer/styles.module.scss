@@ -1,9 +1,26 @@
 @import "src/Styles/utils.scss";
 
 .wrapper {
-    margin-top: 60px;
     font-family: 'Noto Sans KR', sans-serif;
     color: $blackColor;
+    background-color: $bgColor;
+
+    .body {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 50px;
+        margin-top: 60px;
+        display: flex;
+
+        @media screen and (max-width: 1080px) {
+            flex-direction: column;
+        }
+
+        .content {
+            flex: 1;
+            transition: .3s;
+        }
+    }
 }
 
 img {

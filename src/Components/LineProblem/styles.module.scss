@@ -1,0 +1,71 @@
+@import "src/Styles/utils.scss";
+
+.wrapper {
+  width: 100%;
+
+  .link {
+    text-decoration: none;
+    color: $blackColor;
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+
+    .site {
+      width: 120px;
+      font-size: 15px;
+      font-weight: 800;
+      color: $lightGreyColor;
+      text-align: center;
+      margin: 0 10px;
+    }
+
+    .num {
+      width: 60px;
+      font-size: 15px;
+      font-weight: 400;
+      padding: 0 10px;
+      text-align: center;
+    }
+
+    .title {
+      flex: 1;
+      font-size: 14px;
+      font-weight: 800;
+      overflow: hidden;
+      
+      .remark {
+        font-size: 11px;
+        font-weight: 700;
+        color: $darkGreyColor;
+      }
+    }
+
+    .level {
+      display: inline-block;
+      margin: 0 20px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff;
+      padding: 3px 10px;
+      background-color: $brightGreyColor;
+      border-radius: 3px;
+      text-align: center;
+    }
+
+    .solved {
+      padding: 3px;
+      border-radius: 3px;
+      background-color: $bgColor;
+      color: $bgColor;
+      font-size: 11px;
+      font-weight: 600;
+      opacity: 0.5;
+
+      &.yes {
+        background-color: $blueColor;
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
 $logoFontFamily: "Bellota", cursive;
+
 $yellowColor: #e8d64f;
 $blackColor: #555;
 $darkGreyColor: #777;
@@ -8,13 +9,25 @@ $bgColor: #f2f2f2;
 $navColor: #fafafa;
 $pinkColor: #edcadf;
 $darkBlueColor: #4e80de;
+$blueColor: #3495eb;
 $redColor: #e62c47;
 
 $authInputWidth: 220px;
-$sectionWidth: 650px;
+$sectionWidth: 750px;
+$confirmModalWidth: 250px;
+$createUserGroupModalWidth: 300px;
+$createUserModalWidth: 700px;
+$createUserModalHeight: 700px;
 
 $titleFontSize: 23px;
 $titleFontWeight: 600;
+$modalInputFontSize: 17px;
+$modalINputFontWeight: 600;
+
+@mixin modalInputFont {
+  font-size: $modalInputFontSize;
+  font-weight: $modalINputFontWeight;
+}
 
 @mixin titleFont {
   font-size: $titleFontSize;
@@ -23,14 +36,16 @@ $titleFontWeight: 600;
 
 @mixin header {
   @include titleFont();
-  display: inline-block;
+  display: flex;
+  align-items: center;
   padding-left: 10px;
 }
 
 @mixin section {
   margin: 0 auto;
-  padding: 25px;
-  width: $sectionWidth;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 5px 25px;
 }
 
 @mixin clickable {
@@ -39,7 +54,7 @@ $titleFontWeight: 600;
 }
 
 @mixin bigLogo {
-  @include clickable();
+  cursor: default;
   font-family: $logoFontFamily;
   font-size: 45px;
   font-weight: 300;
@@ -95,13 +110,59 @@ $titleFontWeight: 600;
   user-select: none;
   outline: none;
 
-  &:hover {
-    opacity: .8;
+  &:active {
+    opacity: .4;
   }
 }
 
 @mixin centerify {
   diplay: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin more {
+  @include clickable();
+  margin: 7px;
+  font-size: 13px;
+  font-weight: 700;
+  color: $darkBlueColor;
+}
+
+@mixin eachScreenWrapper {
+  width: 100%;
+  padding: 30px;
+  background-color: $bgColor;
+}
+
+@mixin screenHeader {
+  display: flex;
+  align-items: center;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: $brightGreyColor;
+}
+
+@mixin twinkleAnimation {
+  animation: twinkle 2s ease-in-out infinite;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, .1);
+}
+
+
+@keyframes twinkle {
+  0% {
+    opacity: .1;
+  }
+  50% {
+    opacity: .6;
+  }
+  100% {
+    opacity: .1;
+  }
+}
+
+@mixin imgWrapper {
+  display: flex;
   align-items: center;
   justify-content: center;
 }

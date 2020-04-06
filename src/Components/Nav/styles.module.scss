@@ -18,6 +18,7 @@ nav {
   &.in {
     height: 60px;
   }
+  z-index: 10;
 }
 
 .logoContainer {
@@ -25,12 +26,16 @@ nav {
   align-items: center;
   justify-content: center;
 
-  span {
+  .link {
+    text-decoration: none;
     transition: 0.3s;
+    color: $blackColor;
   }
 
   .out {
     @include bigLogo();
+    cursor: default;
+    user-select: none;
     margin: 0 50px;
   }
   .in {

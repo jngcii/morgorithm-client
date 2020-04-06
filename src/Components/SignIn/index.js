@@ -1,31 +1,43 @@
-import React from "react";
-import classNames from "classnames/bind";
-import styles from "./styles.module.scss";
-const cx = classNames.bind(styles);
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../../redux/modules/user";
+import { actionCreators as probActions } from "../../redux/modules/problem";
+import useInput from "../../Hooks/useInput";
+import Presenter from "./Presenter";
 
-export default ({ setIsLoggedIn, setIsExist }) => (
-  <div className={cx("wrapper")}>
-    <div className={cx("tag")}>email</div>
-    <input spellCheck={false} placeholder={"이메일을 입력하세요"} />
-    <div className={cx("tag")}>password</div>
-    <input spellCheck={false} placeholder={"비밀번호를 입력하세요"} />
+export default ({ setIsExist }) => {
+  const [loading, setLoading] = useState(false);
+  const [err, setErr] = useState(null);
+  const email = useInput("");
+  const password = useInput("");
+  const dispatch = useDispatch();
 
-    <div className={cx("signin")}>
-      <div className={cx("local")} onClick={() => setIsLoggedIn(true)}>
-        로그인
-      </div>
+  const _signIn = async e => {
+    setLoading(true);
+    e.preventDefault();
 
-      <div className={cx("social")}>
-        <img
-          src={require("../../../src/assets/google-logo.png")}
-          draggable={false}
-        />
-      </div>
-    </div>
+    dispatch(userActions.signIn(email.value, password.value)).then(res => {
+      setLoading(false);
+      if (!res) {
+        setErr("잘못된 회원정보입니다.")
+        email.onChange("");
+        password.onChange("");
+      } else {
+        dispatch(probActions.copyProblems());
+      }
+    });
+  };
 
-    <ul className={cx("except")}>
-      <li>비밀번호 찾기</li>
-      <li onClick={() => setIsExist(false)}>회원가입</li>
-    </ul>
-  </div>
-);
+  const _onKeyDown = e => {
+    if (e.keyCode === 13) _signIn(e);
+  };
+
+  const _onGoogle = e => {
+    dispatch(userActions.authGoogle(e)).then(res => {
+      if (res) dispatch(probActions.copyProblems());
+      else setErr("구글 이메일이 이미 사용중입니다.")
+    })
+  };
+
+  return <Presenter loading={loading} err={err} setErr={setErr} email={email} password={password} signIn={_signIn} onKeyDown={_onKeyDown} onGoogle={_onGoogle} setIsExist={setIsExist} />;
+};
