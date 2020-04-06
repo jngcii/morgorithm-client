@@ -38,11 +38,11 @@ const EnterBtn = ({ handleOpen }) => (
   </Button>
 );
 
-export default ({ selected, group, questions, onClickUser, onEnter }) => {
+export default ({ selected, group, questions, onClickUser, onEnter, onGoBack }) => {
   return (
     <div className={cx("wrapper")}>
       <header className={cx("screenHeader")}>
-        <div className={cx("goBack")}>
+        <div className={cx("goBack")} onClick={onGoBack}>
           <img src={require("../../assets/go-back.png")} />
         </div>
 

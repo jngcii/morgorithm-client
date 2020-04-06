@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as solsActions } from "../../redux/modules/solution";
 import useInput from "../../Hooks/useInput";
@@ -14,6 +15,8 @@ export default ({ solutionId, counts, setLikable }) => {
   const newSolved = useInput("");
   const editing = useInput(false);
 
+  const history = useHistory();
+
   const { user: { profile } } = useSelector(state => state);
   const dispatch = useDispatch();
   
@@ -28,6 +31,8 @@ export default ({ solutionId, counts, setLikable }) => {
       }
     });
   };
+
+  const _onGoBack = () => history.goBack();
 
   const _onUpload = () => {
     dispatch(solsActions.modifySolution(solutionId, newCode.value, newSolved.value, newCaption.value)).then(res => {
@@ -60,6 +65,7 @@ export default ({ solutionId, counts, setLikable }) => {
       newSolved={newSolved}
       editing={editing}
       onUpload={_onUpload}
+      onGoBack={_onGoBack}
     />
   );
 };

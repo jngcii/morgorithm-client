@@ -30,11 +30,11 @@ const UploadBtn = ({ handleOpen }) => (
 
 const LoadingBox = () => <div className={cx("loading")} />;
 
-export default ({ profile, origin, creator, solution, counts, newCode, newCaption, newSolved, editing, onUpload }) => {
+export default ({ profile, origin, creator, solution, counts, newCode, newCaption, newSolved, editing, onUpload, onGoBack }) => {
   return (
     <div className={cx("wrapper")}>
       <header>
-        <div className={cx("btn")}>
+        <div className={cx("btn")} onClick={onGoBack}>
           <img src={require("../../assets/go-back.png")} />
         </div>
 

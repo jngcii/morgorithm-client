@@ -13,6 +13,8 @@ export default ({ match: { params: { groupId } } }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const _onGoBack = () => history.goBack();
+
   const _onClickUser = member => {
     if (member === selected) {
       setSelected(null);
@@ -47,6 +49,7 @@ export default ({ match: { params: { groupId } } }) => {
       questions={questionState}
       onClickUser={_onClickUser}
       onEnter={_onEnter}
+      onGoBack={_onGoBack}
     />
   );
 };
