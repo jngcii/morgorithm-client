@@ -3,6 +3,8 @@ import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
 import { CircularProgress } from '@material-ui/core';
 import GoogleLogin from 'react-google-login';
+import CustomModal from "../CustomModal";
+import BoxFindPassword from "../BoxFindPassword";
 import { GOOGLE_CLIENT_ID } from "../../constants";
 const cx = classNames.bind(styles);
 
@@ -55,7 +57,7 @@ export default ({ loading, err, setErr, email, password, signIn, onKeyDown, onGo
     </div>
 
     <ul className={cx("except")}>
-      <li>비밀번호 찾기</li>
+      <li><CustomModal btnComponent={({handleOpen})=><li onClick={handleOpen}>비밀번호 찾기</li>} contentComponent={BoxFindPassword} /></li>
       <li onClick={() => setIsExist(false)}>회원가입</li>
     </ul>
   </form>

@@ -394,6 +394,26 @@ function uploadAvatar(data) {
   };
 }
 
+function findPassword(email) {
+  return async function() {
+    const res = await fetch(`${API_URL}/users/find-password/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email })
+    })
+    .then(res => {
+      if (res.status === 404) return res.status;
+      else if (res.status === 200) return res.status;
+      else return 400;
+    })
+    .catch(() => false);
+
+    return res;
+  };
+};
+
 
 // initial state
 
@@ -542,6 +562,7 @@ const actionCreators = {
   enterGroup,
   leaveGroup,
   uploadAvatar,
+  findPassword,
 
   addProbGroups,
   deleteProbGroup
