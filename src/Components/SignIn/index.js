@@ -33,7 +33,6 @@ export default ({ setIsExist }) => {
   };
 
   const _onGoogle = e => {
-    console.log(e);
     dispatch(userActions.authGoogle(e)).then(res => {
       if (res) dispatch(probActions.copyProblems());
     })

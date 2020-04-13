@@ -50,7 +50,6 @@ export default ({ loading, err, setErr, email, password, signIn, onKeyDown, onGo
         )}
         onSuccess={onGoogle}
         onFailure={e=>console.log(e)}
-        cookiePolicy={'single_host_origin'}
       />
     </div>
 
