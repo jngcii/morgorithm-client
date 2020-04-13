@@ -33,7 +33,7 @@ export default ({ onCancel, onUpload }) => {
     if (!checkRef.current || !checkRef.current.checked) setAccess(false);
   })
 
-  if (fail) return <div className={cx("wrapper")}>너무 많은 그룹에 가입되어 있습니다.</div>
+  if (fail) return <div className={cx("wrapper")}>alreay exist group name.</div>
 
   return (
     <div className={cx("wrapper")}>

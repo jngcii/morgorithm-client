@@ -12,7 +12,6 @@ export default ({ loading, err, username, name, password1, password2, signUp }) 
       placeholder={"유저네임을 입력하세요"}
       value={username.value}
       onChange={e=>username.onChange(e.target.value)}
-      autoComplete={"username"}
     />
     <input
       className={cx("authInput")}
@@ -20,12 +19,12 @@ export default ({ loading, err, username, name, password1, password2, signUp }) 
       placeholder={"이름을 입력하세요"}
       value={name.value}
       onChange={e=>name.onChange(e.target.value)}
-      autoComplete={"name"}
     />
     <input
       className={cx("authInput")}
       spellCheck={false}
       placeholder={"비밀번호를 입력하세요"}
+      type={"password"}
       value={password1.value}
       onChange={e=>password1.onChange(e.target.value)}
     />
@@ -33,6 +32,7 @@ export default ({ loading, err, username, name, password1, password2, signUp }) 
       className={cx("authInput")}
       spellCheck={false}
       placeholder={"비밀번호를 다시 입력하세요"}
+      type={"password"}
       value={password2.value}
       onChange={e=>password2.onChange(e.target.value)}
     />

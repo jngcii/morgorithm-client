@@ -1,4 +1,6 @@
 import React from "react";
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { ButtonBase } from '@material-ui/core';
 import classNames from "classnames/bind";
 import styles from "./styles.module.scss";
@@ -26,7 +28,8 @@ export default ({
   onClickLevel,
   onClicksolved,
   onDispatch,
-  onDelete
+  onDelete,
+  onPage
 }) => (
   <div className={cx("wrapper")}>
     <header className={cx("header")}>
@@ -91,9 +94,20 @@ export default ({
     <section className={cx("body")}>
       {problemList === null ? (
         <LoadingBox />
-      ) : problemList.length ?
-        <ListProblem problemList={problemList} op={true} groupId={group.value && group.value.id} /> : <div style={{padding:20, height:300}}><EmptyBox /></div>
+      ) : problemList.results.length ?
+        <ListProblem problemList={problemList.results} op={true} groupId={group.value && group.value.id} /> : <div style={{padding:20, height:300}}><EmptyBox /></div>
       }
     </section>
+
+    <div className={cx("pageWrapper")}>
+      <ButtonGroup aria-label="outlined secondary button group">
+        <Button disabled={!(problemList && problemList.previous)} onClick={()=>{
+          if(problemList && problemList.previous) onPage(problemList.previous);
+        }}>Previous</Button>
+        <Button disabled={!(problemList && problemList.next)} onClick={()=>{
+          if(problemList && problemList.next) onPage(problemList.next);
+        }}>Next</Button>
+      </ButtonGroup>
+    </div>
   </div>
 );

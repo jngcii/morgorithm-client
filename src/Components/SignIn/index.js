@@ -35,7 +35,6 @@ export default ({ setIsExist }) => {
   const _onGoogle = e => {
     dispatch(userActions.authGoogle(e)).then(res => {
       if (res) dispatch(probActions.copyProblems());
-      else setErr("구글 이메일이 이미 사용중입니다.")
     })
   };
 

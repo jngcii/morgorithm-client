@@ -8,6 +8,15 @@ export default ({ match: { params: { username, originId } } }) => {
 
   const dispatch = useDispatch();
 
+  const _onPage = url => {
+    dispatch(
+      solsActions.getSolutions2(url)
+    ).then(res => {
+      setSolutionState(res);
+    });
+  };
+
+
   useEffect(() => {
     if (username) {
       dispatch(solsActions.getSolutions(username)).then(res => setSolutionState(res));
@@ -16,5 +25,5 @@ export default ({ match: { params: { username, originId } } }) => {
     }
   }, [username, originId])
 
-  return <Presenter originId={originId} username={username} solutions={solutionState} />;
+  return <Presenter originId={originId} username={username} solutions={solutionState} onPage={_onPage} />;
 }

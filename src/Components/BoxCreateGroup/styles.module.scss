@@ -2,7 +2,7 @@
 
 .wrapper {
   width: $createUserModalWidth;
-  height: $createUserModalHeight;
+  height: $createUserModalHeight + 10px;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -75,6 +75,7 @@
   }
 
   .footer {
+    position: relative;
     display: flex;
     justify-content: flex-end;
   }
@@ -89,5 +90,10 @@
         opacity: .4;
       }
     }
+  }
+
+  .page {
+    position: absolute;
+    left: 10px;
   }
 }

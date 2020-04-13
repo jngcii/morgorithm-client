@@ -1,4 +1,5 @@
 import React from "react";
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from "@material-ui/core/Button";
 import { CircularProgress } from "@material-ui/core";
 import classNames from "classnames/bind";
@@ -20,7 +21,8 @@ export default ({
   onCancel,
   onUpload,
   onSearch,
-  onClickBtn
+  onClickBtn,
+  onPage
 }) => (
   <div className={cx("wrapper")}>
     <h2 className={cx("intro")}>New Solvinglist</h2>
@@ -73,13 +75,22 @@ export default ({
         <CircularProgress color={"inherit"} size={20} />
       ) : (
         problems &&
-        problems.map(problem => <AddingToggler key={problem.id} problem={problem} addedList={addedList} />)
+        problems.results.map(problem => <AddingToggler key={problem.id} problem={problem} addedList={addedList} />)
       )}
     </div>
 
     <hr className={cx("hr")} />
 
     <div className={cx("footer")}>
+      <ButtonGroup className={cx("page")} aria-label="outlined secondary button group">
+        <Button disabled={!(problems && problems.previous)} onClick={()=>{
+          if(problems && problems.previous) onPage(undefined, undefined, undefined, problems.previous);
+        }}>Previous</Button>
+        <Button disabled={!(problems && problems.next)} onClick={()=>{
+          if(problems && problems.next) onPage(undefined, undefined, undefined, problems.next);
+        }}>Next</Button>
+      </ButtonGroup>
+
       <Button onClick={onCancel} className={cx("btn")}>
         Cancel
       </Button>

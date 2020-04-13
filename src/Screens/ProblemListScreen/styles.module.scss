@@ -83,4 +83,10 @@
   .body {
     min-height: calc(100vh - 430px);
   }
+
+  .pageWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 }

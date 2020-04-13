@@ -50,7 +50,7 @@ export default ({ user, status, probGroups, problems, questions }) => (
     </header>
     <div className={cx("section", "sol")}>
       {problems !== null ? (
-        <ListProblem problemList={problems} subject={"Problems"} />
+        <ListProblem problemList={problems.results.slice(0,7)} subject={"Problems"} />
       ) : (
         <LoadingBox />
       )}
@@ -67,7 +67,7 @@ export default ({ user, status, probGroups, problems, questions }) => (
     </header>
     <div className={cx("section", "sol")}>
       {questions !== null ? (
-        <ListSolution list={questions} subject={"question"} />
+        <ListSolution list={questions.results.slice(0, 7)} subject={"question"} />
       ) : (
         <LoadingBox />
       )}

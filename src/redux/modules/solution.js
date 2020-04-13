@@ -47,10 +47,56 @@ function getQuestions(username) {
   };
 }
 
+function getQuestions2(url) {
+  return async function(dispatch, getState) {
+    const { user: { token } } = getState();
+    const res = await fetch(`${url}`, {
+      headers: { "Authorization": `Token ${token}` },
+    })
+    .then(res => {
+      if (res.status === 401) userActions.signOut();
+      else if (res.status === 200) return res.json();
+      else return false;
+    })
+    .then(json => {
+      if (!!json) {
+        dispatch(updateQuestions(json));
+        return json;
+      } else return false;
+    })
+    .catch(() => false);
+
+    return res;
+  };
+}
+
 function getSolutions(username) {
   return async function(dispatch, getState) {
     const { user: { token } } = getState();
     const res = await fetch(`${API_URL}/sols/get-solutions/${username}/`, {
+      headers: { "Authorization": `Token ${token}` },
+    })
+    .then(res => {
+      if (res.status === 401) userActions.signOut();
+      else if (res.status === 200) return res.json();
+      else return false;
+    })
+    .then(json => {
+      if (!!json) {
+        dispatch(updateSolutions(json));
+        return json;
+      } else return false;
+    })
+    .catch(() => false);
+
+    return res;
+  };
+}
+
+function getSolutions2(url) {
+  return async function(dispatch, getState) {
+    const { user: { token } } = getState();
+    const res = await fetch(`${url}`, {
       headers: { "Authorization": `Token ${token}` },
     })
     .then(res => {
@@ -496,7 +542,9 @@ function applyUpdateCurrentSolution(state, action) {
 
 const actionCreators = {
   getQuestions,
+  getQuestions2,
   getSolutions,
+  getSolutions2,
   getProblemsQuestions,
   getProblemsSolutions,
   getCurrentSolution,

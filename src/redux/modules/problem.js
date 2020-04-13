@@ -44,7 +44,35 @@ function copyProblems() {
 function getProblems({group=[], category=[], level=[], solved=[], keyword=""}) {
   return async function(dispatch, getState) {
     const { user: { token } } = getState();
-    const res = await fetch(`${API_URL}/probs/get-problems/`, {
+    const res = await fetch(`${API_URL}/probs/get-problems/?page=1`, {
+      method: "POST",
+      headers: {
+        "Authorization": `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ group, category, level, solved, keyword })
+    })
+    .then(res => {
+      if (res.status === 401) userActions.signOut();
+      else if (res.status === 200) return res.json();
+      else return false;
+    })
+    .then(json => {
+      if (!!json) {
+        dispatch(updateProblems(json));
+        return json;
+      } else return false;
+    })
+    .catch(() => false);
+
+    return res;
+  };
+}
+
+function getProblems2({group=[], category=[], level=[], solved=[], keyword="", url}) {
+  return async function(dispatch, getState) {
+    const { user: { token } } = getState();
+    const res = await fetch(`${url}`, {
       method: "POST",
       headers: {
         "Authorization": `Token ${token}`,
@@ -236,6 +264,7 @@ function applyUpdateProblems(state, action) {
 const actionCreators = {
   copyProblems,
   getProblems,
+  getProblems2,
   getProblem,
   searchProblems,
   createGroup,

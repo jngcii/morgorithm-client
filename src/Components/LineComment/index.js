@@ -13,6 +13,8 @@ export default ({ comment, getComments }) => {
   const editSubMsg = useInput("");
   const msg = useInput("");
 
+  console.log("shshshshshshshs", comment.creator);
+
   const { user: { profile: { id: userId } } } = useSelector(state => state);
   const dispatch = useDispatch();
 

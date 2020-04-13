@@ -55,6 +55,30 @@ export default ({ onCancel, onUpload }) => {
       onUpload();
     }
   };
+  
+  const _onPage = (k = undefined, c = undefined, l = undefined, url) => {
+    setLoading(true);
+    let category = [[], ["Programmers"], ["SWEA"], ["BaekJoon"]];
+    let level = [[], [1], [2], [3], [4], [5], [6], [7], [8], [9]];
+    let w;
+    if (site.value === 1) w = pLevel.value;
+    else if (site.value === 2) w = sLevel.value;
+    else w = 0;
+
+    dispatch(
+      probActions.getProblems2({
+        group: [],
+        category: c !== undefined ? category[c] : category[site.value],
+        level: l !== undefined ? level[l] : level[w],
+        solved: [],
+        keyword: k !== undefined ? k : search.value,
+        url,
+      })
+    ).then(res => {
+      setProblemState(res);
+      setLoading(false);
+    });
+  };
 
   useEffect(onSearching, []);
 
@@ -72,6 +96,7 @@ export default ({ onCancel, onUpload }) => {
       onUpload={_onUpload}
       onSearch={_onInput}
       onClickBtn={onSearching}
+      onPage={_onPage}
     />
   );
 };

@@ -17,10 +17,10 @@ export default ({ match: { params: { originId } } }) => {
         if (res) setProblemState(res);
       })
       dispatch(solsActions.getProblemsQuestions(originId)).then(res => {
-        if (res) setQuestionState(res);
+        if (res) setQuestionState(res.results);
       });
       dispatch(solsActions.getProblemsSolutions(originId)).then(res => {
-        if (res) setSolutionState(res);
+        if (res) setSolutionState(res.results);
       });
     }
   }, [originId]);

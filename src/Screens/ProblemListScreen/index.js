@@ -103,6 +103,21 @@ export default () => {
     });
   };
 
+  const _onPage = url => {
+    dispatch(
+      probActions.getProblems2({
+        group: state && state.group ? [state.group.id] : [],
+        category: category.array,
+        level: level.array,
+        solved: solved.array,
+        keyword: keyword.value,
+        url,
+      })
+    ).then(res => {
+      setProblemState(res);
+    });
+  };
+
   useEffect(() => {
     onDispatch();
     if (state) group.onChange(state.group);
@@ -121,6 +136,7 @@ export default () => {
       onClicksolved={onClicksolved}
       onDispatch={onDispatch}
       onDelete={_onDelete}
+      onPage={_onPage}
     />
   );
 };
