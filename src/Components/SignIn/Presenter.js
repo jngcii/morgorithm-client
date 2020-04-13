@@ -40,8 +40,8 @@ export default ({ loading, err, setErr, email, password, signIn, onKeyDown, onGo
       </button>
       <GoogleLogin
         clientId={GOOGLE_CLIENT_ID}
-        // redirectUri={'http%3A%2F%2Flocalhost%3A8000%2Fapi%2Fusers%2Fgoogle-auth%2F'}
-        // ux_mode='redirect'
+        redirectUri={'https%3A%2F%2Fmorgorithm.com'}
+        ux_mode='redirect'
         render={renderProps => (
           <div className={cx("social")} onClick={renderProps.onClick} disabled={renderProps.disabled}>
             <img
