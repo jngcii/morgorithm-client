@@ -32,15 +32,15 @@ export default ({isLoggedIn}) => {
               <Route exact path="/" component={MainScreen} />
               <Route exact path="/editprofile" component={ProfileEdit} />
               <Route exact path="/problem" component={ProblemListScreen} />
-              <Route path="/problem/:originId(\\d+)/questions" component={QuestionListScreen} />
-              <Route path="/problem/:originId(\\d+)/solutions" component={SolutionListScreen} />
-              <Route path="/problem/:originId(\\d+)/:solutionId(\\d+)" component={SolutionScreen} />
-              <Route path="/problem/:originId(\\d+)" component={ProblemScreen} />
+              <Route path="/problem/:originId/questions" component={QuestionListScreen} />
+              <Route path="/problem/:originId/solutions" component={SolutionListScreen} />
+              <Route path="/problem/:originId/:solutionId" component={SolutionScreen} />
+              <Route path="/problem/:originId" component={ProblemScreen} />
               <Route exact path="/group" component={GroupListScreen} />
-              <Route path="/group/:groupId(\\d+)" component={GroupScreen} />
+              <Route path="/group/:groupId" component={GroupScreen} />
               <Route path="/:username/questions" component={QuestionListScreen} />
               <Route path="/:username/solutions" component={SolutionListScreen} />
-              <Route path="/:username(\\w+)" component={UserScreen} />
+              <Route path="/:username" component={UserScreen} />
             </Switch>
           </div>
         </section>
