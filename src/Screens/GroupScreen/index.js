@@ -22,7 +22,7 @@ export default ({ match: { params: { groupId } } }) => {
     } else {
       setSelected(member);
       dispatch(solsActions.getQuestions(member.username)).then(res => {
-        setQuestionState(res);
+        setQuestionState(res.results);
       })
     }
   };
