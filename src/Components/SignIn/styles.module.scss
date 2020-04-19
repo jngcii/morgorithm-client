@@ -27,13 +27,23 @@
   margin: 20px auto;
 
   .local {
+    flex: 1 !important;
+    margin-right: 10px !important;
+  }
+
+  .localBtn {
     @include btn();
-    flex: 1;
-    background-color: $yellowColor;
-    margin-right: 10px;
-    font-size: 15px;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background-color: $yellowColor !important;
+    font-size: 15px !important;
     font-weight: 700;
     color: $darkGreyColor;
+
+    &:disabled {
+      background-color: $brightGreyColor !important;
+    }
   }
 
   .social {
@@ -42,6 +52,7 @@
     width: 50px;
     background-color: #fff;
     overflow: hidden;
+    cursor: pointer;
 
     img {
       position: relative;
