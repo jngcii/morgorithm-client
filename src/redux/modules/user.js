@@ -81,24 +81,21 @@ function authGoogle(credential) {
   };
 }
 
-function signIn(email, password) {
+function signIn(cred, password) {
   return async function(dispatch) {
     const res = await fetch(`${API_URL}/users/sign-in/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ cred, password })
     })
       .then(res => {
-        if (res.status === 200) return res.json();
-        else return false;
-      })
-      .then(json => {
-        if (json && json.token) {
+        if (res && res.status === 200) {
+          const json = res.json();
           dispatch(saveProfile(json));
           dispatch(saveCurrentUser(json));
           dispatch(solsActions.getQuestions(json.username));
-          return true;
-        } else return false;
+          return res.status;
+        } else return res.status;
       })
       .catch(() => false);
 
