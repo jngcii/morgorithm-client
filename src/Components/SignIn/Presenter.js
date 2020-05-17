@@ -30,7 +30,7 @@ export default ({
       id={"cred"}
       className={cx("authInput")}
       spellCheck={false}
-      placeholder={"이메일을 입력하세요"}
+      placeholder={"이메일 또는 유저네임을 입력하세요"}
       value={cred.value}
       onChange={(e) => cred.onChange(e.target.value)}
       autoComplete={"username"}

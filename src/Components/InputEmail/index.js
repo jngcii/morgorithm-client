@@ -49,6 +49,7 @@ export default ({ setCredentials, setStep }) => {
       setOriginCode(code);
       setIsVerifying(true);
       setMsg("이메일로 인증 코드가 전송되었습니다.");
+      setErr(null);
       setTimeout(() => snackOpen.onChange(false), 1500);
       setTimeout(() => setMsg(null), 2500);
       setLoading(false);
